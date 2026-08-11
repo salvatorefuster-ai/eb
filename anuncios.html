@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Escort listings Benidorm | EscortBenidorm</title>
+  <meta name="description" content="Escort, scort and putas listings in Benidorm: TOP, new, independent, outcall and 24h. Filter by area, price and WhatsApp. Benidorm only." />
+  <meta name="keywords" content="escorts benidorm, scorts benidorm, putas benidorm, escort listings benidorm" />
+  <meta name="theme-color" content="#07070c" />
+  <link rel="canonical" href="https://www.escortbenidorm.es/anuncios.html" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css?v=9" />
+</head>
+<body>
+  <div id="age-gate" class="age-gate" role="dialog" aria-modal="true">
+    <div class="age-card">
+      <div class="logo-mark">EB</div>
+      <h2 data-i18n="age_title">18+ only</h2>
+      <p data-i18n="age_text">Adult content.</p>
+      <div class="age-actions">
+        <button type="button" class="btn btn-primary" id="age-yes" data-i18n="age_yes">I am 18+</button>
+        <button type="button" class="btn btn-ghost" id="age-no" data-i18n="age_no">Leave</button>
+      </div>
+      <div data-lang-mount style="margin-top:1rem;display:flex;justify-content:center"></div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><div class="logo-mark">EB</div>Escort<span>Benidorm</span></a>
+      <nav class="nav-desktop">
+        <a href="index.html" data-i18n="nav_home">Home</a>
+        <a href="anuncios.html" class="active" data-i18n="nav_ads">Listings</a>
+        <a href="favoritos.html"><span data-i18n="nav_favs">Favorites</span> <span class="fav-badge" data-fav-count hidden>0</span></a>
+        <a href="zonas.html" data-i18n="nav_zones">Areas</a>
+        <a href="publicar.html" data-i18n="nav_publish">Advertise</a>
+        <a href="precios.html" data-i18n="nav_prices">Prices</a>
+        <a href="mi-anuncio.html" data-i18n="nav_myad">My ad</a>
+        <a href="login.html" data-i18n="nav_login">Log in</a>
+      </nav>
+      <div class="header-actions">
+        <div data-lang-mount class="header-cta lang-mount-header"></div>
+        <a class="btn btn-primary btn-sm header-cta" href="publicar.html" data-i18n="nav_cta">Advertise · 24h</a>
+        <button class="menu-toggle" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <nav class="nav-mobile">
+      <a href="index.html" data-i18n="nav_home">Home</a>
+      <a href="anuncios.html" data-i18n="nav_ads">Listings</a>
+      <a href="zonas.html" data-i18n="nav_zones">Areas</a>
+      <a href="publicar.html" data-i18n="nav_publish">Advertise</a>
+      <a href="precios.html" data-i18n="nav_prices">Prices</a>
+      <a href="mi-anuncio.html" data-i18n="nav_myad">My ad</a>
+      <a href="favoritos.html" data-i18n="nav_favs">Favorites</a>
+      <div data-lang-mount style="padding:0.5rem 1rem"></div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container page-header">
+      <div class="breadcrumb">
+        <a href="index.html" data-i18n="nav_home">Home</a> ·
+        <a href="anuncios.html" data-i18n="nav_ads">Listings</a> ·
+        <span>Benidorm</span>
+      </div>
+      <h1 data-i18n="listings_h1">Escort listings in Benidorm</h1>
+      <p data-i18n="listings_lead">Filter by hotel area, price and language. Benidorm only.</p>
+      <p class="form-hint" style="margin-top:0.5rem">
+        <span data-i18n="list_also">Also:</span>
+        <a href="putas-benidorm.html" style="color:var(--accent)" data-i18n="nav_putas">putas Benidorm</a> ·
+        <a href="scorts-benidorm.html" style="color:var(--accent)" data-i18n="nav_scorts">scorts Benidorm</a> ·
+        <a href="escorts-benidorm.html" style="color:var(--accent)" data-i18n="nav_escorts">escorts</a> ·
+        <a href="precios.html" style="color:var(--accent)" data-i18n="list_advertise_from">advertise from 5€/day</a>
+      </p>
+    </div>
+
+    <div class="container">
+      <div class="list-toolbar">
+        <button type="button" class="btn btn-secondary btn-sm filters-toggle" id="filters-toggle" aria-expanded="false">
+          <span data-icon="filter"></span> <span data-i18n="list_filters">Filters</span>
+        </button>
+        <div class="quick-chips" role="toolbar" aria-label="Quick filters">
+          <button type="button" class="quick-chip" data-chip="top">TOP</button>
+          <button type="button" class="quick-chip" data-chip="new" data-i18n="list_chip_new">New</button>
+          <button type="button" class="quick-chip" data-chip="online" data-i18n="list_chip_online">Online</button>
+          <button type="button" class="quick-chip" data-chip="24h">24h</button>
+          <button type="button" class="quick-chip" data-chip="outcall" data-i18n="list_chip_outcall">Outcall</button>
+          <button type="button" class="quick-chip" data-chip="independent" data-i18n="list_chip_indep">Indep.</button>
+        </div>
+      </div>
+
+      <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+      <aside class="filter-drawer" id="filters-panel" aria-hidden="true" role="dialog" aria-label="Filters">
+        <div class="drawer-handle" aria-hidden="true"></div>
+        <div class="drawer-head">
+          <h2 data-i18n="list_filters">Filters</h2>
+          <button type="button" class="drawer-close" id="filters-close" aria-label="Close" data-i18n="list_close" data-i18n-attr="aria-label">✕</button>
+        </div>
+        <div class="drawer-body filters-bar filters-advanced is-open" role="search">
+          <select id="filter-zone" data-zones-fill aria-label="Area">
+            <option value="" data-i18n="search_zone">All areas</option>
+          </select>
+          <select id="filter-nationality" aria-label="Nationality">
+            <option value="" data-i18n="list_nat">Nationality</option>
+            <option value="española">Spanish</option>
+            <option value="colombiana">Colombian</option>
+            <option value="brasileña">Brazilian</option>
+            <option value="latina">Latina</option>
+            <option value="rusa">Russian</option>
+            <option value="italiana">Italian</option>
+            <option value="francesa">French</option>
+            <option value="británica">British</option>
+            <option value="ucraniana">Ukrainian</option>
+            <option value="marroquí">Moroccan</option>
+          </select>
+          <select id="filter-price" aria-label="Max price">
+            <option value="" data-i18n="any_price">Any price</option>
+            <option value="80">≤ 80€</option>
+            <option value="100">≤ 100€</option>
+            <option value="150">≤ 150€</option>
+            <option value="180">≤ 180€</option>
+            <option value="200">≤ 200€</option>
+          </select>
+          <select id="filter-min-age" aria-label="Min age">
+            <option value="" data-i18n="list_age_from">Age from</option>
+            <option value="18">18+</option>
+            <option value="21">21+</option>
+            <option value="25">25+</option>
+            <option value="30">30+</option>
+          </select>
+          <select id="filter-max-age" aria-label="Max age">
+            <option value="" data-i18n="list_age_to">Age to</option>
+            <option value="25">≤ 25</option>
+            <option value="30">≤ 30</option>
+            <option value="35">≤ 35</option>
+            <option value="45">≤ 45</option>
+          </select>
+          <select id="filter-lang" aria-label="Language">
+            <option value="" data-i18n="all_langs">Any language</option>
+          </select>
+          <select id="filter-sort" aria-label="Sort">
+            <option value="featured" data-i18n="sort_feat">Featured first</option>
+            <option value="new" data-i18n="sort_new">Newest</option>
+            <option value="online" data-i18n="sort_online">Online first</option>
+            <option value="price-asc" data-i18n="sort_price_asc">Price ↑</option>
+            <option value="price-desc" data-i18n="sort_price_desc">Price ↓</option>
+            <option value="age-asc" data-i18n="list_sort_age">Age ↑</option>
+            <option value="lang" data-i18n="list_sort_mylang">My language</option>
+          </select>
+          <input type="search" id="filter-q" data-i18n-placeholder="search_ph" placeholder="Name, nationality…" />
+
+          <label class="checkbox-label filter-check">
+            <input type="checkbox" id="filter-online" />
+            <span data-i18n="only_online">Online now only</span>
+          </label>
+          <label class="checkbox-label filter-check">
+            <input type="checkbox" id="filter-independent" />
+            <span data-i18n="list_indep">Independent</span>
+          </label>
+          <label class="checkbox-label filter-check">
+            <input type="checkbox" id="filter-outcall" />
+            <span data-i18n="list_outcall">Outcall / hotel</span>
+          </label>
+          <label class="checkbox-label filter-check">
+            <input type="checkbox" id="filter-incall" />
+            <span data-i18n="list_incall">Incall</span>
+          </label>
+          <label class="checkbox-label filter-check">
+            <input type="checkbox" id="filter-24h" />
+            <span data-i18n="list_24h">24 hours</span>
+          </label>
+          <label class="checkbox-label filter-check">
+            <input type="checkbox" id="filter-my-lang" />
+            <span data-i18n="speak_filter">Speaks my language</span>
+          </label>
+        </div>
+        <div class="drawer-foot">
+          <button type="button" class="btn btn-ghost" id="filters-reset" data-i18n="list_clear">Clear</button>
+          <button type="button" class="btn btn-primary" id="filters-apply" data-i18n="list_apply">See results</button>
+        </div>
+      </aside>
+
+      <div class="results-meta">
+        <div id="results-count"><strong>—</strong></div>
+        <div class="view-toggle" id="listings-view" data-view="grid">
+          <button type="button" class="view-btn active" data-set-view="grid" data-i18n="list_grid">Grid</button>
+          <button type="button" class="view-btn" data-set-view="list" data-i18n="list_list">List</button>
+          <a class="link-all" href="publicar.html" data-i18n="nav_publish">Advertise</a>
+          <a class="link-all" href="precios.html" data-i18n="list_plans">Plans</a>
+        </div>
+      </div>
+
+      <div class="cards-grid" id="listings"></div>
+      <div class="pagination" id="pagination"></div>
+      <p class="form-hint" style="text-align:center;margin:1rem 0 0">
+        <span data-i18n="list_cta_adv">Advertiser?</span>
+        <a href="publicar.html" style="color:var(--accent)" data-i18n="list_cta_pub">Publish · 24h trial</a> ·
+        <a href="precios.html" style="color:var(--accent)" data-i18n="list_cta_day">from 5€/day</a>
+        · <a href="precios.html" style="color:var(--accent)">VIP / TOP</a>
+        · <a href="mi-anuncio.html" style="color:var(--accent)" data-i18n="list_cta_manage">Manage with PIN</a>
+      </p>
+
+      <section style="padding:2.5rem 0 1rem">
+        <div class="content-block">
+          <h2 data-i18n="list_seo_h2">Quality escort listings in Benidorm</h2>
+          <p data-i18n="list_seo_p1">
+            On EscortBenidorm you’ll find escorts in Benidorm with clear info: real area, rate, nationality, incall or hotel outcall, and WhatsApp or phone.
+          </p>
+          <h3 data-i18n="list_seo_h3">How to filter… Benidorm only</h3>
+          <ul>
+            <li data-i18n="list_seo_li1">TOP / VIP — featured and premium</li>
+            <li data-i18n="list_seo_li2">New — just published</li>
+            <li data-i18n="list_seo_li3">Independent — no middlemen</li>
+            <li data-i18n="list_seo_li4">Outcall — hotel or home in Benidorm</li>
+            <li data-i18n="list_seo_li5">24h — wide availability</li>
+          </ul>
+          <p data-i18n="list_seo_p2">
+            Unlike national portals, the whole list is Benidorm. See the number, write on WhatsApp and confirm the area before meeting.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="mobile-cta-bar">
+    <a class="btn btn-secondary btn-sm" href="favoritos.html"><span data-icon="heart"></span> <span data-i18n="nav_favs">Favorites</span> <span class="fav-badge" data-fav-count hidden>0</span></a>
+    <a class="btn btn-primary btn-sm" href="publicar.html"><span data-icon="spark"></span> <span data-i18n="nav_publish">Advertise</span></a>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border:none;padding-top:0">
+        <span>© <span data-year></span> EscortBenidorm · Benidorm only</span>
+        <span data-i18n="legal_18">18+ content</span>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      try {
+        const p = new URLSearchParams(location.search).get("lang");
+        if (p) localStorage.setItem("eb_lang", p);
+      } catch (e) {}
+    })();
+  </script>
+  <script src="js/api.js?v=9"></script>
+  <script src="js/icons.js?v=9"></script>
+  <script src="js/i18n.js?v=9"></script>
+  <script src="js/app.js?v=9"></script>
+</body>
+</html>

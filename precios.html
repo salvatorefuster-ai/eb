@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Credits & prices | EscortBenidorm</title>
+  <meta name="description" content="Buy credits and spend them on daily visibility in Benidorm: Day 5, VIP 7, TOP 10 credits/day. Bizum or bank transfer." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#07070c" />
+  <link rel="canonical" href="https://www.escortbenidorm.es/precios.html" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css?v=10" />
+</head>
+<body>
+  <div id="age-gate" class="age-gate" role="dialog" aria-modal="true">
+    <div class="age-card">
+      <div class="logo-mark">EB</div>
+      <h2 data-i18n="age_title">18+ only</h2>
+      <p data-i18n="age_text">Adult content.</p>
+      <div class="age-actions">
+        <button type="button" class="btn btn-primary" id="age-yes" data-i18n="age_yes">I am 18+</button>
+        <button type="button" class="btn btn-ghost" id="age-no" data-i18n="age_no">Leave</button>
+      </div>
+      <div data-lang-mount style="margin-top:1rem;display:flex;justify-content:center"></div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><div class="logo-mark">EB</div>Escort<span>Benidorm</span></a>
+      <nav class="nav-desktop">
+        <a href="index.html" data-i18n="nav_home">Home</a>
+        <a href="anuncios.html" data-i18n="nav_ads">Listings</a>
+        <a href="precios.html" class="active" data-i18n="nav_prices">Prices</a>
+        <a href="publicar.html" data-i18n="nav_publish">Advertise</a>
+        <a href="mi-anuncio.html" data-i18n="nav_myad">My ad</a>
+        <a href="login.html" data-i18n="nav_login">Log in</a>
+      </nav>
+      <div class="header-actions">
+        <div data-lang-mount class="header-cta lang-mount-header"></div>
+        <a class="btn btn-primary btn-sm header-cta" href="registro.html" data-i18n="create_account">Create account</a>
+        <button class="menu-toggle" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <nav class="nav-mobile">
+      <a href="index.html" data-i18n="nav_home">Home</a>
+      <a href="anuncios.html" data-i18n="nav_ads">Listings</a>
+      <a href="precios.html" data-i18n="nav_prices">Prices</a>
+      <a href="publicar.html" data-i18n="nav_publish">Advertise</a>
+      <a href="mi-anuncio.html" data-i18n="nav_myad">My ad</a>
+      <div data-lang-mount style="padding:0.5rem 1rem"></div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container page-header publish-hero">
+      <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">Home</a> · <span data-i18n="nav_prices">Prices</span></div>
+      <h1 data-i18n="prices_h1">Buy credits · spend on visibility</h1>
+      <p data-i18n="prices_lead">
+        Choose 1 to 1000 € (integers only). 1 € = 1 base credit. Then spend on Day (5) · VIP (7) · TOP (10) / day.
+      </p>
+      <p class="form-hint" style="margin-top:0.5rem;color:var(--gold)" data-i18n="prices_bonus">
+        🎁 Bonus: 50–999 € → +20% · 1000 € → +50%
+      </p>
+      <p id="credit-balance-bar" class="form-hint" style="margin-top:0.75rem" hidden></p>
+    </div>
+
+    <div class="container" style="padding-bottom:1rem" id="creditos">
+      <h2 style="font-family:var(--serif);margin:0 0 0.75rem" data-i18n="pr_buy_h2">1. Buy credits</h2>
+
+      <div class="form-card" style="max-width:480px;margin-bottom:1.5rem">
+        <label for="recharge-amount"><strong data-i18n="pr_amount_label">Amount to top up (€)</strong></label>
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;margin-top:0.5rem">
+          <input id="recharge-amount" type="number" min="1" max="1000" step="1" inputmode="numeric" pattern="[0-9]*" value="50" style="max-width:140px;font-size:1.25rem;font-weight:700" />
+          <span class="form-hint" style="margin:0" data-i18n="pr_amount_hint">1 – 1000 · integers only</span>
+        </div>
+        <p id="recharge-preview" class="form-hint" style="margin:0.75rem 0;color:var(--gold)">—</p>
+        <button type="button" class="btn btn-primary" id="recharge-buy" data-i18n="pr_buy_btn">Buy this amount</button>
+      </div>
+
+      <p class="form-hint" style="margin-bottom:0.5rem" data-i18n="pr_shortcuts">Quick amounts:</p>
+      <div class="pricing-grid" id="credit-packs-grid">
+        <div class="skeleton-card" style="min-height:160px"></div>
+      </div>
+    </div>
+
+    <div class="container" style="padding-bottom:3rem">
+      <h2 style="font-family:var(--serif);margin:1.5rem 0 0.75rem" data-i18n="pr_spend_h2">2. Spend on services (per day)</h2>
+      <div class="pricing-grid" id="pricing-grid">
+        <div class="skeleton-card" style="min-height:240px"></div>
+        <div class="skeleton-card" style="min-height:240px"></div>
+        <div class="skeleton-card" style="min-height:240px"></div>
+      </div>
+
+      <section class="pricing-faq content-block" style="margin-top:2.5rem;max-width:720px;margin-inline:auto">
+        <h2 data-i18n="pr_how_h2">How it works</h2>
+        <ol class="pricing-steps">
+          <li data-i18n="pr_step1">Sign up (email + phone).</li>
+          <li data-i18n="pr_step2">Top up 1 to 1000 € (integers; 50–999 +20%, 1000 +50%).</li>
+          <li data-i18n="pr_step3">When payment is confirmed, credits go to your balance.</li>
+          <li data-i18n="pr_step4">In My ad you spend credits for Day / VIP / TOP (1 day or 3-day packs).</li>
+          <li data-i18n="pr_step5">Publishing gives a free 24h trial; then use credits to stay visible.</li>
+        </ol>
+        <div id="pricing-pay-info" class="pricing-pay-box"></div>
+
+        <h2 style="margin-top:2rem" data-i18n="pr_faq_h2">FAQ</h2>
+        <details class="pricing-faq-item">
+          <summary data-i18n="pr_faq1_q">Is there a bonus for larger top-ups?</summary>
+          <p data-i18n="pr_faq1_a">50–999 € → +20% credits. 1000 € → +50% credits. Examples: 50→60 · 100→120 · 500→600 · 1000→1500. Amounts 1–49 have no bonus.</p>
+        </details>
+        <details class="pricing-faq-item">
+          <summary data-i18n="pr_faq2_q">Can I use decimals (10.50 €)?</summary>
+          <p data-i18n="pr_faq2_a">No. Only whole numbers from 1 to 1000.</p>
+        </details>
+        <details class="pricing-faq-item">
+          <summary data-i18n="pr_faq3_q">Do credits expire?</summary>
+          <p data-i18n="pr_faq3_a">No automatic expiry. Use them whenever you want on visibility services.</p>
+        </details>
+        <details class="pricing-faq-item">
+          <summary data-i18n="pr_faq4_q">Can I pay for one day without topping up?</summary>
+          <p data-i18n="pr_faq4_a">The model is credits-only. If you lack balance, top up and spend in My ad.</p>
+        </details>
+        <details class="pricing-faq-item">
+          <summary data-i18n="pr_faq5_q">How do I pay with Bizum?</summary>
+          <p data-i18n="pr_faq5_a">When you buy a pack you get a code EB-XXXX. Send the amount via Bizum with that reference and confirm in checkout.</p>
+        </details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border:none;padding-top:0">
+        <span>© <span data-year></span> EscortBenidorm</span>
+        <a href="publicar.html" data-i18n="pr_pub_trial">Publish · 24h trial</a>
+        <a href="mi-anuncio.html" data-i18n="nav_myad">My ad</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/api.js?v=10"></script>
+  <script src="js/icons.js?v=10"></script>
+  <script src="js/i18n.js?v=10"></script>
+  <script src="js/app.js?v=10"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const packsGrid = document.getElementById("credit-packs-grid");
+      const grid = document.getElementById("pricing-grid");
+      const payInfo = document.getElementById("pricing-pay-info");
+      const balBar = document.getElementById("credit-balance-bar");
+      const amountInput = document.getElementById("recharge-amount");
+      const previewEl = document.getElementById("recharge-preview");
+      const buyBtn = document.getElementById("recharge-buy");
+
+      let cachedPacks = null;
+      let cachedServices = null;
+      let cachedPayIns = null;
+
+      async function refreshBalance() {
+        if (!balBar) return;
+        if (!API.userToken()) {
+          balBar.hidden = false;
+          balBar.innerHTML =
+            `${t("pr_bal_login")} · <a href="login.html" style="color:var(--accent)" data-i18n="nav_login">${t("nav_login")}</a> · <a href="registro.html" style="color:var(--accent)" data-i18n="create_account">${t("create_account")}</a>`;
+          return;
+        }
+        try {
+          const me = await API.get("/api/credits/me");
+          API.setUser(me.user);
+          balBar.hidden = false;
+          balBar.innerHTML = `<strong style="color:var(--gold)">${t("pr_bal_you")} ${me.credits} ${t("pr_credits")}</strong> · <a href="mi-anuncio.html" style="color:var(--accent)">${t("pr_bal_spend")}</a>`;
+        } catch {
+          balBar.hidden = false;
+          balBar.textContent = t("pr_bal_fail");
+        }
+      }
+
+      function sanitizeAmountInput() {
+        let v = amountInput.value;
+        v = String(v).replace(/[^\d]/g, "");
+        if (v.length > 1) v = v.replace(/^0+/, "") || "0";
+        let n = parseInt(v, 10);
+        if (!Number.isFinite(n)) n = 1;
+        if (n < 1) n = 1;
+        if (n > 1000) n = 1000;
+        amountInput.value = String(n);
+        return n;
+      }
+
+      async function updatePreview() {
+        if (!previewEl) return;
+        const n = sanitizeAmountInput();
+        try {
+          const calc = await API.get("/api/credits/preview?amount=" + encodeURIComponent(n));
+          if (calc.bonusPercent) {
+            previewEl.innerHTML = `${t("pr_pay")} <strong>${calc.amount}€</strong> · ${t("pr_base")} ${calc.base} · <strong style="color:var(--gold)">+${calc.bonusPercent}% (+${calc.bonus})</strong> → ${t("pr_get")} <strong style="color:var(--gold)">${calc.totalCredits} ${t("pr_credits")}</strong>`;
+          } else {
+            previewEl.innerHTML = `${t("pr_pay")} <strong>${calc.amount}€</strong> → ${t("pr_get")} <strong>${calc.totalCredits} ${t("pr_credits")}</strong> ${t("pr_no_bonus")}`;
+          }
+        } catch (e) {
+          previewEl.textContent = e.message || t("js_error");
+        }
+      }
+
+      async function buyAmount(amount) {
+        if (!API.userToken()) {
+          showToast(t("pr_login_buy"));
+          location.href = "login.html?next=precios.html";
+          return;
+        }
+        try {
+          const res = await API.post("/api/credits/checkout", { amount: Number(amount) });
+          if (res.payment?.checkoutUrl) location.href = res.payment.checkoutUrl;
+          else showToast(t("pr_order_fail"));
+        } catch (e) {
+          showToast(e.message || t("js_error"));
+        }
+      }
+
+      function renderPacks() {
+        if (!packsGrid || !cachedPacks) return;
+        packsGrid.innerHTML = cachedPacks
+          .map((p) => {
+            const big = p.bonusPercent
+              ? `<span class="pricing-popular" style="background:var(--gold);color:#111">+${p.bonusPercent}%</span>`
+              : "";
+            const bonusLine = p.bonus
+              ? `<li style="color:var(--gold)"><strong>+${p.bonus} ${t("pr_gift")}</strong></li>`
+              : `<li>${t("pr_no_bonus_li")}</li>`;
+            return `<article class="pricing-card ${p.popular || p.bonusPercent ? "is-highlight" : ""}">
+              ${big}
+              <h2>${p.price}€</h2>
+              <p class="pricing-tagline">${p.tagline || ""}</p>
+              <div class="pricing-price"><span class="pricing-amount">${p.totalCredits}</span><span class="pricing-period">${t("pr_cr_short")}</span></div>
+              <ul class="pricing-features">
+                <li>${t("pr_base")} ${p.baseCredits}</li>
+                ${bonusLine}
+              </ul>
+              <button type="button" class="btn btn-primary btn-block" data-buy-amount="${p.price}">${t("pr_choose")} ${p.price}€</button>
+            </article>`;
+          })
+          .join("");
+        packsGrid.querySelectorAll("[data-buy-amount]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            amountInput.value = btn.dataset.buyAmount;
+            updatePreview();
+            buyAmount(btn.dataset.buyAmount);
+          });
+        });
+      }
+
+      function renderServices() {
+        if (!grid || !cachedServices) return;
+        grid.innerHTML = cachedServices
+          .map((s) => {
+            return `<article class="pricing-card">
+              <h2>${s.name}</h2>
+              <p class="pricing-tagline">${s.tagline || t("pr_vis_24")}</p>
+              <div class="pricing-price">
+                <span class="pricing-amount">${s.creditCost}</span>
+                <span class="pricing-period">${t("pr_per_day")}</span>
+              </div>
+              <ul class="pricing-features">
+                <li>${t("pr_from_bal")}</li>
+                <li>${t("pr_activate")}</li>
+              </ul>
+              <a class="btn btn-secondary btn-block" href="mi-anuncio.html">${t("pr_spend_btn")}</a>
+            </article>`;
+          })
+          .join("");
+      }
+
+      function renderPayInfo() {
+        if (!payInfo || !cachedPayIns) return;
+        const ins = cachedPayIns;
+        payInfo.innerHTML = `
+          <h3 data-i18n="pr_pay_h3">${t("pr_pay_h3")}</h3>
+          <p><strong>${t("pr_bizum")}</strong> ${ins.bizumPhone || "—"}</p>
+          <p><strong>${t("pr_iban")}</strong> ${ins.bankIban || "—"}</p>
+          <p><strong>${t("pr_holder")}</strong> ${ins.bankHolder || "—"}</p>
+          <p class="form-hint">${ins.note || ""}</p>
+        `;
+      }
+
+      function refreshAllLang() {
+        applyI18n();
+        renderPacks();
+        renderServices();
+        renderPayInfo();
+        updatePreview();
+        refreshBalance();
+      }
+
+      amountInput?.addEventListener("input", () => {
+        if (/[.,]/.test(amountInput.value)) {
+          amountInput.value = amountInput.value.replace(/[.,]\d*/g, "");
+          showToast(t("pr_ints_only"));
+        }
+        updatePreview();
+      });
+      amountInput?.addEventListener("change", updatePreview);
+
+      buyBtn?.addEventListener("click", async () => {
+        buyBtn.disabled = true;
+        await buyAmount(sanitizeAmountInput());
+        buyBtn.disabled = false;
+      });
+
+      window.addEventListener("eb:lang", refreshAllLang);
+
+      (async () => {
+        try {
+          const data = await API.get("/api/credits/packs");
+          cachedPacks = data.packs || [];
+          cachedServices = data.services || [];
+          renderPacks();
+          renderServices();
+          await updatePreview();
+
+          const plansData = await API.get("/api/plans");
+          cachedPayIns = plansData.instructions || {};
+          renderPayInfo();
+        } catch (e) {
+          if (packsGrid) packsGrid.innerHTML = `<p style="color:var(--accent)">${t("pr_load_fail")}</p>`;
+          if (grid) grid.innerHTML = "";
+        }
+        await refreshBalance();
+        applyI18n();
+      })();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.local
+data/db.json
+data/db.json.tmp
+data/ADMIN-CREDENTIALS.txt
+uploads/*
+!uploads/.gitkeep
+!uploads/demo-*
+backups/
+*.log
+.DS_Store

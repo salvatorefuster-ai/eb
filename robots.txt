@@ -1,0 +1,16 @@
+# EscortBenidorm — Solo Benidorm
+User-agent: *
+Allow: /
+
+# No indexar panel, checkout ni utilidades privadas
+Disallow: /admin.html
+Disallow: /offline.html
+Disallow: /mi-anuncio.html
+Disallow: /checkout.html
+Disallow: /login.html
+Disallow: /api/
+
+# Landings money (sí indexar)
+# /putas-benidorm.html /scorts-benidorm.html /escorts-benidorm.html
+
+Sitemap: https://www.escortbenidorm.es/sitemap.xml

@@ -1,0 +1,60 @@
+{
+  "name": "EscortBenidorm",
+  "short_name": "EB Benidorm",
+  "description": "Directorio premium de escorts solo en Benidorm. Calidad, confianza y contacto directo.",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#08080b",
+  "theme_color": "#08080b",
+  "lang": "es",
+  "categories": ["lifestyle"],
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/img/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Anuncios",
+      "url": "/anuncios.html",
+      "description": "Listado Benidorm"
+    },
+    {
+      "name": "Favoritos",
+      "url": "/favoritos.html",
+      "description": "Tus perfiles guardados"
+    },
+    {
+      "name": "Publicar",
+      "url": "/publicar.html",
+      "description": "Publicar anuncio"
+    },
+    {
+      "name": "Precios VIP",
+      "url": "/precios.html",
+      "description": "Planes Básico VIP TOP"
+    },
+    {
+      "name": "Mi anuncio",
+      "url": "/mi-anuncio.html",
+      "description": "Gestionar con PIN"
+    }
+  ]
+}

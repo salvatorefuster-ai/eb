@@ -1,0 +1,41 @@
+{
+  "name": "escort-benidorm",
+  "version": "1.0.0",
+  "description": "Directorio real de escorts solo Benidorm — API + web",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "seed": "node server/seed.js",
+    "db:reset": "node server/seed.js --reset",
+    "real:init": "node server/setup-real.js",
+    "nivel3": "node server/setup-nivel3.js",
+    "test": "node server/e2e-test.js",
+    "test:real": "node server/e2e-real.js",
+    "test:today": "node server/e2e-today.js",
+    "test:auth": "node server/e2e-auth.js",
+    "test:credits": "node server/e2e-credits.js",
+    "avatars": "node server/gen-avatars.js",
+    "prod": "node server/index.js",
+    "pm2": "pm2 start ecosystem.config.cjs",
+    "docker": "docker compose up -d --build",
+    "tunnel": "npx --yes localtunnel --port 3456",
+    "preflight": "node server/preflight-live.js",
+    "pack": "powershell -ExecutionPolicy Bypass -File deploy/package-upload.ps1",
+    "env:set": "node server/patch-env.js",
+    "env:list": "node server/patch-env.js --list"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.0",
+    "nanoid": "^3.3.11",
+    "nodemailer": "^9.0.3",
+    "stripe": "^22.3.2"
+  }
+}

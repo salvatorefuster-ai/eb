@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>My ad | EscortBenidorm</title>
+  <meta name="description" content="Edit, renew or pause your Benidorm escort ad with your management PIN." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#07070c" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css?v=9" />
+</head>
+<body class="page-manage">
+  <div id="age-gate" class="age-gate" role="dialog" aria-modal="true">
+    <div class="age-card">
+      <div class="logo-mark">EB</div>
+      <h2 data-i18n="age_title">18+ only</h2>
+      <p data-i18n="age_text">Adult content. Private advertiser area.</p>
+      <div class="age-actions">
+        <button type="button" class="btn btn-primary" id="age-yes" data-i18n="age_yes">I am 18+</button>
+        <button type="button" class="btn btn-ghost" id="age-no" data-i18n="age_no">Leave</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><div class="logo-mark">EB</div>Escort<span>Benidorm</span></a>
+      <nav class="nav-desktop">
+        <a href="index.html" data-i18n="nav_home">Home</a>
+        <a href="anuncios.html" data-i18n="nav_ads">Listings</a>
+        <a href="publicar.html" data-i18n="nav_publish">Advertise</a>
+        <a href="mi-anuncio.html" class="active" data-i18n="nav_myad">My ad</a>
+      </nav>
+      <div class="header-actions">
+        <div data-lang-mount class="header-cta lang-mount-header"></div>
+        <a class="btn btn-primary btn-sm header-cta" href="publicar.html" data-i18n="nav_cta">List free</a>
+        <button class="menu-toggle" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <nav class="nav-mobile">
+      <a href="index.html" data-i18n="nav_home">Home</a>
+      <a href="anuncios.html" data-i18n="nav_ads">Listings</a>
+      <a href="publicar.html" data-i18n="nav_publish">Advertise</a>
+      <a href="mi-anuncio.html" data-i18n="nav_myad">My ad</a>
+      <div data-lang-mount style="padding:0.5rem 1rem"></div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container page-header publish-hero">
+      <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">Home</a> · <span data-i18n="nav_myad">My ad</span></div>
+      <h1 data-i18n="my_h1">Advertiser panel</h1>
+      <p><span data-i18n="my_lead">If you have an account: log in. You can also use the ad PIN (legacy).</span> <a href="login.html?next=mi-anuncio.html" style="color:var(--accent)" data-i18n="my_login_link">log in</a></p>
+    </div>
+
+    <div class="container" style="padding-bottom:3.5rem;max-width:720px">
+      <!-- Login -->
+      <form class="form-card manage-login-card" id="manage-login" autocomplete="on">
+        <div class="manage-login-head">
+          <span class="pin-badge" data-i18n="my_private">Private access</span>
+          <h2 data-i18n="my_pin_h2">Sign in with your PIN</h2>
+          <p class="form-hint" data-i18n="my_pin_hint">Ad WhatsApp + 10-character PIN. Saved only on this device.</p>
+        </div>
+        <div class="form-group">
+          <label for="m-phone" data-i18n="my_phone">WhatsApp / Phone</label>
+          <input id="m-phone" name="phone" type="tel" required placeholder="+34 6XX XXX XXX" autocomplete="tel" />
+        </div>
+        <div class="form-group">
+          <label for="m-pin" data-i18n="my_pin">Management PIN</label>
+          <div class="pin-input-wrap">
+            <input id="m-pin" name="pin" type="password" required minlength="6" maxlength="24" placeholder="••••••••••" autocomplete="current-password" />
+            <button type="button" class="linkish pin-toggle" id="pin-toggle" aria-label="Show PIN" data-i18n="my_show">Show</button>
+          </div>
+          <p class="form-hint" data-i18n="my_pin_once">Shown once when publishing. If lost, publish again or contact us.</p>
+        </div>
+        <label class="checkbox-label" style="margin-bottom:1rem">
+          <input type="checkbox" id="m-remember" checked />
+          <span data-i18n="my_remember">Remember on this device</span>
+        </label>
+        <button type="submit" class="btn btn-primary btn-block" data-i18n="my_access">Access my ad</button>
+        <div class="manage-login-foot">
+          <a href="publicar.html" data-i18n="my_new_ad">Publish a new ad</a>
+          <button type="button" class="linkish" id="show-pin-recovery" data-i18n="my_forgot">Forgot PIN?</button>
+        </div>
+      </form>
+
+      <form class="form-card manage-login-card" id="pin-recovery-form" hidden style="margin-top:1rem">
+        <h2 style="font-family:var(--serif);font-size:1.15rem;margin:0 0 0.5rem" data-i18n="my_recover_h2">Recover PIN</h2>
+        <p class="form-hint" data-i18n="my_recover_p">Use your registration email. If SMTP is set, we send the PIN. Otherwise the admin gets a request.</p>
+        <div class="form-group">
+          <label for="rec-phone" data-i18n="my_phone">WhatsApp / Phone</label>
+          <input id="rec-phone" type="tel" required placeholder="+34 6XX XXX XXX" />
+        </div>
+        <div class="form-group">
+          <label for="rec-email" data-i18n="my_recover_email">Management email</label>
+          <input id="rec-email" type="email" required placeholder="the one you used to publish" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" data-i18n="my_request_pin">Request PIN</button>
+        <p class="form-hint" id="pin-recovery-msg" style="margin-top:0.75rem" hidden></p>
+        <button type="button" class="btn btn-ghost btn-block" id="hide-pin-recovery" style="margin-top:0.5rem" data-i18n="my_back">Back to sign-in</button>
+      </form>
+
+      <!-- Panel -->
+      <div id="manage-panel" hidden>
+        <div class="manage-dash form-card">
+          <div class="manage-dash-top">
+            <div>
+              <div class="manage-status-pill" id="manage-status-pill">—</div>
+              <h2 id="manage-title" class="manage-dash-title">—</h2>
+              <p class="form-hint" id="manage-status" style="margin:0"></p>
+            </div>
+            <div class="manage-dash-actions">
+              <a class="btn btn-ghost btn-sm" id="manage-view" href="#" target="_blank" rel="noopener" data-i18n="my_view_public">View public</a>
+              <button type="button" class="btn btn-ghost btn-sm" id="manage-logout" data-i18n="my_logout">Log out</button>
+            </div>
+          </div>
+          <div class="manage-stats" id="manage-stats">
+            <div class="manage-stat"><strong id="ms-views">0</strong><span data-i18n="my_views">Views</span></div>
+            <div class="manage-stat"><strong id="ms-price">—</strong><span>€/h</span></div>
+            <div class="manage-stat"><strong id="ms-photos">0</strong><span data-i18n="my_photos">Photos</span></div>
+            <div class="manage-stat"><strong id="ms-bump">—</strong><span data-i18n="my_last_bump">Last bump</span></div>
+          </div>
+          <div class="manage-quick">
+            <button type="button" class="btn btn-primary" id="manage-bump" data-i18n="my_bump">↑ Renew / bump listing</button>
+            <button type="button" class="btn btn-secondary" id="manage-toggle-online" data-i18n="my_online">Online</button>
+            <button type="button" class="btn btn-ghost" id="manage-toggle-pause" data-i18n="my_pause">Pause</button>
+          </div>
+          <p class="form-hint" style="margin:0.75rem 0 0" data-i18n="my_bump_hint">Renew bumps the ad to the top and marks it online.</p>
+
+          <div id="manage-visibility" class="manage-visibility" hidden>
+            <strong id="manage-vis-title">—</strong>
+            <p class="form-hint" id="manage-vis-text" style="margin:0.35rem 0 0"></p>
+          </div>
+
+          <div class="manage-upgrade" id="manage-upgrade">
+            <h3 data-i18n="my_spend_h3">Spend credits on visibility</h3>
+            <p class="form-hint" id="manage-credits-bal" data-i18n="my_balance">Balance: —</p>
+            <p class="form-hint" id="manage-plan-label" data-i18n="my_plan">Current plan: trial</p>
+            <div class="manage-upgrade-actions">
+              <button type="button" class="btn btn-secondary btn-sm" data-upgrade="basic" data-days="1">Day · 5 cr.</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-upgrade="vip" data-days="1">VIP · 7 cr.</button>
+              <button type="button" class="btn btn-primary btn-sm" data-upgrade="top" data-days="1">TOP · 10 cr.</button>
+              <button type="button" class="btn btn-ghost btn-sm" data-upgrade="vip" data-days="3" title="3 days VIP">VIP · 3d</button>
+              <button type="button" class="btn btn-ghost btn-sm" data-upgrade="top" data-days="3" title="3 days TOP">TOP · 3d</button>
+              <a class="btn btn-ghost btn-sm" href="precios.html#creditos" data-i18n="my_buy_cr">Buy credits</a>
+            </div>
+            <p class="form-hint" style="margin:0.5rem 0 0" data-i18n="my_spend_hint">Buy credits first · spend here. 3-day pack = 3× credits (+72 h).</p>
+          </div>
+        </div>
+
+        <form class="form-card publish-form" id="manage-form" enctype="multipart/form-data" style="margin-top:1rem">
+          <input type="hidden" name="phone" id="mf-phone" />
+          <input type="hidden" name="pin" id="mf-pin" />
+
+          <section class="publish-section">
+            <header class="publish-section-head">
+              <span class="publish-step-num">1</span>
+              <div>
+                <h2 data-i18n="pub_sec_photos">Photos</h2>
+                <p data-i18n="my_sec_photos_p">Cover = first photo. Add more for the gallery.</p>
+              </div>
+            </header>
+            <div class="form-group">
+              <label data-i18n="my_current_photos">Current photos</label>
+              <p class="form-hint" id="manage-photos-hint" style="margin-top:0">—</p>
+              <div id="manage-photos" class="photo-preview-grid"></div>
+            </div>
+            <div class="form-group">
+              <label for="mf-photos" data-i18n="my_add_photos">Add photos</label>
+              <input id="mf-photos" name="photos" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple />
+              <p class="form-hint" data-i18n="my_add_photos_h">Added up to plan limit (Day 4 · VIP 6 · TOP 8).</p>
+              <div id="mf-photos-preview" class="photo-preview-grid"></div>
+            </div>
+          </section>
+
+          <section class="publish-section">
+            <header class="publish-section-head">
+              <span class="publish-step-num">2</span>
+              <div>
+                <h2 data-i18n="pub_sec_profile">Profile</h2>
+                <p data-i18n="my_sec_profile_p">Listing text and details.</p>
+              </div>
+            </header>
+            <div class="form-group">
+              <label for="mf-title" data-i18n="my_label_title">Title</label>
+              <input id="mf-title" name="title" maxlength="90" />
+            </div>
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label for="mf-name" data-i18n="my_label_name">Name *</label>
+                <input id="mf-name" name="name" required maxlength="40" />
+              </div>
+              <div class="form-group">
+                <label for="mf-age" data-i18n="my_label_age">Age *</label>
+                <input id="mf-age" name="age" type="number" min="18" max="99" required />
+              </div>
+            </div>
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label for="mf-zone" data-i18n="my_label_zone">Area</label>
+                <select id="mf-zone" name="zone">
+                  <option value="levante">Playa de Levante</option>
+                  <option value="poniente">Playa de Poniente</option>
+                  <option value="rincon-de-loix">Rincón de Loix</option>
+                  <option value="casco-antiguo">Casco Antiguo</option>
+                  <option value="nueva-poniente">Nueva Poniente</option>
+                  <option value="foietes">Foietes / Cala</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="mf-price" data-i18n="my_label_price">Rate €/h *</label>
+                <input id="mf-price" name="price" type="number" min="50" max="9999" required />
+              </div>
+            </div>
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label for="mf-nationality" data-i18n="pub_label_nat">Nationality</label>
+                <input id="mf-nationality" name="nationality" />
+              </div>
+              <div class="form-group">
+                <label for="mf-height" data-i18n="pub_label_height">Height</label>
+                <input id="mf-height" name="height" />
+              </div>
+            </div>
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label for="mf-languages" data-i18n="pub_label_langs">Languages</label>
+                <input id="mf-languages" name="languages" placeholder="ES, EN" />
+              </div>
+              <div class="form-group">
+                <label for="mf-schedule" data-i18n="pub_label_schedule">Schedule</label>
+                <input id="mf-schedule" name="schedule" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="mf-locationDetail" data-i18n="pub_label_loc">Detailed location</label>
+              <input id="mf-locationDetail" name="locationDetail" />
+            </div>
+            <div class="form-group">
+              <label for="mf-services" data-i18n="pub_label_services">Services</label>
+              <input id="mf-services" name="services" placeholder="Hotel, GFE, Outcall…" />
+            </div>
+            <div class="form-group">
+              <label for="mf-desc" data-i18n="pub_label_desc">Description</label>
+              <textarea id="mf-desc" name="desc" minlength="20" maxlength="600" rows="5"></textarea>
+            </div>
+          </section>
+
+          <section class="publish-section">
+            <header class="publish-section-head">
+              <span class="publish-step-num">3</span>
+              <div>
+                <h2 data-i18n="my_avail">Availability</h2>
+                <p data-i18n="my_avail_p">Control online status and whether the ad is active.</p>
+              </div>
+            </header>
+            <div class="check-grid" style="margin-bottom:1rem">
+              <label class="checkbox-label"><input type="checkbox" name="online" id="mf-online" value="true" /> <span data-i18n="my_online_now">Online now</span></label>
+              <label class="checkbox-label"><input type="checkbox" name="incall" id="mf-incall" value="true" /> <span data-i18n="pub_incall">Incall</span></label>
+              <label class="checkbox-label"><input type="checkbox" name="outcall" id="mf-outcall" value="true" /> <span data-i18n="pub_outcall">Outcall / hotel</span></label>
+              <label class="checkbox-label"><input type="checkbox" name="available24h" id="mf-24h" value="true" /> <span data-i18n="pub_24h">Available 24h</span></label>
+              <label class="checkbox-label"><input type="checkbox" name="independent" id="mf-ind" value="true" /> <span data-i18n="pub_indep">Independent</span></label>
+            </div>
+            <div class="form-group">
+              <label for="mf-status" data-i18n="my_visibility">Listing visibility</label>
+              <select id="mf-status" name="status">
+                <option value="active" data-i18n="my_active">Active (visible in Benidorm)</option>
+                <option value="hidden" data-i18n="my_hidden">Paused (hidden)</option>
+              </select>
+            </div>
+          </section>
+
+          <div id="manage-errors" class="publish-errors" hidden></div>
+          <button type="submit" class="btn btn-primary btn-block btn-publish-submit" data-i18n="my_save">Save changes</button>
+          <button type="button" class="btn btn-ghost btn-block manage-delete-btn" id="manage-delete" data-i18n="my_delete">Delete ad permanently</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border:none;padding-top:0">
+        <span>© <span data-year></span> EscortBenidorm · <span data-i18n="my_footer">Private management</span></span>
+        <a href="publicar.html" data-i18n="nav_publish">Advertise</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/api.js?v=9"></script>
+  <script src="js/icons.js?v=9"></script>
+  <script src="js/i18n.js?v=9"></script>
+  <script src="js/app.js?v=9"></script>
+</body>
+</html>

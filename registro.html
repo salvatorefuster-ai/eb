@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Sign up | EscortBenidorm</title>
+  <meta name="description" content="Create an account with email and phone to publish ads in Benidorm." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#07070c" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css?v=9" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><div class="logo-mark">EB</div>Escort<span>Benidorm</span></a>
+      <nav class="nav-desktop">
+        <a href="anuncios.html" data-i18n="nav_ads">Listings</a>
+        <a href="registro.html" class="active" data-i18n="nav_register">Sign up</a>
+        <a href="login.html" data-i18n="nav_login">Log in</a>
+      </nav>
+      <div class="header-actions">
+        <div data-lang-mount class="header-cta lang-mount-header"></div>
+        <a class="btn btn-primary btn-sm header-cta" href="login.html" data-i18n="have_account_cta">I already have an account</a>
+        <button class="menu-toggle" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <nav class="nav-mobile">
+      <a href="anuncios.html" data-i18n="nav_ads">Listings</a>
+      <a href="registro.html" data-i18n="nav_register">Sign up</a>
+      <a href="login.html" data-i18n="nav_login">Log in</a>
+      <div data-lang-mount style="padding:0.5rem 1rem"></div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container page-header publish-hero">
+      <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">Home</a> · <span data-i18n="nav_register">Sign up</span></div>
+      <h1 data-i18n="reg_h1">Create your advertiser account</h1>
+      <p data-i18n="reg_lead">Sign up with email and phone, publish with a 24h trial, then pay per day: 5€ / 7€ / 10€.</p>
+    </div>
+
+    <div class="container" style="padding-bottom:3rem;max-width:440px">
+      <form class="form-card" id="register-form">
+        <div class="form-group">
+          <label for="reg-name">Name (optional)</label>
+          <input id="reg-name" name="name" maxlength="60" placeholder="How we call you" autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <label for="reg-email">Email *</label>
+          <input id="reg-email" name="email" type="email" required placeholder="you@email.com" autocomplete="email" />
+        </div>
+        <div class="form-group">
+          <label for="reg-phone">WhatsApp / Phone *</label>
+          <input id="reg-phone" name="phone" type="tel" required placeholder="+34 6XX XXX XXX" autocomplete="tel" />
+        </div>
+        <div class="form-group">
+          <label for="reg-pass" data-i18n="login_pass">Password</label>
+          <input id="reg-pass" name="password" type="password" required minlength="8" placeholder="Min. 8 characters" autocomplete="new-password" />
+        </div>
+        <div class="form-group">
+          <label for="reg-pass2">Repeat password *</label>
+          <input id="reg-pass2" name="password2" type="password" required minlength="8" autocomplete="new-password" />
+        </div>
+        <label class="checkbox-label" style="margin-bottom:1rem">
+          <input type="checkbox" id="reg-legal" required />
+          <span>I am 18+ and accept the legal notice and privacy policy.</span>
+        </label>
+        <div id="reg-error" class="publish-errors" hidden></div>
+        <button type="submit" class="btn btn-primary btn-block" data-i18n="reg_btn">Create account & continue</button>
+        <p class="form-hint" style="text-align:center;margin-top:1rem">
+          <span data-i18n="reg_have_account">Already have an account?</span>
+          <a href="login.html" style="color:var(--accent)" data-i18n="login_btn">Log in</a>
+        </p>
+      </form>
+    </div>
+  </main>
+
+  <script src="js/api.js?v=9"></script>
+  <script src="js/icons.js?v=9"></script>
+  <script src="js/i18n.js?v=9"></script>
+  <script src="js/app.js?v=9"></script>
+</body>
+</html>

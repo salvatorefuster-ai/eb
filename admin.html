@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Admin · EscortBenidorm</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css?v=9" />
+  <style>
+    .admin-wrap { padding-bottom: 3rem; }
+    .admin-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      min-width: 780px;
+    }
+    .admin-table th, .admin-table td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .admin-table th {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      background: var(--bg-2);
+    }
+    .admin-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    #admin-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      max-width: 480px;
+    }
+    .admin-toolbar { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.25rem; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><div class="logo-mark">EB</div>Escort<span>Benidorm</span></a>
+      <a class="btn btn-ghost btn-sm" href="index.html">← Web</a>
+    </div>
+  </header>
+
+  <main class="container admin-wrap" id="admin-root">
+    <div class="page-header" style="border:none;margin-bottom:1rem;padding-bottom:0">
+      <h1>Panel admin real</h1>
+      <p>Login JWT · base de datos en <code style="color:var(--gold)">data/db.json</code> · fotos en <code style="color:var(--gold)">uploads/</code></p>
+    </div>
+
+    <div id="admin-login" class="form-card" style="max-width:400px">
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label for="admin-user">Usuario</label>
+          <input id="admin-user" name="user" value="admin" required autocomplete="username" />
+        </div>
+        <div class="form-group">
+          <label for="admin-pass">Contraseña</label>
+          <input id="admin-pass" type="password" required autocomplete="current-password" placeholder="••••••••" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+        <p class="form-hint" style="margin-top:1rem">Usuario y contraseña están en <code>.env</code> (ADMIN_USER / ADMIN_PASSWORD). Si usaste <code>npm run real:init</code>, mira el gestor de contraseñas o regenera con <code>--force</code>.</p>
+      </form>
+    </div>
+
+    <div id="admin-panel" hidden>
+      <div id="admin-stats"></div>
+      <div class="admin-toolbar">
+        <a class="btn btn-primary btn-sm" href="publicar.html">+ Nuevo anuncio</a>
+        <button type="button" class="btn btn-secondary btn-sm" id="admin-export">Exportar JSON</button>
+        <button type="button" class="btn btn-secondary btn-sm" id="admin-expire" title="Limpia anuncios abandonados (>30d)">Limpiar abandonados</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="admin-tab-ads">Anuncios</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="admin-tab-contacts">Mensajes</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="admin-tab-reports">Reportes</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="admin-tab-payments">Pagos</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="admin-tab-users">Usuarios / créditos</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="admin-logout">Salir</button>
+      </div>
+
+      <div id="admin-ads-section">
+        <div class="form-group" style="max-width:320px;margin-bottom:0.85rem">
+          <input id="admin-search" type="search" placeholder="Buscar nombre, zona, id, teléfono…" />
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Anuncio</th>
+                <th>Zona</th>
+                <th>€/h · plan</th>
+                <th>Tags</th>
+                <th>Visibilidad del día</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="admin-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="admin-contacts-section" hidden>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Email</th>
+                <th>Asunto</th>
+                <th>Mensaje</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="admin-contacts-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="admin-reports-section" hidden>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Anuncio</th>
+                <th>Motivo / estado</th>
+                <th>Detalle</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="admin-reports-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="admin-payments-section" hidden>
+        <div class="admin-toolbar" style="margin-bottom:0.75rem">
+          <button type="button" class="btn btn-ghost btn-sm" id="admin-purge-payments">Limpiar pedidos huérfanos</button>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Pedido</th>
+                <th>Plan</th>
+                <th>Importe</th>
+                <th>Estado</th>
+                <th>Anuncio</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="admin-payments-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="admin-users-section" hidden>
+        <div class="form-card" style="margin-bottom:1rem;max-width:520px">
+          <h3 style="margin:0 0 0.75rem;font-size:1.05rem;font-family:var(--serif)">Regalar / quitar créditos</h3>
+          <div class="form-group">
+            <label for="admin-cred-email">Email del usuario</label>
+            <input id="admin-cred-email" type="email" placeholder="user@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="admin-cred-amount">Cantidad (+ regalar / − quitar)</label>
+            <input id="admin-cred-amount" type="number" step="1" placeholder="20" />
+          </div>
+          <div class="form-group">
+            <label for="admin-cred-note">Nota</label>
+            <input id="admin-cred-note" type="text" maxlength="200" placeholder="promo, soporte…" />
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" id="admin-cred-grant">Aplicar</button>
+        </div>
+        <div class="admin-table-wrap" style="margin-bottom:1.5rem">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Usuario</th>
+                <th>Teléfono</th>
+                <th>Créditos</th>
+                <th>Alta</th>
+              </tr>
+            </thead>
+            <tbody id="admin-users-tbody"></tbody>
+          </table>
+        </div>
+        <h3 style="font-size:1rem;font-family:var(--serif)">Últimos movimientos</h3>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>User</th>
+                <th>Tipo</th>
+                <th>Δ</th>
+                <th>Saldo</th>
+                <th>Meta</th>
+              </tr>
+            </thead>
+            <tbody id="admin-ledger-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js?v=9"></script>
+  <script src="js/icons.js?v=9"></script>
+  <script src="js/i18n.js?v=9"></script>
+  <script src="js/app.js?v=9"></script>
+</body>
+</html>

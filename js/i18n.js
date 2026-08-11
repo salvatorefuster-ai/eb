@@ -1,0 +1,908 @@
+/**
+ * EscortBenidorm — UI languages: Spanish + English only
+ * (Profile language filters may still list ES/EN/DE… for ads)
+ */
+const I18N = {
+  langs: [
+    { code: "es", flag: "🇪🇸", name: "Español", short: "ES" },
+    { code: "en", flag: "🇬🇧", name: "English", short: "EN" },
+  ],
+
+  // Map profile spoken-language codes (for SpeaksMatch / filters)
+  langAliases: {
+    ES: "es", EN: "en", DE: "en", FR: "en", NL: "en", IT: "en",
+    PT: "en", NO: "en", SV: "en", RU: "en", PL: "en",
+    UK: "en", UA: "en", BR: "en", BE: "en", AT: "en", DK: "en", SE: "en",
+  },
+
+  dict: {},
+};
+
+/* —— Dictionary: only es + en are stored (extra columns ignored) —— */
+(function buildDict() {
+  const L = (row) => {
+    // row: [key, es, en, ...ignored other langs...]
+    const es = row[1] ?? row[2] ?? "";
+    const en = row[2] ?? row[1] ?? "";
+    I18N.dict[row[0]] = { es, en };
+  };
+
+  // Age gate
+  L(["age_title", "Solo mayores de 18", "18+ only", "Nur ab 18", "Réservé aux +18", "Alleen 18+", "Solo +18", "Apenas +18", "Kun 18+", "Endast 18+", "Только 18+", "Tylko 18+"]);
+  L(["age_text", "EscortBenidorm es el directorio premium de escorts solo en Benidorm. Perfiles de calidad. Contenido para adultos.", "EscortBenidorm is the premium Benidorm-only escorts directory. Quality profiles. Adult content.", "EscortBenidorm ist das Premium-Escort-Verzeichnis nur für Benidorm. Qualitätsprofile. Inhalt für Erwachsene.", "EscortBenidorm est l’annuaire premium d’escorts uniquement à Benidorm. Profils de qualité. Contenu adulte.", "EscortBenidorm is de premium escorts-gids alleen voor Benidorm. Kwaliteitsprofielen. 18+ content.", "EscortBenidorm è la directory premium di escort solo a Benidorm. Profili di qualità. Contenuti per adulti.", "EscortBenidorm é o diretório premium de escorts só em Benidorm. Perfis de qualidade. Conteúdo adulto.", "EscortBenidorm er premium escortkatalogen bare for Benidorm. Kvalitetsprofiler. Voksent innhold.", "EscortBenidorm är premium escortkatalogen bara för Benidorm. Kvalitetsprofiler. Vuxeninnehåll.", "EscortBenidorm — премиум-каталог эскорта только в Бенидорме. Качественные анкеты. 18+.", "EscortBenidorm to premium katalog escortów tylko w Benidorm. Profile jakościowe. Treści dla dorosłych."]);
+  L(["age_yes", "Tengo +18 años", "I am 18+", "Ich bin 18+", "J’ai 18 ans ou plus", "Ik ben 18+", "Ho 18+ anni", "Tenho 18+", "Jeg er 18+", "Jag är 18+", "Мне есть 18", "Mam 18+ lat"]);
+  L(["age_no", "Salir", "Leave", "Verlassen", "Quitter", "Verlaten", "Esci", "Sair", "Gå ut", "Lämna", "Выйти", "Wyjdź"]);
+
+  // Nav
+  L(["nav_home", "Inicio", "Home", "Start", "Accueil", "Home", "Home", "Início", "Hjem", "Hem", "Главная", "Start"]);
+  L(["nav_ads", "Anuncios", "Listings", "Anzeigen", "Annonces", "Advertenties", "Annunci", "Anúncios", "Annonser", "Annonser", "Объявления", "Ogłoszenia"]);
+  L(["nav_zones", "Zonas", "Areas", "Gebiete", "Zones", "Wijken", "Zone", "Zonas", "Soner", "Områden", "Районы", "Strefy"]);
+  L(["nav_guide", "Guía", "Guide", "Guide", "Guide", "Gids", "Guida", "Guia", "Guide", "Guide", "Гид", "Przewodnik"]);
+  L(["nav_publish", "Publicar", "Advertise", "Inserieren", "Publier", "Adverteren", "Pubblica", "Publicar", "Annonser", "Annonsera", "Разместить", "Dodaj"]);
+  L(["nav_cta", "Anunciar · 24h", "Advertise · 24h", "Inserieren · 24h", "Annoncer · 24h", "Adverteren · 24h", "Pubblica · 24h", "Anunciar · 24h", "Annonser · 24h", "Annonsera · 24h", "24ч", "Dodaj · 24h"]);
+
+  // Hero unique
+  L(["rank_pill", "El lugar seguro para elegir en Benidorm", "The trusted place to choose in Benidorm", "Der sichere Ort für die Wahl in Benidorm", "L’endroit de confiance à Benidorm", "De betrouwbare plek in Benidorm", "Il posto sicuro per scegliere a Benidorm", "O sítio de confiança em Benidorm", "Det trygge valget i Benidorm", "Den trygga platsen i Benidorm", "Надёжный выбор в Бенидорме", "Zaufane miejsce w Benidorm"]);
+  L(["hero_h1_a", "Escorts en", "Escorts in", "Escorts in", "Escorts à", "Escorts in", "Escort a", "Escorts em", "Escorts i", "Escorts i", "Эскорт в", "Escorty w"]);
+  L(["hero_h1_b", "reales, verificadas, sin sorpresas", "real, verified, no surprises", "echt, geprüft, ohne böse Überraschungen", "réelles, vérifiées, sans mauvaises surprises", "echt, gecontroleerd, geen verrassingen", "reali, verificate, senza sorprese", "reais, verificadas, sem surpresas", "ekte, verifisert, uten overraskelser", "äkta, verifierade, utan överraskningar", "реальные, проверенные, без сюрпризов", "prawdziwe, zweryfikowane, bez niespodzianek"]);
+  L(["hero_lead", "El único directorio de Benidorm pensado para que no te sientas estafado: perfiles de calidad superior, datos claros y contacto directo. Discreción y seriedad desde el primer mensaje.", "The only Benidorm directory built so you never feel scammed: superior-quality profiles, clear details and direct contact. Discretion and reliability from the first message.", "Das einzige Benidorm-Verzeichnis, bei dem du dich nicht betrogen fühlst: erstklassige Profile, klare Angaben und direkter Kontakt. Diskret und seriös ab der ersten Nachricht.", "Le seul annuaire de Benidorm conçu pour ne pas te faire arnaquer : profils haut de gamme, infos claires et contact direct. Discrétion et sérieux dès le premier message.", "De enige Benidorm-gids waarbij je je niet opgelicht voelt: topprofielen, duidelijke info en direct contact. Discreet en serieus vanaf het eerste bericht.", "L’unica directory di Benidorm pensata perché non ti senta truffato: profili di alta qualità, dati chiari e contatto diretto. Discrezione e serietà dal primo messaggio.", "O único diretório de Benidorm feito para não te sentires enganado: perfis de qualidade superior, dados claros e contacto direto. Discrição e seriedade desde a primeira mensagem.", "Den eneste Benidorm-katalogen laget for at du ikke skal føle deg lurt: kvalitetsprofiler, tydelig info og direkte kontakt. Diskresjon og seriøsitet fra første melding.", "Den enda Benidorm-katalogen där du inte ska känna dig lurad: premiumprofiler, tydlig info och direktkontakt. Diskretion och seriositet från första meddelandet.", "Единственный каталог Бенидорма, где вас не обманут: анкеты высшего уровня, понятные данные и прямой контакт. Дискретность и надёжность с первого сообщения.", "Jedyny katalog Benidorm, w którym nie poczujesz się oszukany: profile najwyższej jakości, jasne dane i bezpośredni kontakt. Dyskrecja i powaga od pierwszej wiadomości."]);
+  L(["search_zone", "Todas las zonas", "All areas", "Alle Gebiete", "Toutes les zones", "Alle wijken", "Tutte le zone", "Todas as zonas", "Alle soner", "Alla områden", "Все районы", "Wszystkie strefy"]);
+  L(["search_ph", "Nombre, nacionalidad…", "Name, nationality…", "Name, Nationalität…", "Nom, nationalité…", "Naam, nationaliteit…", "Nome, nazionalità…", "Nome, nacionalidade…", "Navn, nasjonalitet…", "Namn, nationalitet…", "Имя, национальность…", "Imię, narodowość…"]);
+  L(["search_btn", "Buscar en Benidorm", "Search Benidorm", "Benidorm suchen", "Chercher à Benidorm", "Zoek Benidorm", "Cerca a Benidorm", "Pesquisar Benidorm", "Søk Benidorm", "Sök Benidorm", "Искать в Бенидорме", "Szukaj Benidorm"]);
+  L(["cta_all", "Ver todos los anuncios", "View all listings", "Alle Anzeigen", "Voir toutes les annonces", "Alle advertenties", "Vedi tutti gli annunci", "Ver todos os anúncios", "Se alle annonser", "Se alla annonser", "Все объявления", "Wszystkie ogłoszenia"]);
+  L(["cta_adv", "Soy anunciante →", "I'm an advertiser →", "Ich inseriere →", "Je suis annonceuse →", "Ik adverteer →", "Sono un’inserzionista →", "Sou anunciante →", "Jeg annonserer →", "Jag annonserar →", "Я рекламодатель →", "Jestem reklamodawcą →"]);
+
+  // Stats
+  L(["stat_ads", "Anuncios", "Listings", "Anzeigen", "Annonces", "Ads", "Annunci", "Anúncios", "Annonser", "Annonser", "Объявления", "Ogłoszenia"]);
+  L(["stat_online", "En línea", "Online", "Online", "En ligne", "Online", "Online", "Online", "Pålogget", "Online", "Онлайн", "Online"]);
+  L(["stat_zones", "Zonas", "Areas", "Gebiete", "Zones", "Wijken", "Zone", "Zonas", "Soner", "Områden", "Районы", "Strefy"]);
+  L(["stat_langs", "Idiomas UI", "UI languages", "UI-Sprachen", "Langues UI", "UI-talen", "Lingue UI", "Idiomas UI", "UI-språk", "UI-språk", "Языки UI", "Języki UI"]);
+
+  // Trust
+  L(["trust_niche", "Solo Benidorm", "Benidorm only", "Nur Benidorm", "100% Benidorm", "Alleen Benidorm", "Solo Benidorm", "Só Benidorm", "Bare Benidorm", "Bara Benidorm", "Только Бенидорм", "Tylko Benidorm"]);
+  L(["trust_niche_s", "Cero otras ciudades", "Zero other cities", "Keine anderen Städte", "Aucune autre ville", "Geen andere steden", "Nessun’altra città", "Zero outras cidades", "Ingen andre byer", "Inga andra städer", "Без других городов", "Zero innych miast"]);
+  L(["trust_lang", "Calidad superior", "Superior quality", "Höchste Qualität", "Qualité supérieure", "Topkwaliteit", "Qualità superiore", "Qualidade superior", "Overlegen kvalitet", "Överlägsen kvalitet", "Высшее качество", "Najwyższa jakość"]);
+  L(["trust_lang_s", "Perfiles seleccionados", "Curated profiles", "Ausgewählte Profile", "Profils sélectionnés", "Geselecteerde profielen", "Profili selezionati", "Perfis selecionados", "Utvalgte profiler", "Utvalda profiler", "Отобранные анкеты", "Wybrane profile"]);
+  L(["trust_wa", "WhatsApp directo", "Direct WhatsApp", "Direkt WhatsApp", "WhatsApp direct", "Direct WhatsApp", "WhatsApp diretto", "WhatsApp direto", "Direkte WhatsApp", "Direkt WhatsApp", "Прямой WhatsApp", "Bezpośredni WhatsApp"]);
+  L(["trust_wa_s", "Sin intermediarios", "No middlemen", "Ohne Vermittler", "Sans intermédiaire", "Geen tussenpersoon", "Senza intermediari", "Sem intermediários", "Uten mellomledd", "Inga mellanhänder", "Без посредников", "Bez pośredników"]);
+  L(["trust_zone", "Sin estafas", "No scams", "Kein Betrug", "Sans arnaque", "Geen oplichting", "Senza truffe", "Sem burla", "Ingen svindel", "Inga bluffar", "Без обмана", "Bez oszustw"]);
+  L(["trust_zone_s", "Datos claros y reales", "Clear, real details", "Klare, echte Angaben", "Infos claires et réelles", "Duidelijke, echte info", "Dati chiari e reali", "Dados claros e reais", "Tydelig, ekte info", "Tydlig, äkta info", "Понятные реальные данные", "Jasne, prawdziwe dane"]);
+
+  // Sections
+  L(["feat_title", "Destacadas en Benidorm", "Featured in Benidorm", "Highlights in Benidorm", "À la une à Benidorm", "Uitgelicht in Benidorm", "In evidenza a Benidorm", "Destaques em Benidorm", "Utvalgte i Benidorm", "Utvalda i Benidorm", "Избранное в Бенидорме", "Polecane w Benidorm"]);
+  L(["feat_sub", "VIP · verificadas · en línea ahora", "VIP · verified · online now", "VIP · geprüft · jetzt online", "VIP · vérifiées · en ligne", "VIP · gecontroleerd · nu online", "VIP · verificate · online ora", "VIP · verificadas · online agora", "VIP · verifisert · online nå", "VIP · verifierade · online nu", "VIP · проверенные · онлайн", "VIP · zweryfikowane · online teraz"]);
+  L(["see_all", "Ver listado completo →", "Full list →", "Alle anzeigen →", "Liste complète →", "Volledige lijst →", "Elenco completo →", "Lista completa →", "Full liste →", "Full lista →", "Весь список →", "Pełna lista →"]);
+  L(["zones_title", "Escorts por zona en Benidorm", "Escorts by Benidorm area", "Escorts nach Gebiet", "Escorts par zone", "Escorts per wijk", "Escort per zona", "Escorts por zona", "Escorts etter sone", "Escorts per område", "Эскорт по районам", "Escorty według strefy"]);
+  L(["zones_sub", "Elige la playa o barrio de tu hotel", "Pick the beach or area near your hotel", "Wähle Strand oder Viertel deines Hotels", "Choisis la plage ou le quartier de ton hôtel", "Kies het strand of de wijk bij je hotel", "Scegli spiaggia o zona del tuo hotel", "Escolhe a praia ou zona do teu hotel", "Velg strand eller sone nær hotellet", "Välj strand eller område nära hotellet", "Выбери пляж или район отеля", "Wybierz plażę lub strefę hotelu"]);
+  L(["how_title", "Cómo funciona", "How it works", "So funktioniert’s", "Comment ça marche", "Hoe het werkt", "Come funziona", "Como funciona", "Slik fungerer det", "Så fungerar det", "Как это работает", "Jak to działa"]);
+  L(["how_sub", "3 pasos. Claro, discreto, sin líos", "3 steps. Clear, discreet, no drama", "3 Schritte. Klar, diskret, ohne Stress", "3 étapes. Clair, discret, sans prise de tête", "3 stappen. Duidelijk, discreet, zonder gedoe", "3 passi. Chiaro, discreto, senza stress", "3 passos. Claro, discreto, sem stress", "3 steg. Tydelig, diskret, uten stress", "3 steg. Tydligt, diskret, utan krångel", "3 шага. Понятно, дискретно, без нервов", "3 kroki. Jasno, dyskretnie, bez stresu"]);
+  L(["step1_t", "Elige zona en Benidorm", "Choose your Benidorm area", "Gebiet in Benidorm wählen", "Choisir la zone à Benidorm", "Kies je wijk in Benidorm", "Scegli la zona a Benidorm", "Escolhe a zona em Benidorm", "Velg sone i Benidorm", "Välj område i Benidorm", "Выбери район Бенидорма", "Wybierz strefę w Benidorm"]);
+  L(["step1_p", "Levante, Poniente, Rincón de Loix… filtra cerca de tu hotel y evita desplazamientos innecesarios.", "Levante, Poniente, Rincón de Loix… filter near your hotel and avoid wasted trips.", "Levante, Poniente, Rincón de Loix… filtere nahe deinem Hotel und spare unnötige Wege.", "Levante, Poniente, Rincón de Loix… filtre près de ton hôtel et évite les déplacements inutiles.", "Levante, Poniente, Rincón de Loix… filter bij je hotel en vermijd onnodige trips.", "Levante, Poniente, Rincón de Loix… filtra vicino al tuo hotel ed evita spostamenti inutili.", "Levante, Poniente, Rincón de Loix… filtra perto do hotel e evita deslocações desnecessárias.", "Levante, Poniente, Rincón de Loix… filtrer nær hotellet og unngå unødvendige turer.", "Levante, Poniente, Rincón de Loix… filtrera nära hotellet och undvik onödiga resor.", "Levante, Poniente, Rincón de Loix… фильтр рядом с отелем без лишних поездок.", "Levante, Poniente, Rincón de Loix… filtruj blisko hotelu i unikaj zbędnych dojazdów."]);
+  L(["step2_t", "Revisa la ficha con calma", "Review the profile calmly", "Profil in Ruhe prüfen", "Vérifie le profil tranquillement", "Bekijk het profiel rustig", "Controlla la scheda con calma", "Revisa o perfil com calma", "Se gjennom profilen i ro", "Granska profilen i lugn och ro", "Спокойно изучи анкету", "Sprawdź profil na spokojnie"]);
+  L(["step2_p", "Tarifa, zona, idiomas y servicios a la vista. Sin letra pequeña ni anuncios confusos.", "Rate, area, languages and services in plain sight. No fine print, no confusing ads.", "Tarif, Gebiet, Sprachen und Services klar sichtbar. Kein Kleingedrucktes, keine verwirrenden Anzeigen.", "Tarif, zone, langues et services bien visibles. Pas de petits caractères ni d’annonces floues.", "Tarief, wijk, talen en diensten duidelijk. Geen kleine lettertjes, geen vage ads.", "Tariffa, zona, lingue e servizi in chiaro. Niente clausole nascoste né annunci confusi.", "Tarifa, zona, idiomas e serviços à vista. Sem letra pequena nem anúncios confusos.", "Pris, sone, språk og tjenester synlig. Ingen liten skrift, ingen uklare annonser.", "Pris, område, språk och tjänster synliga. Ingen finstilt, inga oklara annonser.", "Тариф, район, языки и услуги на виду. Без мелкого шрифта и путаных объявлений.", "Cena, strefa, języki i usługi na wierzchu. Bez drobnego druku i mylących ogłoszeń."]);
+  L(["step3_t", "Contacto directo por WhatsApp", "Direct WhatsApp contact", "Direkter WhatsApp-Kontakt", "Contact WhatsApp direct", "Direct WhatsApp-contact", "Contatto diretto WhatsApp", "Contacto direto por WhatsApp", "Direkte WhatsApp-kontakt", "Direkt WhatsApp-kontakt", "Прямой контакт WhatsApp", "Bezpośredni kontakt WhatsApp"]);
+  L(["step3_p", "Hablas tú con ella. Nosotros no intermediamos ni escondemos el número detrás de pagos raros.", "You talk to her directly. We don’t middleman or hide the number behind odd paywalls.", "Du sprichst direkt mit ihr. Wir vermitteln nicht und verstecken keine Nummer hinter seltsamen Paywalls.", "Tu parles directement avec elle. Pas d’intermédiaire ni de numéro caché derrière des paiements bizarres.", "Jij praat rechtstreeks met haar. Wij bemiddelen niet en verstoppen geen nummer achter rare paywalls.", "Parli direttamente con lei. Niente intermediari né numeri nascosti dietro pagamenti strani.", "Falas tu diretamente com ela. Não intermediamos nem escondemos o número atrás de pagamentos estranhos.", "Du snakker direkte med henne. Vi er ikke mellomledd og skjuler ikke nummer bak rare betalinger.", "Du pratar direkt med henne. Vi förmedlar inte och gömmer inte numret bakom konstiga betalväggar.", "Вы говорите с ней напрямую. Мы не посредники и не прячем номер за странными оплатами.", "Rozmawiasz z nią bezpośrednio. Nie pośredniczymy i nie chowamy numeru za dziwnymi płatnościami."]);
+
+  L(["unique_title", "Por qué aquí no te sientes estafado", "Why you won’t feel scammed here", "Warum du dich hier nicht betrogen fühlst", "Pourquoi tu ne te sentiras pas arnaqué ici", "Waarom je je hier niet opgelicht voelt", "Perché qui non ti senti truffato", "Porque aqui não te sentes enganado", "Hvorfor du ikke føler deg lurt her", "Varför du inte känner dig lurad här", "Почему здесь вас не обманут", "Dlaczego tutaj nie poczujesz się oszukany"]);
+  L(["unique_sub", "Calidad, claridad y seriedad: lo que los portales genéricos no controlan", "Quality, clarity and reliability — what generic portals don’t control", "Qualität, Klarheit und Seriosität — was generische Portale nicht prüfen", "Qualité, clarté et sérieux — ce que les portails génériques ne contrôlent pas", "Kwaliteit, duidelijkheid en serieux — wat generieke portals niet controleren", "Qualità, chiarezza e serietà — ciò che i portali generici non controllano", "Qualidade, clareza e seriedade — o que os portais genéricos não controlam", "Kvalitet, tydelighet og seriositet — det generiske portaler ikke sjekker", "Kvalitet, tydlighet och seriositet — det generiska portaler inte kontrollerar", "Качество, прозрачность и надёжность — то, что общие порталы не контролируют", "Jakość, jasność i rzetelność — czego generyczne portale nie kontrolują"]);
+
+  L(["cmp_feat", "Ventaja", "Advantage", "Vorteil", "Avantage", "Voordeel", "Vantaggio", "Vantagem", "Fordel", "Fördel", "Преимущество", "Zaleta"]);
+  L(["cmp_us", "EscortBenidorm", "EscortBenidorm", "EscortBenidorm", "EscortBenidorm", "EscortBenidorm", "EscortBenidorm", "EscortBenidorm", "EscortBenidorm", "EscortBenidorm", "EscortBenidorm", "EscortBenidorm"]);
+  L(["cmp_others", "Portales genéricos", "Generic portals", "Generische Portale", "Portails génériques", "Generieke portals", "Portali generici", "Portais genéricos", "Generiske portaler", "Generiska portaler", "Общие порталы", "Portale generyczne"]);
+  L(["cmp_r1", "Solo Benidorm", "Benidorm only", "Nur Benidorm", "100% Benidorm", "Alleen Benidorm", "Solo Benidorm", "Só Benidorm", "Bare Benidorm", "Bara Benidorm", "Только Бенидорм", "Tylko Benidorm"]);
+  L(["cmp_r1y", "✓ Sí", "✓ Yes", "✓ Ja", "✓ Oui", "✓ Ja", "✓ Sì", "✓ Sim", "✓ Ja", "✓ Ja", "✓ Да", "✓ Tak"]);
+  L(["cmp_r1n", "Mezclan 50+ ciudades", "Mix 50+ cities", "50+ Städte gemischt", "50+ villes mélangées", "50+ steden gemengd", "50+ città mescolate", "Misturam 50+ cidades", "Blander 50+ byer", "Blandar 50+ städer", "Смешивают 50+ городов", "Mieszają 50+ miast"]);
+  L(["cmp_r2", "Enfoque en calidad", "Quality-first curation", "Fokus auf Qualität", "Priorité qualité", "Kwaliteit eerst", "Focus sulla qualità", "Foco na qualidade", "Fokus på kvalitet", "Fokus på kvalitet", "Фокус на качестве", "Nacisk na jakość"]);
+  L(["cmp_r2y", "✓ Perfiles premium", "✓ Premium profiles", "✓ Premium-Profile", "✓ Profils premium", "✓ Premium profielen", "✓ Profili premium", "✓ Perfis premium", "✓ Premiumprofiler", "✓ Premiumprofiler", "✓ Премиум-анкеты", "✓ Profile premium"]);
+  L(["cmp_r2n", "Cantidad sin filtro", "Quantity over quality", "Menge ohne Filter", "Quantité sans filtre", "Kwantiteit zonder filter", "Quantità senza filtro", "Quantidade sem filtro", "Mengde uten filter", "Kvantitet utan filter", "Количество без отбора", "Ilość bez filtra"]);
+  L(["cmp_r3", "Menos riesgo de engaño", "Lower scam risk", "Weniger Betrugsrisiko", "Moins d’arnaques", "Minder oplichting", "Meno rischi di truffa", "Menos risco de burla", "Lavere svindelrisiko", "Lägre bluffrisk", "Меньше риска обмана", "Mniejsze ryzyko oszustwa"]);
+  L(["cmp_r3y", "✓ Datos claros + contacto", "✓ Clear details + contact", "✓ Klare Daten + Kontakt", "✓ Infos claires + contact", "✓ Duidelijke info + contact", "✓ Dati chiari + contatto", "✓ Dados claros + contacto", "✓ Tydelig info + kontakt", "✓ Tydlig info + kontakt", "✓ Понятные данные + контакт", "✓ Jasne dane + kontakt"]);
+  L(["cmp_r3n", "Anuncios opacos", "Opaque ads", "Undurchsichtige Anzeigen", "Annonces floues", "Onduidelijke ads", "Annunci opachi", "Anúncios opacos", "Uklare annonser", "Oklara annonser", "Непрозрачные объявления", "Niejasne ogłoszenia"]);
+  L(["cmp_r4", "Solo Benidorm, zona a zona", "Benidorm area by area", "Benidorm Viertel für Viertel", "Benidorm quartier par quartier", "Benidorm wijk per wijk", "Benidorm zona per zona", "Benidorm zona a zona", "Benidorm sone for sone", "Benidorm område för område", "Бенидорм район за районом", "Benidorm strefa po strefie"]);
+  L(["cmp_r4y", "✓ 6 zonas reales", "✓ 6 real areas", "✓ 6 echte Gebiete", "✓ 6 zones réelles", "✓ 6 echte wijken", "✓ 6 zone reali", "✓ 6 zonas reais", "✓ 6 ekte soner", "✓ 6 riktiga områden", "✓ 6 реальных районов", "✓ 6 prawdziwych stref"]);
+  L(["cmp_r4n", "Listado genérico", "Generic list", "Generische Liste", "Liste générique", "Generieke lijst", "Elenco generico", "Lista genérica", "Generisk liste", "Generisk lista", "Общий список", "Ogólna lista"]);
+
+  L(["langbar_title", "Idiomas de turistas en Benidorm", "Tourist languages in Benidorm", "Touristensprachen in Benidorm", "Langues des touristes à Benidorm", "Toeristentalen in Benidorm", "Lingue dei turisti a Benidorm", "Idiomas de turistas em Benidorm", "Turistspråk i Benidorm", "Turistspråk i Benidorm", "Языки туристов в Бенидорме", "Języki turystów w Benidorm"]);
+  L(["langbar_sub", "Cambia la web entera · filtra anuncios que hablan tu lengua", "Switch the whole site · filter ads that speak your tongue", "Ganze Seite wechseln · Anzeigen nach Sprache filtern", "Change tout le site · filtre les annonces par langue", "Hele site wisselen · filter ads op taal", "Cambia tutto il sito · filtra annunci per lingua", "Muda o site inteiro · filtra anúncios por idioma", "Bytt hele siden · filtrer annonser på språk", "Byt hela sajten · filtrera annonser på språk", "Переключи весь сайт · фильтр по языку анкет", "Zmień całą stronę · filtruj ogłoszenia po języku"]);
+  L(["speak_filter", "Habla mi idioma", "Speaks my language", "Spricht meine Sprache", "Parle ma langue", "Spreekt mijn taal", "Parla la mia lingua", "Fala o meu idioma", "Snakker mitt språk", "Talar mitt språk", "Говорит на моём языке", "Mówi moim językiem"]);
+  L(["speak_badge", "Habla tu idioma", "Speaks your language", "Spricht deine Sprache", "Parle ta langue", "Spreekt jouw taal", "Parla la tua lingua", "Fala o teu idioma", "Snakker ditt språk", "Talar ditt språk", "Говорит на твоём", "Mówi twoim"]);
+  // speak_filter kept as utility filter label (secondary UX, not main brand)
+  L(["loading", "Cargando…", "Loading…", "Laden…", "Chargement…", "Laden…", "Caricamento…", "A carregar…", "Laster…", "Laddar…", "Загрузка…", "Ładowanie…"]);
+  L(["no_results", "No hay anuncios con esos filtros en Benidorm.", "No listings match these filters in Benidorm.", "Keine Anzeigen mit diesen Filtern in Benidorm.", "Aucune annonce avec ces filtres à Benidorm.", "Geen ads met deze filters in Benidorm.", "Nessun annuncio con questi filtri a Benidorm.", "Sem anúncios com esses filtros em Benidorm.", "Ingen annonser med disse filtrene i Benidorm.", "Inga annonser med dessa filter i Benidorm.", "Нет объявлений с этими фильтрами в Бенидорме.", "Brak ogłoszeń z tymi filtrami w Benidorm."]);
+  L(["clear_filters", "Quitar filtros", "Clear filters", "Filter zurücksetzen", "Effacer les filtres", "Filters wissen", "Azzera filtri", "Limpar filtros", "Nullstill filtre", "Rensa filter", "Сбросить фильтры", "Wyczyść filtry"]);
+  L(["view_profile", "Ver ficha", "View", "Profil", "Voir", "Bekijk", "Scheda", "Ver", "Se", "Visa", "Смотреть", "Zobacz"]);
+  L(["online_now", "En línea", "Online", "Online", "En ligne", "Online", "Online", "Online", "Online", "Online", "Онлайн", "Online"]);
+  L(["offline", "Ahora no", "Away", "Offline", "Hors ligne", "Offline", "Offline", "Offline", "Offline", "Offline", "Не в сети", "Offline"]);
+  L(["new_tag", "Nueva", "New", "Neu", "Nouvelle", "Nieuw", "Nuova", "Nova", "Ny", "Ny", "Новая", "Nowa"]);
+  L(["hour", "hora", "hr", "Std.", "h", "uur", "ora", "hora", "t", "tim", "час", "godz."]);
+  L(["results", "anuncios en Benidorm", "listings in Benidorm", "Anzeigen in Benidorm", "annonces à Benidorm", "ads in Benidorm", "annunci a Benidorm", "anúncios em Benidorm", "annonser i Benidorm", "annonser i Benidorm", "объявлений в Бенидорме", "ogłoszeń w Benidorm"]);
+  L(["sort_feat", "Destacadas primero", "Featured first", "Highlights zuerst", "À la une d’abord", "Uitgelicht eerst", "In evidenza prima", "Destaques primeiro", "Utvalgte først", "Utvalda först", "Сначала избранные", "Polecane najpierw"]);
+  L(["sort_online", "En línea primero", "Online first", "Online zuerst", "En ligne d’abord", "Online eerst", "Online prima", "Online primeiro", "Online først", "Online först", "Сначала онлайн", "Online najpierw"]);
+  L(["sort_new", "Más nuevas", "Newest", "Neueste", "Plus récentes", "Nieuwste", "Più nuove", "Mais novas", "Nyeste", "Nyaste", "Новые", "Najnowsze"]);
+  L(["sort_price_asc", "Precio ↑", "Price ↑", "Preis ↑", "Prix ↑", "Prijs ↑", "Prezzo ↑", "Preço ↑", "Pris ↑", "Pris ↑", "Цена ↑", "Cena ↑"]);
+  L(["sort_price_desc", "Precio ↓", "Price ↓", "Preis ↓", "Prix ↓", "Prijs ↓", "Prezzo ↓", "Preço ↓", "Pris ↓", "Pris ↓", "Цена ↓", "Cena ↓"]);
+  L(["any_price", "Cualquier precio", "Any price", "Jeder Preis", "Tous prix", "Elke prijs", "Qualsiasi prezzo", "Qualquer preço", "Enhver pris", "Valfritt pris", "Любая цена", "Dowolna cena"]);
+  L(["only_online", "Solo en línea ahora", "Online now only", "Nur jetzt online", "En ligne seulement", "Alleen nu online", "Solo online ora", "Só online agora", "Bare online nå", "Bara online nu", "Только онлайн сейчас", "Tylko online teraz"]);
+  L(["filter_lang", "Idioma del anuncio", "Listing language", "Anzeigensprache", "Langue de l’annonce", "Taal van de ad", "Lingua annuncio", "Idioma do anúncio", "Annonse-språk", "Annons-språk", "Язык анкеты", "Język ogłoszenia"]);
+  L(["all_langs", "Cualquier idioma", "Any language", "Jede Sprache", "Toute langue", "Elke taal", "Qualsiasi lingua", "Qualquer idioma", "Ethvert språk", "Valfritt språk", "Любой язык", "Dowolny język"]);
+  L(["listings_h1", "Anuncios de escorts en Benidorm", "Escort listings in Benidorm", "Escort-Anzeigen in Benidorm", "Annonces d’escorts à Benidorm", "Escort-ads in Benidorm", "Annunci escort a Benidorm", "Anúncios de escorts em Benidorm", "Escort-annonser i Benidorm", "Escortannonser i Benidorm", "Объявления эскорта в Бенидорме", "Ogłoszenia escort w Benidorm"]);
+  L(["listings_lead", "Filtra por zona del hotel, precio e idioma. Solo Benidorm.", "Filter by hotel area, price and language. Benidorm only.", "Filter nach Hotelgebiet, Preis und Sprache. Nur Benidorm.", "Filtre par zone d’hôtel, prix et langue. Uniquement Benidorm.", "Filter op hotelwijk, prijs en taal. Alleen Benidorm.", "Filtra per zona hotel, prezzo e lingua. Solo Benidorm.", "Filtra por zona do hotel, preço e idioma. Só Benidorm.", "Filtrer på hotellsone, pris og språk. Bare Benidorm.", "Filtrera på hotellområde, pris och språk. Bara Benidorm.", "Фильтр по району отеля, цене и языку. Только Бенидорм.", "Filtruj strefę hotelu, cenę i język. Tylko Benidorm."]);
+  L(["publish_title", "Publicar anuncio en Benidorm", "Advertise in Benidorm", "In Benidorm inserieren", "Publier à Benidorm", "Adverteren in Benidorm", "Pubblica a Benidorm", "Publicar em Benidorm", "Annonser i Benidorm", "Annonsera i Benidorm", "Разместить в Бенидорме", "Dodaj w Benidorm"]);
+  L(["wa_msg", "Hola {name}, te escribo desde EscortBenidorm. Estoy en Benidorm.", "Hi {name}, I found you on EscortBenidorm. I'm in Benidorm.", "Hallo {name}, ich schreibe über EscortBenidorm. Ich bin in Benidorm.", "Salut {name}, je t’écris via EscortBenidorm. Je suis à Benidorm.", "Hoi {name}, ik schrijf via EscortBenidorm. Ik ben in Benidorm.", "Ciao {name}, ti scrivo da EscortBenidorm. Sono a Benidorm.", "Olá {name}, escrevo pelo EscortBenidorm. Estou em Benidorm.", "Hei {name}, jeg skriver via EscortBenidorm. Jeg er i Benidorm.", "Hej {name}, jag skriver via EscortBenidorm. Jag är i Benidorm.", "Привет, {name}! Пишу через EscortBenidorm. Я в Бенидорме.", "Cześć {name}, piszę z EscortBenidorm. Jestem w Benidorm."]);
+  L(["more_in", "Más en", "More in", "Mehr in", "Plus dans", "Meer in", "Altro a", "Mais em", "Mer i", "Mer i", "Ещё в", "Więcej w"]);
+  L(["area", "Zona", "Area", "Gebiet", "Zone", "Wijk", "Zona", "Zona", "Sone", "Område", "Район", "Strefa"]);
+  L(["height", "Altura", "Height", "Größe", "Taille", "Lengte", "Altezza", "Altura", "Høyde", "Längd", "Рост", "Wzrost"]);
+  L(["languages", "Idiomas", "Languages", "Sprachen", "Langues", "Talen", "Lingue", "Idiomas", "Språk", "Språk", "Языки", "Języki"]);
+  L(["rate", "Tarifa", "Rate", "Tarif", "Tarif", "Tarief", "Tariffa", "Tarifa", "Pris", "Pris", "Тариф", "Cena"]);
+  L(["services", "Servicios", "Services", "Services", "Services", "Diensten", "Servizi", "Serviços", "Tjenester", "Tjänster", "Услуги", "Usługi"]);
+  L(["call", "Llamar", "Call", "Anrufen", "Appeler", "Bellen", "Chiama", "Ligar", "Ring", "Ring", "Позвонить", "Zadzwoń"]);
+  L(["views", "visitas", "views", "Aufrufe", "vues", "weergaven", "visualizzazioni", "visitas", "visninger", "visningar", "просмотров", "wyświetleń"]);
+  L(["seo_block_title", "Escorts en Benidorm: calidad, confianza y sin complicaciones", "Escorts in Benidorm: quality, trust and no hassle", "Escorts in Benidorm: Qualität, Vertrauen, ohne Stress", "Escorts à Benidorm : qualité, confiance, sans complications", "Escorts in Benidorm: kwaliteit, vertrouwen, zonder gedoe", "Escort a Benidorm: qualità, fiducia, senza problemi", "Escorts em Benidorm: qualidade, confiança e sem complicações", "Escorts i Benidorm: kvalitet, tillit og uten stress", "Escorts i Benidorm: kvalitet, förtroende och utan krångel", "Эскорт в Бенидорме: качество, доверие, без проблем", "Escorty w Benidorm: jakość, zaufanie, bez problemów"]);
+  L(["seo_block_p", "Si buscas escorts en Benidorm, mereces un listado serio: perfiles de nivel, zona clara (Levante, Poniente, Rincón de Loix…) y contacto directo. EscortBenidorm no es un tablón caótico de toda España: es el directorio local donde priorizamos calidad y transparencia para que la experiencia sea limpia, discreta y sin malos ratos.", "If you’re looking for escorts in Benidorm, you deserve a serious listing: high-standard profiles, clear areas (Levante, Poniente, Rincón de Loix…) and direct contact. EscortBenidorm isn’t a chaotic Spain-wide board — it’s the local directory that puts quality and transparency first so your experience stays clean, discreet and free of bad surprises.", "Wer Escorts in Benidorm sucht, verdient ein seriöses Verzeichnis: Profile auf hohem Niveau, klare Gebiete (Levante, Poniente, Rincón de Loix…) und direkter Kontakt. EscortBenidorm ist kein chaotisches Spanien-Brett — sondern das lokale Verzeichnis mit Fokus auf Qualität und Transparenz.", "Si tu cherches des escorts à Benidorm, tu mérites un annuaire sérieux : profils haut de gamme, zones claires (Levante, Poniente, Rincón de Loix…) et contact direct. EscortBenidorm n’est pas un tableau chaotique de toute l’Espagne — c’est l’annuaire local qui privilégie qualité et transparence.", "Zoek je escorts in Benidorm, dan verdien je een serieuze gids: profielen van niveau, duidelijke wijken (Levante, Poniente, Rincón de Loix…) en direct contact. EscortBenidorm is geen chaotisch Spanje-breed bord — het is de lokale gids met kwaliteit en transparantie voorop.", "Se cerchi escort a Benidorm, meriti un elenco serio: profili di alto livello, zone chiare (Levante, Poniente, Rincón de Loix…) e contatto diretto. EscortBenidorm non è un bacheca caotica di tutta la Spagna: è la directory locale che mette qualità e trasparenza al primo posto.", "Se procuras escorts em Benidorm, mereces um diretório sério: perfis de nível, zonas claras (Levante, Poniente, Rincón de Loix…) e contacto direto. EscortBenidorm não é um mural caótico de toda a Espanha — é o diretório local que prioriza qualidade e transparência.", "Hvis du leter etter escorts i Benidorm, fortjener du en seriøs katalog: profiler på høyt nivå, tydelige soner (Levante, Poniente, Rincón de Loix…) og direkte kontakt. EscortBenidorm er ikke et kaotisk Spania-brett — det er den lokale katalogen med kvalitet og åpenhet først.", "Letar du efter escorts i Benidorm förtjänar du en seriös katalog: profiler av hög klass, tydliga områden (Levante, Poniente, Rincón de Loix…) och direktkontakt. EscortBenidorm är inte en kaotisk Spanien-tavla — det är den lokala katalogen med kvalitet och transparens först.", "Если вы ищете эскорт в Бенидорме, вам нужен серьёзный каталог: анкеты высокого уровня, понятные районы (Levante, Poniente, Rincón de Loix…) и прямой контакт. EscortBenidorm — не хаотичная доска всей Испании, а локальный каталог с приоритетом качества и прозрачности.", "Szukając escort w Benidorm, zasługujesz na poważny katalog: profile na wysokim poziomie, jasne strefy (Levante, Poniente, Rincón de Loix…) i bezpośredni kontakt. EscortBenidorm to nie chaotyczna tablica całej Hiszpanii — to lokalny katalog z jakością i przejrzystością na pierwszym miejscu."]);
+  L(["faq_title", "Preguntas frecuentes", "FAQ", "FAQ", "FAQ", "FAQ", "FAQ", "FAQ", "FAQ", "FAQ", "FAQ", "FAQ"]);
+  L(["faq1_q", "¿La web está en mi idioma?", "Is the site in my language?", "Ist die Seite in meiner Sprache?", "Le site est-il dans ma langue ?", "Is de site in mijn taal?", "Il sito è nella mia lingua?", "O site está no meu idioma?", "Er siden på mitt språk?", "Är sajten på mitt språk?", "Сайт на моём языке?", "Czy strona jest w moim języku?"]);
+  L(["faq1_a", "Sí. La web está en español e inglés. Se guarda tu preferencia en este dispositivo.", "Yes. The site is in Spanish and English. Your choice is saved on this device."]);
+  L(["faq2_q", "¿Solo hay anuncios de Benidorm?", "Only Benidorm listings?", "Nur Anzeigen aus Benidorm?", "Uniquement Benidorm ?", "Alleen Benidorm?", "Solo annunci di Benidorm?", "Só anúncios de Benidorm?", "Bare annonser fra Benidorm?", "Bara annonser från Benidorm?", "Только объявления из Бенидорма?", "Tylko ogłoszenia z Benidorm?"]);
+  L(["faq2_a", "Sí. No publicamos otras ciudades. Eso nos hace únicos frente a portales nacionales.", "Yes. We don’t list other cities. That’s what makes us unique vs national portals.", "Ja. Keine anderen Städte. Das macht uns einzigartig gegenüber nationalen Portalen.", "Oui. Pas d’autres villes. C’est ce qui nous rend uniques face aux portails nationaux.", "Ja. Geen andere steden. Daardoor zijn we uniek t.o.v. nationale portals.", "Sì. Nessun’altra città. Ecco perché siamo unici rispetto ai portali nazionali.", "Sim. Sem outras cidades. É o que nos torna únicos face a portais nacionais.", "Ja. Ingen andre byer. Det gjør oss unike mot nasjonale portaler.", "Ja. Inga andra städer. Det gör oss unika mot nationella portaler.", "Да. Без других городов. Поэтому мы уникальны на фоне национальных порталов.", "Tak. Bez innych miast. To czyni nas wyjątkowymi wobec portali krajowych."]);
+  L(["faq3_q", "¿Cómo filtro quien habla mi idioma?", "How do I filter who speaks my language?", "Wie filtere ich nach meiner Sprache?", "Comment filtrer qui parle ma langue ?", "Hoe filter ik op mijn taal?", "Come filtro chi parla la mia lingua?", "Como filtro quem fala o meu idioma?", "Hvordan filtrerer jeg på mitt språk?", "Hur filtrerar jag på mitt språk?", "Как отфильтровать мой язык?", "Jak filtrować mój język?"]);
+  L(["faq3_a", "Activa «Habla mi idioma» o elige un idioma en el filtro. Verás el badge SpeaksMatch en las fichas.", "Turn on “Speaks my language” or pick a language filter. You’ll see the SpeaksMatch badge on cards.", "Aktiviere „Spricht meine Sprache“ oder wähle einen Sprachfilter. Du siehst das SpeaksMatch-Badge.", "Active « Parle ma langue » ou choisis une langue. Tu verras le badge SpeaksMatch.", "Zet «Spreekt mijn taal» aan of kies een taalfilter. Je ziet de SpeaksMatch-badge.", "Attiva «Parla la mia lingua» o scegli una lingua. Vedrai il badge SpeaksMatch.", "Ativa «Fala o meu idioma» ou escolhe um idioma. Vês o badge SpeaksMatch.", "Slå på «Snakker mitt språk» eller velg språkfilter. Du ser SpeaksMatch-badge.", "Slå på «Talar mitt språk» eller välj språkfilter. Du ser SpeaksMatch-badge.", "Включи «Говорит на моём» или выбери язык. Увидишь бейдж SpeaksMatch.", "Włącz «Mówi moim językiem» lub wybierz język. Zobaczysz badge SpeaksMatch."]);
+  L(["faq4_q", "¿Cómo edito o renuevo mi anuncio?", "How do I edit or renew my ad?", "Wie bearbeite oder erneuere ich meine Anzeige?", "Comment modifier ou renouveler mon annonce ?", "Hoe bewerk of vernieuw ik mijn ad?", "Come modifico o rinnovo il mio annuncio?", "Como edito ou renovo o meu anúncio?", "Hvordan redigerer eller fornyer jeg annonsen?", "Hur redigerar eller förnyar jag min annons?", "Как редактировать или обновить объявление?", "Jak edytować lub odnowić ogłoszenie?"]);
+  L(["faq4_a", "Al publicar recibes un PIN de gestión. Entra en Mi anuncio con tu WhatsApp y el PIN para editar, subir el anuncio, pausarlo o eliminarlo. También puedes recargar créditos y gastarlos ahí.", "When you publish you get a management PIN. Open My ad with your WhatsApp and PIN to edit, bump, pause or delete. You can also top up credits and spend them there.", "Beim Veröffentlichen erhältst du eine PIN. Öffne Mein Inserat mit WhatsApp + PIN zum Bearbeiten, Bumpen, Pausieren oder Löschen. Dort lädst du auch Credits auf.", "À la publication tu reçois un PIN. Va dans Mon annonce avec WhatsApp + PIN pour modifier, remonter, pause ou supprimer. Tu y recharges aussi les crédits.", "Bij publiceren krijg je een PIN. Open Mijn ad met WhatsApp + PIN om te bewerken, bumpen, pauzeren of verwijderen. Daar laad je ook credits op.", "Alla pubblicazione ricevi un PIN. Apri Il mio annuncio con WhatsApp + PIN per modificare, rinnovare, mettere in pausa o eliminare. Lì ricarichi anche i crediti.", "Ao publicar recebes um PIN. Entra em O meu anúncio com WhatsApp + PIN para editar, renovar, pausar ou eliminar. Também recarregas créditos aí.", "Når du publiserer får du en PIN. Gå til Min annonse med WhatsApp + PIN for å redigere, fornye, pause eller slette. Der fyller du også på credits.", "När du publicerar får du en PIN. Gå till Min annons med WhatsApp + PIN för att redigera, förnya, pausa eller ta bort. Där fyller du också på credits.", "При публикации вы получаете PIN. Откройте «Моё объявление» с WhatsApp и PIN, чтобы править, поднимать, паузить или удалять. Там же пополняете кредиты.", "Po dodaniu ogłoszenia dostajesz PIN. Wejdź w Moje ogłoszenie z WhatsApp + PIN, by edytować, odnawiać, wstrzymać lub usunąć. Tam też doładujesz kredyty."]);
+  L(["faq5_q", "¿Cómo denuncio un perfil falso?", "How do I report a fake profile?", "Wie melde ich ein Fake-Profil?", "Comment signaler un faux profil ?", "Hoe meld ik een nepprofiel?", "Come segnalo un profilo falso?", "Como denuncio um perfil falso?", "Hvordan anmelder jeg en falsk profil?", "Hur anmäler jag en falsk profil?", "Как пожаловаться на фейк?", "Jak zgłosić fałszywy profil?"]);
+  L(["faq5_a", "Abre la ficha y usa Reportar anuncio. El equipo lo revisa desde el panel admin. También puedes escribir en Contacto.", "Open the profile and use Report ad. The team reviews it in the admin panel. You can also write via Contact.", "Öffne das Profil und nutze Anzeige melden. Das Team prüft im Admin. Du kannst auch über Kontakt schreiben.", "Ouvre le profil et utilise Signaler. L’équipe vérifie dans l’admin. Tu peux aussi écrire via Contact.", "Open het profiel en gebruik Melden. Het team checkt in de admin. Je kunt ook via Contact schrijven.", "Apri la scheda e usa Segnala. Il team controlla dall’admin. Puoi anche scrivere da Contatto.", "Abre o perfil e usa Denunciar. A equipa revê no admin. Também podes escrever em Contacto.", "Åpne profilen og bruk Rapporter. Teamet sjekker i admin. Du kan også skrive via Kontakt.", "Öppna profilen och använd Anmäl. Teamet granskar i admin. Du kan också skriva via Kontakt.", "Открой анкету и нажми Пожаловаться. Команда проверит в админке. Можно написать через Контакты.", "Otwórz profil i użyj Zgłoś. Zespół sprawdzi w adminie. Możesz też napisać w Kontakt."]);
+  L(["adv_title", "Para anunciantes en Benidorm", "For advertisers in Benidorm", "Für Inserenten in Benidorm", "Pour les annonceuses à Benidorm", "Voor adverteerders in Benidorm", "Per inserzioniste a Benidorm", "Para anunciantes em Benidorm", "For annonsører i Benidorm", "För annonsörer i Benidorm", "Для рекламодателей в Бенидорме", "Dla reklamodawców w Benidorm"]);
+  L(["adv_sub", "Publica en minutos y gestiona tú misma con PIN — sin intermediarios confusos.", "Publish in minutes and manage yourself with a PIN — no confusing middlemen.", "In Minuten inserieren und selbst mit PIN verwalten — ohne verwirrende Vermittler.", "Publie en quelques minutes et gère toi-même avec un PIN — sans intermédiaires flous.", "Publiceer in minuten en beheer zelf met PIN — zonder vage tussenpersonen.", "Pubblica in pochi minuti e gestisci tu con PIN — senza intermediari confusi.", "Publica em minutos e gere tu com PIN — sem intermediários confusos.", "Publiser på minutter og administrer selv med PIN — uten forvirrende mellomledd.", "Publicera på minuter och hantera själv med PIN — utan förvirrande mellanhänder.", "Публикуй за минуты и управляй сама с PIN — без запутанных посредников.", "Dodaj w kilka minut i zarządzaj sama z PIN — bez mylących pośredników."]);
+  L(["adv1_t", "Publica", "Publish", "Inserieren", "Publier", "Publiceren", "Pubblica", "Publicar", "Publiser", "Publicera", "Опубликовать", "Opublikuj"]);
+  L(["adv1_p", "Nombre, zona, tarifa, WhatsApp y fotos. 24 h de prueba; luego créditos (Día 5 · VIP 7 · TOP 10).", "Name, area, rate, WhatsApp and photos. 24h trial; then credits (Day 5 · VIP 7 · TOP 10).", "Name, Gebiet, Tarif, WhatsApp und Fotos. 24h Test; dann Credits (Tag 5 · VIP 7 · TOP 10).", "Nom, zone, tarif, WhatsApp et photos. Essai 24h ; puis crédits (Jour 5 · VIP 7 · TOP 10).", "Naam, wijk, tarief, WhatsApp en foto’s. 24u proef; daarna credits (Dag 5 · VIP 7 · TOP 10).", "Nome, zona, tariffa, WhatsApp e foto. Prova 24h; poi crediti (Giorno 5 · VIP 7 · TOP 10).", "Nome, zona, tarifa, WhatsApp e fotos. Teste 24h; depois créditos (Dia 5 · VIP 7 · TOP 10).", "Navn, sone, pris, WhatsApp og bilder. 24t prøve; deretter credits (Dag 5 · VIP 7 · TOP 10).", "Namn, område, pris, WhatsApp och foton. 24h prov; sedan credits (Dag 5 · VIP 7 · TOP 10).", "Имя, район, тариф, WhatsApp и фото. 24ч проба; потом кредиты (День 5 · VIP 7 · TOP 10).", "Imię, strefa, stawka, WhatsApp i zdjęcia. 24h próba; potem kredyty (Dzień 5 · VIP 7 · TOP 10)."]);
+  L(["adv2_t", "Guarda el PIN", "Save your PIN", "PIN speichern", "Garde le PIN", "Bewaar de PIN", "Salva il PIN", "Guarda o PIN", "Lagre PIN", "Spara PIN", "Сохрани PIN", "Zapisz PIN"]);
+  L(["adv2_p", "Al publicar recibes un PIN de gestión (solo una vez). Sin él no se edita el anuncio.", "When you publish you get a one-time management PIN. Without it the ad can’t be edited.", "Beim Veröffentlichen bekommst du einmalig eine PIN. Ohne sie lässt sich die Anzeige nicht bearbeiten.", "À la publication tu reçois un PIN unique. Sans lui l’annonce ne se modifie pas.", "Bij publiceren krijg je één keer een PIN. Zonder die kun je de ad niet bewerken.", "Alla pubblicazione ricevi un PIN una sola volta. Senza non si modifica l’annuncio.", "Ao publicar recebes um PIN uma vez. Sem ele o anúncio não se edita.", "Når du publiserer får du en PIN én gang. Uten den kan annonsen ikke redigeres.", "När du publicerar får du en PIN en gång. Utan den kan annonsen inte redigeras.", "При публикации PIN выдаётся один раз. Без него объявление не редактируется.", "Po dodaniu dostajesz PIN raz. Bez niego nie edytujesz ogłoszenia."]);
+  L(["adv3_t", "Renueva y edita", "Renew & edit", "Erneuern & bearbeiten", "Renouveler et modifier", "Vernieuw en bewerk", "Rinnova e modifica", "Renova e edita", "Forny og rediger", "Förnya och redigera", "Обновляй и правь", "Odnów i edytuj"]);
+  L(["adv3_p", "En Mi anuncio subes el perfil, cambias precio, fotos, gastas créditos o lo pausas.", "In My ad you bump the profile, change price, photos, spend credits or pause it.", "Unter Mein Inserat bumpen, Preis/Fotos ändern, Credits ausgeben oder pausieren.", "Dans Mon annonce : remonter, changer prix/photos, dépenser des crédits ou pause.", "In Mijn ad: bumpen, prijs/foto’s wijzigen, credits uitgeven of pauzeren.", "In Il mio annuncio: rinnova, cambia prezzo/foto, spendi crediti o metti in pausa.", "Em O meu anúncio: renova, muda preço/fotos, gasta créditos ou pausa.", "I Min annonse: forny, endre pris/bilder, bruk credits eller pause.", "I Min annons: förnya, ändra pris/foton, spendera credits eller pausa.", "В «Моём объявлении»: поднимай, меняй цену/фото, трать кредиты или пауза.", "W Moje ogłoszenie: odnów, zmień cenę/zdjęcia, wydaj kredyty lub wstrzymaj."]);
+  L(["have_pin", "Ya tengo PIN", "I already have a PIN", "Ich habe schon eine PIN", "J’ai déjà un PIN", "Ik heb al een PIN", "Ho già un PIN", "Já tenho PIN", "Jeg har allerede PIN", "Jag har redan PIN", "У меня уже есть PIN", "Mam już PIN"]);
+  L(["nav_prices", "Precios", "Prices", "Preise", "Tarifs", "Prijzen", "Prezzi", "Preços", "Priser", "Priser", "Цены", "Ceny"]);
+  L(["nav_favs", "Favoritos", "Favorites", "Favoriten", "Favoris", "Favorieten", "Preferiti", "Favoritos", "Favoritter", "Favoriter", "Избранное", "Ulubione"]);
+  L(["nav_login", "Entrar", "Log in", "Anmelden", "Connexion", "Inloggen", "Accedi", "Entrar", "Logg inn", "Logga in", "Войти", "Zaloguj"]);
+  L(["nav_register", "Registro", "Sign up", "Registrieren", "Inscription", "Registreren", "Registrati", "Registo", "Registrer", "Registrera", "Регистрация", "Rejestracja"]);
+  L(["nav_myad", "Mi anuncio", "My ad", "Mein Inserat", "Mon annonce", "Mijn ad", "Il mio annuncio", "O meu anúncio", "Min annonse", "Min annons", "Моё объявление", "Moje ogłoszenie"]);
+  L(["nav_putas", "Putas Benidorm", "Putas Benidorm", "Putas Benidorm", "Putas Benidorm", "Putas Benidorm", "Putas Benidorm", "Putas Benidorm", "Putas Benidorm", "Putas Benidorm", "Putas Benidorm", "Putas Benidorm"]);
+  L(["nav_scorts", "Scorts", "Scorts", "Scorts", "Scorts", "Scorts", "Scorts", "Scorts", "Scorts", "Scorts", "Scorts", "Scorts"]);
+  L(["nav_escorts", "Escorts", "Escorts", "Escorts", "Escorts", "Escorts", "Escort", "Escorts", "Escorts", "Escorts", "Эскорт", "Escorty"]);
+  L(["zones_page_h1", "Escorts y putas por zona en Benidorm", "Escorts & putas by Benidorm area", "Escorts & Putas nach Gebiet in Benidorm", "Escorts et putas par zone à Benidorm", "Escorts & putas per wijk in Benidorm", "Escort e putas per zona a Benidorm", "Escorts e putas por zona em Benidorm", "Escorts & putas etter sone i Benidorm", "Escorts & putas per område i Benidorm", "Эскорт и putas по районам Бенидорма", "Escorty i putas według stref Benidorm"]);
+  L(["zones_page_lead", "Elige el barrio o playa. Cada zona tiene página propia para búsquedas locales.", "Pick the neighbourhood or beach. Each area has its own page for local searches.", "Wähle Viertel oder Strand. Jedes Gebiet hat eine eigene Seite.", "Choisis le quartier ou la plage. Chaque zone a sa page.", "Kies wijk of strand. Elke zone heeft een eigen pagina.", "Scegli quartiere o spiaggia. Ogni zona ha la sua pagina.", "Escolhe o bairro ou praia. Cada zona tem a sua página.", "Velg strøk eller strand. Hver sone har egen side.", "Välj område eller strand. Varje zon har egen sida.", "Выбери район или пляж. У каждой зоны своя страница.", "Wybierz dzielnicę lub plażę. Każda strefa ma własną stronę."]);
+  L(["zones_why_h2", "Por qué segmentamos Benidorm por zonas", "Why we split Benidorm by areas", "Warum wir Benidorm nach Gebieten trennen", "Pourquoi on découpe Benidorm par zones", "Waarom we Benidorm per wijk splitsen", "Perché dividiamo Benidorm per zone", "Porque separamos Benidorm por zonas", "Hvorfor vi deler Benidorm i soner", "Varför vi delar Benidorm i områden", "Почему мы делим Бенидорм по районам", "Dlaczego dzielimy Benidorm na strefy"]);
+  L(["zones_why_p", "Separar Levante, Poniente y Rincón de Loix permite páginas específicas que Google puede posicionar y que el usuario filtra en segundos según su hotel.", "Splitting Levante, Poniente and Rincón de Loix lets Google rank specific pages and lets users filter in seconds by hotel area.", "Levante, Poniente und Rincón de Loix getrennt zu listen hilft Google und spart dem Nutzer Wege.", "Séparer Levante, Poniente et Rincón de Loix aide Google et le filtre par hôtel en quelques secondes.", "Levante, Poniente en Rincón de Loix apart houden helpt Google en snelle filters bij je hotel.", "Separare Levante, Poniente e Rincón de Loix aiuta Google e il filtro per hotel in secondi.", "Separar Levante, Poniente e Rincón de Loix ajuda o Google e o filtro por hotel em segundos.", "Å skille Levante, Poniente og Rincón de Loix hjelper Google og rask filter ved hotellet.", "Att dela Levante, Poniente och Rincón de Loix hjälper Google och snabb filter vid hotellet.", "Разделение Levante, Poniente и Rincón de Loix помогает Google и быстрому фильтру у отеля.", "Podział na Levante, Poniente i Rincón de Loix pomaga Google i szybkiemu filtrowi przy hotelu."]);
+  L(["zones_work", "¿Trabajas en una zona? Publica con 24 h de prueba y luego renueva con créditos.", "Working in an area? Publish with a 24h trial, then renew with credits.", "Arbeitest du in einem Gebiet? 24h-Test, dann Credits.", "Tu travailles dans une zone ? Essai 24h, puis crédits.", "Werk je in een wijk? 24u proef, daarna credits.", "Lavori in una zona? Prova 24h, poi crediti.", "Trabalhas numa zona? Teste 24h, depois créditos.", "Jobber du i en sone? 24t prøve, deretter credits.", "Jobbar du i ett område? 24h prov, sedan credits.", "Работаешь в районе? 24ч проба, потом кредиты.", "Pracujesz w strefie? 24h próba, potem kredyty."]);
+  L(["putas_h1", "Putas en Benidorm — anuncios por zona", "Putas in Benidorm — ads by area", "Putas in Benidorm — Anzeigen nach Gebiet", "Putas à Benidorm — annonces par zone", "Putas in Benidorm — ads per wijk", "Putas a Benidorm — annunci per zona", "Putas em Benidorm — anúncios por zona", "Putas i Benidorm — annonser etter sone", "Putas i Benidorm — annonser per område", "Putas в Бенидорме — объявления по районам", "Putas w Benidorm — ogłoszenia według stref"]);
+  L(["putas_lead", "Buscas putas Benidorm con datos claros: barrio, tarifa y WhatsApp. Solo Benidorm, sin mezclar otras ciudades.", "Looking for putas Benidorm with clear details: area, rate and WhatsApp. Benidorm only — no other cities mixed in.", "Putas Benidorm mit klaren Daten: Viertel, Tarif und WhatsApp. Nur Benidorm.", "Putas Benidorm avec infos claires : quartier, tarif et WhatsApp. Uniquement Benidorm.", "Putas Benidorm met duidelijke info: wijk, tarief en WhatsApp. Alleen Benidorm.", "Putas Benidorm con dati chiari: zona, tariffa e WhatsApp. Solo Benidorm.", "Putas Benidorm com dados claros: zona, tarifa e WhatsApp. Só Benidorm.", "Putas Benidorm med tydelig info: sone, pris og WhatsApp. Bare Benidorm.", "Putas Benidorm med tydlig info: område, pris och WhatsApp. Bara Benidorm.", "Putas Benidorm с понятными данными: район, тариф и WhatsApp. Только Бенидорм.", "Putas Benidorm z jasnymi danymi: strefa, stawka i WhatsApp. Tylko Benidorm."]);
+  L(["scorts_h1", "Scorts Benidorm — anuncios locales", "Scorts Benidorm — local ads", "Scorts Benidorm — lokale Anzeigen", "Scorts Benidorm — annonces locales", "Scorts Benidorm — lokale ads", "Scorts Benidorm — annunci locali", "Scorts Benidorm — anúncios locais", "Scorts Benidorm — lokale annonser", "Scorts Benidorm — lokala annonser", "Scorts Benidorm — местные объявления", "Scorts Benidorm — lokalne ogłoszenia"]);
+  L(["scorts_lead", "Scorts y escorts en Benidorm por zona. Contacto directo y tarifas claras.", "Scorts and escorts in Benidorm by area. Direct contact and clear rates.", "Scorts und Escorts in Benidorm nach Gebiet. Direkter Kontakt, klare Tarife.", "Scorts et escorts à Benidorm par zone. Contact direct, tarifs clairs.", "Scorts en escorts in Benidorm per wijk. Direct contact, duidelijke tarieven.", "Scorts ed escort a Benidorm per zona. Contatto diretto, tariffe chiare.", "Scorts e escorts em Benidorm por zona. Contacto direto, tarifas claras.", "Scorts og escorts i Benidorm etter sone. Direkte kontakt, tydelige priser.", "Scorts och escorts i Benidorm per område. Direktkontakt, tydliga priser.", "Scorts и эскорт в Бенидорме по районам. Прямой контакт, понятные тарифы.", "Scorts i escorty w Benidorm według stref. Bezpośredni kontakt, jasne stawki."]);
+  L(["prices_h1", "Compra créditos · gástalos en visibilidad", "Buy credits · spend on visibility", "Credits kaufen · für Sichtbarkeit ausgeben", "Acheter des crédits · dépenser pour la visibilité", "Credits kopen · uitgeven aan zichtbaarheid", "Compra crediti · spendi per la visibilità", "Compra créditos · gasta em visibilidade", "Kjøp credits · bruk på synlighet", "Köp credits · spendera på synlighet", "Купи кредиты · трать на видимость", "Kup kredyty · wydaj na widoczność"]);
+  L(["prices_lead", "Elige de 1 a 1000 € (solo enteros). 1 € = 1 crédito base. Luego gastas en Día (5) · VIP (7) · TOP (10) / día.", "Choose 1 to 1000 € (integers only). 1 € = 1 base credit. Then spend on Day (5) · VIP (7) · TOP (10) / day.", "1 bis 1000 € (nur ganze Zahlen). 1 € = 1 Credit. Dann Tag (5) · VIP (7) · TOP (10) / Tag.", "1 à 1000 € (entiers seulement). 1 € = 1 crédit. Puis Jour (5) · VIP (7) · TOP (10) / jour.", "1 tot 1000 € (alleen gehele getallen). 1 € = 1 credit. Daarna Dag (5) · VIP (7) · TOP (10) / dag.", "Da 1 a 1000 € (solo interi). 1 € = 1 credito. Poi Giorno (5) · VIP (7) · TOP (10) / giorno.", "De 1 a 1000 € (só inteiros). 1 € = 1 crédito. Depois Dia (5) · VIP (7) · TOP (10) / dia.", "1 til 1000 € (bare hele tall). 1 € = 1 credit. Deretter Dag (5) · VIP (7) · TOP (10) / dag.", "1 till 1000 € (bara heltal). 1 € = 1 credit. Sedan Dag (5) · VIP (7) · TOP (10) / dag.", "От 1 до 1000 € (только целые). 1 € = 1 кредит. Потом День (5) · VIP (7) · TOP (10) / день.", "1 do 1000 € (tylko liczby całkowite). 1 € = 1 kredyt. Potem Dzień (5) · VIP (7) · TOP (10) / dzień."]);
+  L(["prices_bonus", "🎁 Bonus: 50–999 € → +20% · 1000 € → +50%", "🎁 Bonus: 50–999 € → +20% · 1000 € → +50%", "🎁 Bonus: 50–999 € → +20% · 1000 € → +50%", "🎁 Bonus : 50–999 € → +20% · 1000 € → +50%", "🎁 Bonus: 50–999 € → +20% · 1000 € → +50%", "🎁 Bonus: 50–999 € → +20% · 1000 € → +50%", "🎁 Bónus: 50–999 € → +20% · 1000 € → +50%", "🎁 Bonus: 50–999 € → +20% · 1000 € → +50%", "🎁 Bonus: 50–999 € → +20% · 1000 € → +50%", "🎁 Бонус: 50–999 € → +20% · 1000 € → +50%", "🎁 Bonus: 50–999 € → +20% · 1000 € → +50%"]);
+  L(["see_listings", "Ver anuncios activos", "View active ads", "Aktive Anzeigen", "Voir les annonces", "Actieve ads", "Vedi annunci", "Ver anúncios", "Se annonser", "Se annonser", "Смотреть объявления", "Zobacz ogłoszenia"]);
+  L(["cta_band_t", "¿Trabajas en Benidorm?", "Working in Benidorm?", "Arbeitest du in Benidorm?", "Tu travailles à Benidorm ?", "Werk je in Benidorm?", "Lavori a Benidorm?", "Trabalhas em Benidorm?", "Jobber du i Benidorm?", "Jobbar du i Benidorm?", "Работаешь в Бенидорме?", "Pracujesz w Benidorm?"]);
+  L(["cta_band_p", "Publica donde los turistas ya buscan en su idioma.", "List where tourists already search in their language.", "Inseriere, wo Touristen schon in ihrer Sprache suchen.", "Publie là où les touristes cherchent déjà dans leur langue.", "Adverteer waar toeristen al in hun taal zoeken.", "Pubblica dove i turisti cercano già nella loro lingua.", "Publica onde os turistas já procuram no seu idioma.", "Annonser der turister allerede søker på sitt språk.", "Annonsera där turister redan söker på sitt språk.", "Размещайся там, где туристы уже ищут на своём языке.", "Dodaj tam, gdzie turyści już szukają w swoim języku."]);
+  L(["cta_band_btn", "Publicar · 24h prueba", "Publish · 24h trial", "Inserieren · 24h", "Publier · 24h", "Adverteren · 24u", "Pubblica · 24h", "Publicar · 24h", "Publiser · 24t", "Publicera · 24h", "24ч пробa", "Dodaj · 24h"]);
+  L(["footer_blurb", "Directorio premium de escorts solo en Benidorm. Calidad, discreción y sin complicaciones.", "Premium escorts directory only in Benidorm. Quality, discretion, no hassle.", "Premium-Escort-Verzeichnis nur in Benidorm. Qualität, Diskretion, ohne Stress.", "Annuaire premium d’escorts uniquement à Benidorm. Qualité, discrétion, sans complications.", "Premium escorts-gids alleen in Benidorm. Kwaliteit, discretie, zonder gedoe.", "Directory premium di escort solo a Benidorm. Qualità, discrezione, senza problemi.", "Diretório premium de escorts só em Benidorm. Qualidade, discrição, sem complicações.", "Premium escortkatalog bare i Benidorm. Kvalitet, diskresjon, uten stress.", "Premium escortkatalog bara i Benidorm. Kvalitet, diskretion, utan krångel.", "Премиум-каталог эскорта только в Бенидорме. Качество, дискретность, без проблем.", "Premium katalog escortów tylko w Benidorm. Jakość, dyskrecja, bez problemów."]);
+  L(["legal_18", "Contenido +18", "18+ content", "18+ Inhalt", "Contenu +18", "18+ content", "Contenuti +18", "Conteúdo +18", "18+ innhold", "18+ innehåll", "Контент 18+", "Treści 18+"]);
+  L(["api_off", "No se pudo cargar la API. Arranca: npm start", "Could not load API. Run: npm start", "API nicht erreichbar. Starte: npm start", "API hors service. Lance: npm start", "API offline. Start: npm start", "API non disponibile. Avvia: npm start", "API offline. Corre: npm start", "API nede. Kjør: npm start", "API nere. Kör: npm start", "API недоступен. Запусти: npm start", "API offline. Uruchom: npm start"]);
+  L(["home", "Inicio", "Home", "Start", "Accueil", "Home", "Home", "Início", "Hjem", "Hem", "Главная", "Start"]);
+  L(["lang_picker", "Idioma", "Language", "Sprache", "Langue", "Taal", "Lingua", "Idioma", "Språk", "Språk", "Язык", "Język"]);
+  L(["usp_no_scam", "Sin estafas", "No scams", "Kein Betrug", "Sans arnaque", "Geen oplichting", "Senza truffe", "Sem burla", "Ingen svindel", "Inga bluffar", "Без обмана", "Bez oszustw"]);
+  L(["usp_quality", "Calidad superior", "Superior quality", "Höchste Qualität", "Qualité supérieure", "Topkwaliteit", "Qualità superiore", "Qualidade superior", "Overlegen kvalitet", "Överlägsen kvalitet", "Высшее качество", "Najwyższa jakość"]);
+  L(["usp_100", "100% Benidorm", "100% Benidorm", "100% Benidorm", "100% Benidorm", "100% Benidorm", "100% Benidorm", "100% Benidorm", "100% Benidorm", "100% Benidorm", "100% Бенидорм", "100% Benidorm"]);
+  L(["putas_h2_areas", "Putas Benidorm por barrios", "Putas Benidorm by neighbourhood", "Putas Benidorm nach Viertel", "Putas Benidorm par quartiers", "Putas Benidorm per wijk", "Putas Benidorm per quartiere", "Putas Benidorm por bairros", "Putas Benidorm etter strøk", "Putas Benidorm per område", "Putas Benidorm по районам", "Putas Benidorm według dzielnic"]);
+  L(["putas_areas_p", "Filtra por la zona de tu hotel: Levante, Poniente, Rincón de Loix, Casco Antiguo, Nueva Poniente, Foietes.", "Filter by your hotel area: Levante, Poniente, Rincón de Loix, Old Town, Nueva Poniente, Foietes.", "Filtere nach Hotelgebiet: Levante, Poniente, Rincón de Loix…", "Filtre par zone d’hôtel : Levante, Poniente, Rincón de Loix…", "Filter op hotelwijk: Levante, Poniente, Rincón de Loix…", "Filtra per zona hotel: Levante, Poniente, Rincón de Loix…", "Filtra por zona do hotel: Levante, Poniente, Rincón de Loix…", "Filtrer på hotellsone: Levante, Poniente, Rincón de Loix…", "Filtrera på hotellområde: Levante, Poniente, Rincón de Loix…", "Фильтр по району отеля: Levante, Poniente, Rincón de Loix…", "Filtruj strefę hotelu: Levante, Poniente, Rincón de Loix…"]);
+  L(["putas_h2_contact", "Cómo contactar", "How to contact", "So kontaktieren", "Comment contacter", "Hoe contacten", "Come contattare", "Como contactar", "Hvordan kontakte", "Hur man kontaktar", "Как связаться", "Jak kontaktować"]);
+  L(["putas_contact_p", "Abre el anuncio, mira si habla tu idioma y escribe por WhatsApp. Confirma tarifa y ubicación en Benidorm antes de quedar.", "Open the ad, check if she speaks your language and write on WhatsApp. Confirm rate and location in Benidorm before meeting.", "Anzeige öffnen, Sprache prüfen und per WhatsApp schreiben. Tarif und Ort in Benidorm vorher bestätigen.", "Ouvre l’annonce, vérifie la langue et écris sur WhatsApp. Confirme tarif et lieu à Benidorm avant le rendez-vous.", "Open de ad, check de taal en schrijf via WhatsApp. Bevestig tarief en locatie in Benidorm vooraf.", "Apri l’annuncio, controlla la lingua e scrivi su WhatsApp. Conferma tariffa e luogo a Benidorm prima di incontrarvi.", "Abre o anúncio, vê se fala o teu idioma e escreve no WhatsApp. Confirma tarifa e local em Benidorm antes de encontrar.", "Åpne annonsen, sjekk språk og skriv på WhatsApp. Bekreft pris og sted i Benidorm før dere møtes.", "Öppna annonsen, kolla språk och skriv på WhatsApp. Bekräfta pris och plats i Benidorm innan ni ses.", "Открой объявление, проверь язык и напиши в WhatsApp. Подтверди тариф и место в Бенидорме до встречи.", "Otwórz ogłoszenie, sprawdź język i napisz na WhatsApp. Potwierdź stawkę i miejsce w Benidorm przed spotkaniem."]);
+  L(["putas_work_p", "¿Trabajas en Benidorm? Regístrate y anúnciate. Prueba 24 h y luego créditos diarios.", "Working in Benidorm? Sign up and list. 24h trial then daily credits.", "Arbeitest du in Benidorm? Registrieren und inserieren. 24h-Test, dann Tages-Credits.", "Tu travailles à Benidorm ? Inscris-toi et publie. Essai 24h puis crédits journaliers.", "Werk je in Benidorm? Registreer en adverteer. 24u proef, daarna dagcredits.", "Lavori a Benidorm? Registrati e pubblica. Prova 24h poi crediti giornalieri.", "Trabalhas em Benidorm? Regista-te e anuncia. Teste 24h e depois créditos diários.", "Jobber du i Benidorm? Registrer deg og annonser. 24t prøve, deretter daglige credits.", "Jobbar du i Benidorm? Registrera dig och annonsera. 24h prov, sedan dagliga credits.", "Работаешь в Бенидорме? Зарегистрируйся и разместись. 24ч проба, потом дневные кредиты.", "Pracujesz w Benidorm? Zarejestruj się i dodaj ogłoszenie. 24h próba, potem dzienne kredyty."]);
+  L(["zones_bc", "Zonas de Benidorm", "Benidorm areas", "Benidorm-Gebiete", "Zones de Benidorm", "Wijken van Benidorm", "Zone di Benidorm", "Zonas de Benidorm", "Soner i Benidorm", "Områden i Benidorm", "Районы Бенидорма", "Strefy Benidorm"]);
+  L(["from_day", "Desde 5€/día", "From 5€/day", "Ab 5€/Tag", "Dès 5€/jour", "Vanaf 5€/dag", "Da 5€/giorno", "Desde 5€/dia", "Fra 5€/dag", "Från 5€/dag", "От 5€/день", "Od 5€/dzień"]);
+  L(["view_all_ads", "Ver todos los anuncios", "View all listings", "Alle Anzeigen", "Toutes les annonces", "Alle ads", "Tutti gli annunci", "Todos os anúncios", "Alle annonser", "Alla annonser", "Все объявления", "Wszystkie ogłoszenia"]);
+  L(["create_account", "Crear cuenta", "Create account", "Konto erstellen", "Créer un compte", "Account aanmaken", "Crea account", "Criar conta", "Opprett konto", "Skapa konto", "Создать аккаунт", "Utwórz konto"]);
+  L(["menu", "Menú", "Menu", "Menü", "Menu", "Menu", "Menu", "Menu", "Meny", "Meny", "Меню", "Menu"]);
+  L(["login_h1", "Acceso anunciantes", "Advertiser login", "Anmelden für Inserenten", "Connexion annonceuse", "Inloggen adverteerder", "Accesso inserzioniste", "Acesso anunciantes", "Innlogging annonsør", "Inloggning annonsör", "Вход для рекламодателей", "Logowanie reklamodawcy"]);
+  L(["login_lead", "Entra con tu email (o teléfono) y contraseña. Publica con 24 h de prueba y renueva desde 5€/día.", "Sign in with email (or phone) and password. Publish with a 24h trial and renew from 5€/day.", "Mit E-Mail (oder Telefon) und Passwort anmelden. 24h-Test, dann ab 5€/Tag.", "Connecte-toi avec email (ou téléphone) et mot de passe. Essai 24h, puis dès 5€/jour.", "Log in met e-mail (of telefoon) en wachtwoord. 24u proef, daarna vanaf 5€/dag.", "Accedi con email (o telefono) e password. Prova 24h, poi da 5€/giorno.", "Entra com email (ou telefone) e palavra-passe. Teste 24h, depois desde 5€/dia.", "Logg inn med e-post (eller telefon) og passord. 24t prøve, deretter fra 5€/dag.", "Logga in med e-post (eller telefon) och lösenord. 24h prov, sedan från 5€/dag.", "Войдите по email (или телефону) и паролю. 24ч проба, потом от 5€/день.", "Zaloguj się e-mailem (lub telefonem) i hasłem. 24h próba, potem od 5€/dzień."]);
+  L(["login_email", "Email o teléfono", "Email or phone", "E-Mail oder Telefon", "Email ou téléphone", "E-mail of telefoon", "Email o telefono", "Email ou telefone", "E-post eller telefon", "E-post eller telefon", "Email или телефон", "E-mail lub telefon"]);
+  L(["login_pass", "Contraseña", "Password", "Passwort", "Mot de passe", "Wachtwoord", "Password", "Palavra-passe", "Passord", "Lösenord", "Пароль", "Hasło"]);
+  L(["login_btn", "Entrar", "Log in", "Anmelden", "Connexion", "Inloggen", "Accedi", "Entrar", "Logg inn", "Logga in", "Войти", "Zaloguj"]);
+  L(["login_no_account", "¿No tienes cuenta?", "No account?", "Noch kein Konto?", "Pas de compte ?", "Geen account?", "Non hai un account?", "Não tens conta?", "Har du ikke konto?", "Har du inget konto?", "Нет аккаунта?", "Nie masz konta?"]);
+  L(["login_register", "Regístrate", "Sign up", "Registrieren", "S’inscrire", "Registreren", "Registrati", "Regista-te", "Registrer deg", "Registrera dig", "Регистрация", "Zarejestruj się"]);
+  L(["login_pin", "¿Solo tienes PIN antiguo? Entrar con PIN", "Only have an old PIN? Log in with PIN", "Nur alte PIN? Mit PIN anmelden", "Seulement un ancien PIN ? Connexion PIN", "Alleen oude PIN? Inloggen met PIN", "Solo un vecchio PIN? Accedi con PIN", "Só tens PIN antigo? Entrar com PIN", "Bare gammel PIN? Logg inn med PIN", "Bara gammal PIN? Logga in med PIN", "Только старый PIN? Войти с PIN", "Tylko stary PIN? Zaloguj z PIN"]);
+  L(["reg_h1", "Crea tu cuenta de anunciante", "Create your advertiser account", "Inserentenkonto erstellen", "Créer ton compte annonceuse", "Maak je adverteerdersaccount", "Crea il tuo account inserzionista", "Cria a tua conta de anunciante", "Opprett annonsørkonto", "Skapa annonsörskonto", "Создайте аккаунт рекламодателя", "Utwórz konto reklamodawcy"]);
+  L(["reg_lead", "Regístrate con email y teléfono, publica con 24 h de prueba y luego paga solo el día: 5€ / 7€ / 10€.", "Sign up with email and phone, publish with a 24h trial, then pay per day: 5€ / 7€ / 10€.", "Mit E-Mail und Telefon registrieren, 24h-Test, dann Tagestarife 5/7/10€.", "Inscris-toi avec email et téléphone, essai 24h, puis 5/7/10€ par jour.", "Registreer met e-mail en telefoon, 24u proef, daarna 5/7/10€ per dag.", "Registrati con email e telefono, prova 24h, poi 5/7/10€ al giorno.", "Regista-te com email e telefone, teste 24h, depois 5/7/10€ por dia.", "Registrer deg med e-post og telefon, 24t prøve, deretter 5/7/10€ per dag.", "Registrera dig med e-post och telefon, 24h prov, sedan 5/7/10€ per dag.", "Регистрация с email и телефоном, 24ч проба, потом 5/7/10€ в день.", "Zarejestruj się e-mailem i telefonem, 24h próba, potem 5/7/10€ dziennie."]);
+  L(["reg_btn", "Crear cuenta y continuar", "Create account & continue", "Konto erstellen und weiter", "Créer le compte et continuer", "Account maken en doorgaan", "Crea account e continua", "Criar conta e continuar", "Opprett konto og fortsett", "Skapa konto och fortsätt", "Создать аккаунт и продолжить", "Utwórz konto i kontynuuj"]);
+  L(["reg_have_account", "¿Ya tienes cuenta?", "Already have an account?", "Schon ein Konto?", "Déjà un compte ?", "Al een account?", "Hai già un account?", "Já tens conta?", "Har du allerede konto?", "Har du redan konto?", "Уже есть аккаунт?", "Masz już konto?"]);
+  L(["see_prices", "Ver precios diarios", "See daily prices", "Tagespreise ansehen", "Voir les tarifs journaliers", "Bekijk dagprijzen", "Vedi prezzi giornalieri", "Ver preços diários", "Se dagspriser", "Se dagspriser", "Смотреть дневные цены", "Zobacz ceny dzienne"]);
+  L(["blog_h1", "Guía y blog: escorts en Benidorm", "Guide & blog: escorts in Benidorm", "Guide & Blog: Escorts in Benidorm", "Guide & blog : escorts à Benidorm", "Gids & blog: escorts in Benidorm", "Guida e blog: escort a Benidorm", "Guia e blog: escorts em Benidorm", "Guide og blogg: escorts i Benidorm", "Guide och blogg: escorts i Benidorm", "Гид и блог: эскорт в Бенидорме", "Przewodnik i blog: escorty w Benidorm"]);
+  L(["blog_lead", "Contenido local para usuarios y para posicionar búsquedas de escorts en Benidorm.", "Local content for visitors and for ranking escort searches in Benidorm.", "Lokale Inhalte für Besucher und SEO rund um Escorts in Benidorm.", "Contenu local pour visiteurs et SEO escorts à Benidorm.", "Lokale content voor bezoekers en SEO over escorts in Benidorm.", "Contenuti locali per visitatori e SEO escort a Benidorm.", "Conteúdo local para visitantes e SEO de escorts em Benidorm.", "Lokalt innhold for besøkende og SEO for escorts i Benidorm.", "Lokalt innehåll för besökare och SEO för escorts i Benidorm.", "Локальный контент для гостей и SEO по эскорту в Бенидорме.", "Lokalne treści dla gości i SEO escort w Benidorm."]);
+  L(["have_account_cta", "Ya tengo cuenta", "I already have an account", "Ich habe schon ein Konto", "J’ai déjà un compte", "Ik heb al een account", "Ho già un account", "Já tenho conta", "Jeg har allerede konto", "Jag har redan konto", "У меня уже есть аккаунт", "Mam już konto"]);
+
+  // —— Publish page (publicar.html) ——
+  L(["pub_h1", "Publica en Benidorm en 2 minutos", "Publish in Benidorm in 2 minutes"]);
+  L(["pub_lead", "Registro obligatorio · 24h de prueba · luego gastas créditos (5 / 7 / 10 al día).", "Account required · 24h trial · then spend credits (5 / 7 / 10 per day)."]);
+  L(["pub_buy_credits", "Comprar créditos", "Buy credits"]);
+  L(["pub_trust_24h", "✓ 24h de prueba", "✓ 24h trial"]);
+  L(["pub_trust_only", "✓ Solo Benidorm", "✓ Benidorm only"]);
+  L(["pub_trust_wa", "✓ WhatsApp directo", "✓ Direct WhatsApp"]);
+  L(["pub_trust_price", "✓ Desde 5€/día", "✓ From 5€/day"]);
+  L(["pub_ok_badge", "✓ Publicado y online", "✓ Live online"]);
+  L(["pub_ok_title", "Tu anuncio ya está en el listado", "Your ad is live in the listings"]);
+  L(["pub_ok_lead", "Guarda este PIN de gestión. No se volverá a mostrar. Con él editas, renuevas o eliminas el anuncio.", "Save this management PIN. It won’t be shown again. Use it to edit, renew or delete the ad."]);
+  L(["pub_copy_pin", "Copiar PIN", "Copy PIN"]);
+  L(["pub_manage_ad", "Gestionar anuncio", "Manage ad"]);
+  L(["pub_view_public", "Ver ficha pública", "View public profile"]);
+  L(["pub_next_credits", "Siguiente: recarga créditos", "Next: top up credits"]);
+  L(["pub_next_credits_p", "Tienes 24h de prueba. Luego gasta créditos (Día 5 · VIP 7 · TOP 10).", "You have a 24h trial. Then spend credits (Day 5 · VIP 7 · TOP 10)."]);
+  L(["pub_topup", "Recargar créditos", "Top up credits"]);
+  L(["pub_tip", "Consejo: renueva el anuncio cada pocos días desde Mi anuncio para subir en el listado.", "Tip: renew the ad every few days from My ad to climb the list."]);
+  L(["pub_progress", "% completo · campos obligatorios", "% complete · required fields"]);
+  L(["pub_sec_photos", "Fotos", "Photos"]);
+  L(["pub_sec_photos_p", "La primera es la portada. Mejor calidad = más clics.", "First photo is the cover. Better quality = more clicks."]);
+  L(["pub_drop_strong", "Arrastra fotos aquí", "Drop photos here"]);
+  L(["pub_drop_sub", "o toca para elegir · JPG/PNG/WEBP · máx. 6 · 5 MB c/u", "or tap to choose · JPG/PNG/WEBP · max 6 · 5 MB each"]);
+  L(["pub_photo_count", "0 / 6 fotos · opcional pero muy recomendable", "0 / 6 photos · optional but highly recommended"]);
+  L(["pub_sec_profile", "Perfil", "Profile"]);
+  L(["pub_sec_profile_p", "Cómo te verán en el listado de Benidorm.", "How you’ll appear in the Benidorm listings."]);
+  L(["pub_label_title", "Título del anuncio", "Ad title"]);
+  L(["pub_suggest", "Sugerir título", "Suggest title"]);
+  L(["pub_label_name", "Nombre artístico *", "Display name *"]);
+  L(["pub_label_age", "Edad * (18+)", "Age * (18+)"]);
+  L(["pub_label_zone", "Zona de Benidorm *", "Benidorm area *"]);
+  L(["pub_select_zone", "Selecciona zona", "Select area"]);
+  L(["pub_label_price", "Tarifa €/hora *", "Rate €/hour *"]);
+  L(["pub_label_nat", "Nacionalidad", "Nationality"]);
+  L(["pub_label_height", "Altura", "Height"]);
+  L(["pub_label_loc", "Ubicación detallada", "Detailed location"]);
+  L(["pub_loc_hint", "No pongas el número exacto de piso si no quieres. Barrio u hotel cercano basta.", "No need for exact flat number. Neighbourhood or nearby hotel is enough."]);
+  L(["pub_sec_contact", "Contacto", "Contact"]);
+  L(["pub_sec_contact_p", "WhatsApp real. Es lo que más usan los clientes en Benidorm.", "Real WhatsApp — what clients use most in Benidorm."]);
+  L(["pub_label_phone", "WhatsApp del anuncio *", "Ad WhatsApp *"]);
+  L(["pub_phone_hint", "Se rellena con el de tu cuenta; puedes cambiarlo. Se publica.", "Filled from your account; you can change it. It is published."]);
+  L(["pub_label_langs", "Idiomas", "Languages"]);
+  L(["pub_sec_details", "Detalles", "Details"]);
+  L(["pub_sec_details_p", "Servicios, horario y modalidad.", "Services, schedule and modality."]);
+  L(["pub_label_services", "Servicios", "Services"]);
+  L(["pub_services_hint", "Toca para marcar. También puedes escribir extras abajo.", "Tap to select. You can add extras below."]);
+  L(["pub_label_other", "Otros servicios (opcional)", "Other services (optional)"]);
+  L(["pub_label_schedule", "Horario", "Schedule"]);
+  L(["pub_indep", "Independiente", "Independent"]);
+  L(["pub_incall", "Recibe", "Incall"]);
+  L(["pub_outcall", "Salidas / hotel", "Outcall / hotel"]);
+  L(["pub_24h", "Disponible 24h", "Available 24h"]);
+  L(["pub_label_desc", "Descripción *", "Description *"]);
+  L(["pub_desc_hint", "Sé concreta y honesta", "Be clear and honest"]);
+  L(["pub_sec_plan", "Plan de visibilidad", "Visibility plan"]);
+  L(["pub_sec_plan_p", "24 h de prueba al publicar. Luego 5€ / 7€ / 10€ al día para seguir visible.", "24h trial when you publish. Then 5€ / 7€ / 10€ per day to stay visible."]);
+  L(["pub_plan_day", "Día", "Day"]);
+  L(["pub_plan_day_d", "Visible 24h en el listado", "Visible 24h in the list"]);
+  L(["pub_plan_vip", "VIP día", "VIP day"]);
+  L(["pub_plan_vip_d", "Destacado · más visitas", "Featured · more views"]);
+  L(["pub_plan_top", "TOP día", "TOP day"]);
+  L(["pub_plan_top_d", "Máxima prioridad hoy", "Highest priority today"]);
+  L(["pub_plan_hint", "Al publicar tienes 24h de prueba gratis. Luego recargas créditos y gastas 5 / 7 / 10 al día en Mi anuncio.", "Publishing gives a free 24h trial. Then top up credits and spend 5 / 7 / 10 per day in My ad."]);
+  L(["pub_legal", "Soy mayor de 18, trabajo en Benidorm, la información es veraz y acepto el aviso legal y la privacidad.", "I am 18+, work in Benidorm, the info is true and I accept the legal notice and privacy policy."]);
+  L(["pub_submit", "Publicar anuncio ahora", "Publish ad now"]);
+  L(["pub_have_pin", "Al publicar recibirás un PIN. ¿Ya tienes uno?", "You’ll get a PIN after publishing. Already have one?"]);
+  L(["pub_preview", "Así se verá", "Preview"]);
+  L(["pub_preview_name", "Tu nombre, 24", "Your name, 24"]);
+  L(["pub_preview_zone", "Zona Benidorm", "Benidorm area"]);
+  L(["pub_preview_desc", "Tu descripción aparecerá aquí…", "Your description will appear here…"]);
+  L(["pub_tip1", "Fotos reales y nítidas generan más WhatsApp.", "Clear real photos get more WhatsApp."]);
+  L(["pub_tip2", "Indica zona + idiomas: filtran mucho en Benidorm.", "Area + languages matter a lot in Benidorm."]);
+  L(["pub_tip3", "Tras publicar, renueva con tu PIN para subir posiciones.", "After publishing, renew with your PIN to climb the list."]);
+  L(["pub_footer", "Publicación real en servidor", "Live publishing on server"]);
+
+  // —— My ad / manage (mi-anuncio.html) ——
+  L(["my_h1", "Panel del anunciante", "Advertiser panel"]);
+  L(["my_lead", "Si tienes cuenta: inicia sesión. También puedes usar el PIN del anuncio (legado).", "If you have an account: log in. You can also use the ad PIN (legacy)."]);
+  L(["my_login_link", "inicia sesión", "log in"]);
+  L(["my_private", "Acceso privado", "Private access"]);
+  L(["my_pin_h2", "Entra con tu PIN", "Sign in with your PIN"]);
+  L(["my_pin_hint", "WhatsApp del anuncio + PIN de 10 caracteres. Se guardan solo en este dispositivo.", "Ad WhatsApp + 10-character PIN. Saved only on this device."]);
+  L(["my_phone", "WhatsApp / Teléfono", "WhatsApp / Phone"]);
+  L(["my_pin", "PIN de gestión", "Management PIN"]);
+  L(["my_show", "Ver", "Show"]);
+  L(["my_pin_once", "Se mostró una sola vez al publicar. Si lo perdiste, publica de nuevo o escribe a contacto.", "Shown once when publishing. If lost, publish again or contact us."]);
+  L(["my_remember", "Recordar en este dispositivo", "Remember on this device"]);
+  L(["my_access", "Acceder a mi anuncio", "Access my ad"]);
+  L(["my_new_ad", "Publicar anuncio nuevo", "Publish a new ad"]);
+  L(["my_forgot", "¿Olvidé el PIN?", "Forgot PIN?"]);
+  L(["my_recover_h2", "Recuperar PIN", "Recover PIN"]);
+  L(["my_recover_p", "Usa el email de registro. Si hay SMTP, te enviamos el PIN. Si no, queda solicitud para el admin.", "Use your registration email. If SMTP is set, we send the PIN. Otherwise the admin gets a request."]);
+  L(["my_recover_email", "Email de gestión", "Management email"]);
+  L(["my_request_pin", "Solicitar PIN", "Request PIN"]);
+  L(["my_back", "Volver al acceso", "Back to sign-in"]);
+  L(["my_view_public", "Ver público", "View public"]);
+  L(["my_logout", "Salir", "Log out"]);
+  L(["my_views", "Vistas", "Views"]);
+  L(["my_photos", "Fotos", "Photos"]);
+  L(["my_last_bump", "Última renovación", "Last bump"]);
+  L(["my_bump", "↑ Renovar / subir listado", "↑ Renew / bump listing"]);
+  L(["my_online", "En línea", "Online"]);
+  L(["my_pause", "Pausar", "Pause"]);
+  L(["my_bump_hint", "Renovar pone el anuncio arriba del listado y lo marca en línea.", "Renew bumps the ad to the top and marks it online."]);
+  L(["my_spend_h3", "Gastar créditos en visibilidad", "Spend credits on visibility"]);
+  L(["my_balance", "Saldo: —", "Balance: —"]);
+  L(["my_plan", "Plan actual: prueba", "Current plan: trial"]);
+  L(["my_buy_cr", "Comprar créditos", "Buy credits"]);
+  L(["my_spend_hint", "Primero compras créditos · luego gastas aquí. Pack 3 días = 3× créditos (+72 h).", "Buy credits first · spend here. 3-day pack = 3× credits (+72 h)."]);
+  L(["my_sec_photos_p", "Portada = primera foto. Añade más para la galería.", "Cover = first photo. Add more for the gallery."]);
+  L(["my_current_photos", "Fotos actuales", "Current photos"]);
+  L(["my_add_photos", "Añadir fotos", "Add photos"]);
+  L(["my_add_photos_h", "Se suman hasta el límite del plan (Día 4 · VIP 6 · TOP 8).", "Added up to plan limit (Day 4 · VIP 6 · TOP 8)."]);
+  L(["my_sec_profile_p", "Textos y datos del listado.", "Listing text and details."]);
+  L(["my_label_title", "Título", "Title"]);
+  L(["my_label_name", "Nombre *", "Name *"]);
+  L(["my_label_age", "Edad *", "Age *"]);
+  L(["my_label_zone", "Zona", "Area"]);
+  L(["my_label_price", "Tarifa €/h *", "Rate €/h *"]);
+  L(["my_avail", "Disponibilidad", "Availability"]);
+  L(["my_avail_p", "Controla si te ven en línea y si el anuncio está activo.", "Control online status and whether the ad is active."]);
+  L(["my_online_now", "En línea ahora", "Online now"]);
+  L(["my_visibility", "Visibilidad en el listado", "Listing visibility"]);
+  L(["my_active", "Activo (visible en Benidorm)", "Active (visible in Benidorm)"]);
+  L(["my_hidden", "Pausado (oculto)", "Paused (hidden)"]);
+  L(["my_save", "Guardar cambios", "Save changes"]);
+  L(["my_delete", "Eliminar anuncio permanentemente", "Delete ad permanently"]);
+  L(["my_footer", "Gestión privada", "Private management"]);
+
+  // Dynamic JS UI (auth bars, toasts, buttons — must re-apply on language switch)
+  L(["pub_need_auth", "Debes registrarte o iniciar sesión para publicar anuncios.", "You must sign up or log in to publish ads."]);
+  L(["pub_need_auth_strong", "Debes registrarte o iniciar sesión", "You must sign up or log in"]);
+  L(["pub_need_auth_rest", "para publicar anuncios.", "to publish ads."]);
+  L(["pub_logged_as", "Conectada:", "Signed in:"]);
+  L(["pub_logout", "Salir", "Log out"]);
+  L(["js_creating", "Creando…", "Creating…"]);
+  L(["js_entering", "Entrando…", "Signing in…"]);
+  L(["js_publishing", "Publicando…", "Publishing…"]);
+  L(["js_saving", "Guardando…", "Saving…"]);
+  L(["js_sending", "Enviando…", "Sending…"]);
+  L(["js_renewing", "Renovando…", "Renewing…"]);
+  L(["js_account_ok", "Cuenta creada", "Account created"]);
+  L(["js_session_ok", "Sesión iniciada", "Signed in"]);
+  L(["js_pass_mismatch", "Las contraseñas no coinciden", "Passwords do not match"]);
+  L(["js_error", "Error", "Error"]);
+  L(["js_fav_on", "Guardado en favoritos", "Saved to favorites"]);
+  L(["js_fav_off", "Quitado de favoritos", "Removed from favorites"]);
+  L(["js_link_copied", "Link copiado", "Link copied"]);
+  L(["js_pin_copied", "PIN copiado", "PIN copied"]);
+  L(["js_published", "✓ Anuncio publicado", "✓ Ad published"]);
+  L(["js_access_ok", "Acceso correcto", "Access granted"]);
+  L(["js_no_ads", "Sin anuncios aún", "No ads yet"]);
+  L(["js_no_ads_p", "Publica tu primer anuncio para gestionarlo aquí.", "Publish your first ad to manage it here."]);
+  L(["js_publish_ad", "Publicar anuncio", "Publish ad"]);
+  L(["js_show", "Ver", "Show"]);
+  L(["js_hide", "Ocultar", "Hide"]);
+  L(["js_paused", "Anuncio pausado", "Ad paused"]);
+  L(["js_paused_p", "No aparece en el listado. Reactívalo y asegúrate de tener el día pagado.", "Not in the list. Reactivate it and make sure the day is paid."]);
+  L(["js_off_list", "Fuera del listado público", "Off the public list"]);
+  L(["js_renew_soon", "Renueva el día ahora para no caer del listado esta noche.", "Renew the day now so you don’t drop off the list tonight."]);
+  L(["js_visible", "Visible en el listado", "Visible in the list"]);
+  L(["js_review_form", "Revisa el formulario", "Check the form"]);
+  L(["js_publish_fail", "No se pudo publicar", "Could not publish"]);
+  L(["js_err_age", "Edad mínima 18 años.", "Minimum age 18."]);
+  L(["js_err_zone", "Elige una zona de Benidorm.", "Choose a Benidorm area."]);
+  L(["js_err_price", "Tarifa mínima 50 €/h.", "Minimum rate 50 €/h."]);
+  L(["js_err_phone", "WhatsApp / teléfono inválido.", "Invalid WhatsApp / phone."]);
+  L(["js_err_login", "Debes iniciar sesión para publicar.", "You must log in to publish."]);
+  L(["js_err_desc", "Descripción: mínimo 20 caracteres.", "Description: min. 20 characters."]);
+  L(["js_err_legal", "Debes aceptar el aviso legal.", "You must accept the legal notice."]);
+  L(["js_ticker_1", "Solo Benidorm", "Benidorm only"]);
+  L(["js_ticker_2", "Calidad verificada", "Verified quality"]);
+  L(["js_ticker_3", "Sin intermediarios", "No middlemen"]);
+  L(["js_ticker_4", "Contacto directo", "Direct contact"]);
+  L(["js_empty_fav", "No hay favoritos todavía.", "No favorites yet."]);
+  L(["js_max_photos", "Máximo {n} fotos en este plan", "Maximum {n} photos on this plan"]);
+  L(["js_photo_deleted", "Foto eliminada", "Photo deleted"]);
+  L(["js_check_email", "Revisa tu email", "Check your email"]);
+  L(["js_request_ok", "Solicitud registrada", "Request logged"]);
+
+  // Listings page filters / chips / SEO
+  L(["list_also", "También:", "Also:"]);
+  L(["list_advertise_from", "anunciarse desde 5€/día", "advertise from 5€/day"]);
+  L(["list_filters", "Filtros", "Filters"]);
+  L(["list_close", "Cerrar", "Close"]);
+  L(["list_chip_new", "Novedades", "New"]);
+  L(["list_chip_online", "En línea", "Online"]);
+  L(["list_chip_outcall", "Salidas", "Outcall"]);
+  L(["list_chip_indep", "Indep.", "Indep."]);
+  L(["list_nat", "Nacionalidad", "Nationality"]);
+  L(["list_age_from", "Edad desde", "Age from"]);
+  L(["list_age_to", "Edad hasta", "Age to"]);
+  L(["list_sort_age", "Edad ↑", "Age ↑"]);
+  L(["list_sort_mylang", "Mi idioma", "My language"]);
+  L(["list_indep", "Independiente", "Independent"]);
+  L(["list_outcall", "Salidas / hotel", "Outcall / hotel"]);
+  L(["list_incall", "Recibe", "Incall"]);
+  L(["list_24h", "24 horas", "24 hours"]);
+  L(["list_clear", "Limpiar", "Clear"]);
+  L(["list_apply", "Ver resultados", "See results"]);
+  L(["list_grid", "Cuadrícula", "Grid"]);
+  L(["list_list", "Lista", "List"]);
+  L(["list_plans", "Planes", "Plans"]);
+  L(["list_cta_adv", "¿Anunciante?", "Advertiser?"]);
+  L(["list_cta_pub", "Publica · 24h prueba", "Publish · 24h trial"]);
+  L(["list_cta_day", "desde 5€/día", "from 5€/day"]);
+  L(["list_cta_manage", "Gestionar con PIN", "Manage with PIN"]);
+  L(["list_seo_h2", "Escorts y anuncios de calidad en Benidorm", "Quality escort listings in Benidorm"]);
+  L(["list_seo_p1", "En EscortBenidorm encontrarás escorts en Benidorm con información clara: zona real (Levante, Poniente, Rincón de Loix, Casco Antiguo…), tarifa, nacionalidad, si reciben o hacen salidas a hotel, y contacto WhatsApp o teléfono. Priorizamos perfiles de calidad para que no pierdas tiempo con anuncios confusos.", "On EscortBenidorm you’ll find escorts in Benidorm with clear info: real area (Levante, Poniente, Rincón de Loix, Old Town…), rate, nationality, incall or hotel outcall, and WhatsApp or phone. We prioritise quality profiles so you don’t waste time on confusing ads."]);
+  L(["list_seo_h3", "Cómo filtrar… pero solo Benidorm", "How to filter… Benidorm only"]);
+  L(["list_seo_li1", "TOP / VIP — destacadas y premium", "TOP / VIP — featured and premium"]);
+  L(["list_seo_li2", "Novedades — recién publicadas", "New — just published"]);
+  L(["list_seo_li3", "Independientes — sin intermediarios", "Independent — no middlemen"]);
+  L(["list_seo_li4", "Salidas — hotel o domicilio en Benidorm", "Outcall — hotel or home in Benidorm"]);
+  L(["list_seo_li5", "24h — disponibilidad amplia", "24h — wide availability"]);
+  L(["list_seo_p2", "Comparado con portales nacionales, aquí no mezclamos otras ciudades: todo el listado es Benidorm. Ver número, escribir por WhatsApp y confirmar zona antes de la cita.", "Unlike national portals, we don’t mix other cities: the whole list is Benidorm. See the number, write on WhatsApp and confirm the area before meeting."]);
+  L(["card_view", "Ver", "View"]);
+  L(["card_incall", "Recibe", "Incall"]);
+  L(["card_outcall", "Salidas", "Outcall"]);
+  L(["card_new", "Nueva", "New"]);
+  L(["card_real", "Real", "Real"]);
+  L(["card_indep", "Indep.", "Indep."]);
+
+  // Prices / credits page
+  L(["pr_buy_h2", "1. Comprar créditos", "1. Buy credits"]);
+  L(["pr_amount_label", "Importe a recargar (€)", "Amount to top up (€)"]);
+  L(["pr_amount_hint", "1 – 1000 · sin decimales", "1 – 1000 · integers only"]);
+  L(["pr_buy_btn", "Comprar esta cantidad", "Buy this amount"]);
+  L(["pr_shortcuts", "Atajos rápidos:", "Quick amounts:"]);
+  L(["pr_spend_h2", "2. Gastar en servicios (por día)", "2. Spend on services (per day)"]);
+  L(["pr_how_h2", "Cómo funciona", "How it works"]);
+  L(["pr_step1", "Regístrate (email + teléfono).", "Sign up (email + phone)."]);
+  L(["pr_step2", "Recarga entre 1 y 1000 € (enteros; 50–999 +20%, 1000 +50%).", "Top up 1 to 1000 € (integers; 50–999 +20%, 1000 +50%)."]);
+  L(["pr_step3", "Al confirmar el pago, los créditos entran en tu saldo.", "When payment is confirmed, credits go to your balance."]);
+  L(["pr_step4", "En Mi anuncio gastas créditos para activar Día / VIP / TOP (1 día o packs de 3).", "In My ad you spend credits for Day / VIP / TOP (1 day or 3-day packs)."]);
+  L(["pr_step5", "Publicar da 24 h de prueba gratis; después usas créditos para seguir visible.", "Publishing gives a free 24h trial; then use credits to stay visible."]);
+  L(["pr_pay_h3", "Datos de pago (recarga de créditos)", "Payment details (credit top-up)"]);
+  L(["pr_bizum", "Bizum:", "Bizum:"]);
+  L(["pr_iban", "IBAN:", "IBAN:"]);
+  L(["pr_holder", "Titular:", "Account holder:"]);
+  L(["pr_faq_h2", "FAQ", "FAQ"]);
+  L(["pr_faq1_q", "¿Hay bonus por recargar mucho?", "Is there a bonus for larger top-ups?"]);
+  L(["pr_faq1_a", "50–999 € → +20% de créditos. 1000 € → +50%. Ej.: 50→60 · 100→120 · 500→600 · 1000→1500. Importes 1–49 sin bonus.", "50–999 € → +20% credits. 1000 € → +50%. E.g. 50→60 · 100→120 · 500→600 · 1000→1500. Amounts 1–49 have no bonus."]);
+  L(["pr_faq2_q", "¿Puedo poner decimales (10,50 €)?", "Can I use decimals (10.50 €)?"]);
+  L(["pr_faq2_a", "No. Solo números enteros del 1 al 1000.", "No. Only whole numbers from 1 to 1000."]);
+  L(["pr_faq3_q", "¿Caducan los créditos?", "Do credits expire?"]);
+  L(["pr_faq3_a", "No hay caducidad automática. Los usas cuando quieras en visibilidad.", "No automatic expiry. Use them whenever you want on visibility."]);
+  L(["pr_faq4_q", "¿Puedo pagar un día sin recargar?", "Can I pay for one day without topping up?"]);
+  L(["pr_faq4_a", "El modelo es por créditos. Si te falta saldo, recarga y gasta en Mi anuncio.", "Credits only. If you lack balance, top up and spend in My ad."]);
+  L(["pr_faq5_q", "¿Cómo pago con Bizum?", "How do I pay with Bizum?"]);
+  L(["pr_faq5_a", "Al comprar recibes un código EB-XXXX. Envía el importe por Bizum con ese concepto y confirma en el checkout.", "When you buy you get code EB-XXXX. Send the amount via Bizum with that reference and confirm in checkout."]);
+  L(["pr_bal_login", "Saldo: inicia sesión", "Balance: log in"]);
+  L(["pr_bal_you", "Tu saldo:", "Your balance:"]);
+  L(["pr_bal_spend", "Gastar en mi anuncio", "Spend in My ad"]);
+  L(["pr_bal_fail", "No se pudo cargar el saldo.", "Could not load balance."]);
+  L(["pr_pay", "Pagas", "You pay"]);
+  L(["pr_base", "base", "base"]);
+  L(["pr_get", "recibes", "you get"]);
+  L(["pr_credits", "créditos", "credits"]);
+  L(["pr_no_bonus", "(sin bonus; a partir de 50€ hay +20%)", "(no bonus; from 50€ you get +20%)"]);
+  L(["pr_ints_only", "Solo enteros, sin decimales", "Integers only, no decimals"]);
+  L(["pr_login_buy", "Inicia sesión para comprar créditos", "Log in to buy credits"]);
+  L(["pr_order_fail", "No se pudo crear el pedido", "Could not create order"]);
+  L(["pr_no_bonus_li", "Sin bonus", "No bonus"]);
+  L(["pr_gift", "de regalo", "bonus free"]);
+  L(["pr_choose", "Elegir", "Choose"]);
+  L(["pr_cr_short", "créd.", "cr."]);
+  L(["pr_vis_24", "Visibilidad 24 h", "24h visibility"]);
+  L(["pr_per_day", "créditos / día", "credits / day"]);
+  L(["pr_from_bal", "Se descuenta de tu saldo", "Deducted from your balance"]);
+  L(["pr_activate", "Activa o renueva en Mi anuncio", "Activate or renew in My ad"]);
+  L(["pr_spend_btn", "Gastar créditos", "Spend credits"]);
+  L(["pr_load_fail", "No se pudieron cargar los packs. ¿Servidor en marcha?", "Could not load packs. Is the server running?"]);
+  L(["pr_pub_trial", "Publicar · 24h prueba", "Publish · 24h trial"]);
+})();
+
+const I18N_STATE = {
+  lang: "en", // tourist-first default
+};
+
+/** Only ES + EN. Saved choice → ?lang= → Spanish browser → else English */
+function i18nDetect() {
+  const normalize = (code) => {
+    if (!code) return null;
+    code = String(code).toLowerCase().split("-")[0];
+    if (code === "es" || code === "ca" || code === "gl" || code === "eu") return "es";
+    if (code === "en") return "en";
+    // Old multi-lang prefs (fr, de, …) → English
+    return "en";
+  };
+  try {
+    const q = new URLSearchParams(location.search).get("lang");
+    const nq = normalize(q);
+    if (q && (q === "es" || q === "en" || nq)) {
+      const code = q === "es" || q === "en" ? q : nq;
+      try {
+        localStorage.setItem("eb_lang", code);
+      } catch (_) {}
+      return code;
+    }
+  } catch (_) {}
+  try {
+    const saved = localStorage.getItem("eb_lang");
+    if (saved === "es" || saved === "en") return saved;
+    // Migrate fr/de/nl/… stored from old switcher → English
+    if (saved) {
+      try {
+        localStorage.setItem("eb_lang", "en");
+      } catch (_) {}
+      return "en";
+    }
+  } catch (_) {}
+  const nav = (navigator.language || "en").toLowerCase();
+  return normalize(nav) || "en";
+}
+
+function t(key, vars) {
+  const pack = I18N.dict[key];
+  const lang = I18N_STATE.lang === "es" ? "es" : "en";
+  // Strict: only es or en — never leak other languages
+  let s = (pack && (pack[lang] || pack.en || pack.es)) || "";
+  if (!s) s = "";
+  if (vars) {
+    Object.keys(vars).forEach((k) => {
+      s = s.replace(new RegExp(`\\{${k}\\}`, "g"), vars[k]);
+    });
+  }
+  return s;
+}
+
+function setLang(code) {
+  code = code === "es" ? "es" : "en";
+  I18N_STATE.lang = code;
+  try {
+    localStorage.setItem("eb_lang", code);
+  } catch (_) {}
+  document.documentElement.lang = code;
+  document.documentElement.setAttribute("data-lang", code);
+  applyI18n();
+  document.querySelectorAll("[data-lang-chips] .lang-chip").forEach((chip) => {
+    chip.classList.toggle("active", chip.getAttribute("data-lang-option") === code);
+  });
+  window.dispatchEvent(new CustomEvent("eb:lang", { detail: { lang: code } }));
+  setTimeout(() => {
+    try {
+      applyI18n();
+    } catch (_) {}
+  }, 0);
+}
+
+/** Nav / CTA href → i18n key (covers pages without data-i18n on every link) */
+const NAV_HREF_MAP = [
+  { re: /putas-benidorm\.html/i, key: "nav_putas" },
+  { re: /scorts-benidorm\.html/i, key: "nav_scorts" },
+  { re: /escorts-benidorm\.html/i, key: "nav_escorts" },
+  { re: /anuncios\.html/i, key: "nav_ads" },
+  { re: /favoritos\.html/i, key: "nav_favs" },
+  { re: /zonas\.html/i, key: "nav_zones" },
+  { re: /publicar\.html/i, key: "nav_publish" },
+  { re: /precios\.html/i, key: "nav_prices" },
+  { re: /registro\.html/i, key: "nav_register" },
+  { re: /login\.html/i, key: "nav_login" },
+  { re: /mi-anuncio\.html/i, key: "nav_myad" },
+  { re: /blog\//i, key: "nav_guide" },
+  { re: /contacto\.html/i, key: "nav_ads" }, // fallback if no contact key
+  { re: /index\.html$/i, key: "nav_home" },
+  { re: /\/$|\/#$/i, key: "nav_home" },
+];
+
+function applyNavI18n(root = document) {
+  const selectors = [
+    ".nav-desktop a",
+    ".nav-mobile a",
+    ".site-header .header-cta.btn",
+    ".site-header a.btn",
+    ".mobile-cta-bar a",
+    ".footer-bottom a",
+    ".breadcrumb a",
+  ];
+  root.querySelectorAll(selectors.join(",")).forEach((a) => {
+    if (a.hasAttribute("data-i18n") || a.hasAttribute("data-i18n-html")) return;
+    // Never wipe structured children (icons, badges, nested data-i18n spans)
+    if (a.querySelector("[data-i18n], [data-icon], .fav-badge, [data-fav-count], svg, img")) {
+      const href = a.getAttribute("href") || "";
+      const hit = NAV_HREF_MAP.find((x) => x.re.test(href));
+      if (hit) {
+        const label = t(hit.key);
+        a.setAttribute("aria-label", label);
+        a.setAttribute("title", label);
+        // translate plain text nodes only (keep badges/icons)
+        a.childNodes.forEach((n) => {
+          if (n.nodeType === 3 && n.textContent.trim()) n.textContent = " " + label + " ";
+        });
+      }
+      return;
+    }
+    const href = a.getAttribute("href") || "";
+    if (a.classList.contains("logo")) return;
+    const hit = NAV_HREF_MAP.find((x) => x.re.test(href));
+    if (!hit) return;
+    if (a.classList.contains("btn-primary") || a.classList.contains("btn-gold")) {
+      if (/publicar/i.test(href)) {
+        a.textContent = t("nav_cta");
+        return;
+      }
+      if (/anuncios/i.test(href)) {
+        a.textContent = t("see_listings");
+        return;
+      }
+      if (/registro/i.test(href)) {
+        a.textContent = t("create_account");
+        return;
+      }
+    }
+    a.textContent = t(hit.key);
+  });
+  root.querySelectorAll(".site-header a.btn-primary, .site-header a.btn-sm.btn-primary").forEach((a) => {
+    if (a.hasAttribute("data-i18n")) return;
+    if (a.querySelector("[data-i18n], [data-icon]")) return;
+    const href = a.getAttribute("href") || "";
+    if (/publicar/i.test(href)) a.textContent = t("nav_cta");
+    else if (/anuncios/i.test(href)) a.textContent = t("see_listings");
+    else if (/registro/i.test(href)) a.textContent = t("create_account");
+  });
+}
+
+function applyAgeGateI18n(root = document) {
+  const gate = root.querySelector("#age-gate") || root;
+  const h2 = gate.querySelector?.("#age-gate h2") || document.querySelector("#age-gate h2");
+  const p = document.querySelector("#age-gate p");
+  const yes = document.querySelector("#age-yes");
+  const no = document.querySelector("#age-no");
+  if (h2 && !h2.hasAttribute("data-i18n")) h2.textContent = t("age_title");
+  if (p && !p.hasAttribute("data-i18n")) p.textContent = t("age_text");
+  if (yes && !yes.hasAttribute("data-i18n")) yes.textContent = t("age_yes");
+  if (no && !no.hasAttribute("data-i18n")) no.textContent = t("age_no");
+  document.querySelectorAll(".menu-toggle").forEach((btn) => {
+    if (!btn.hasAttribute("data-i18n")) btn.setAttribute("aria-label", t("menu"));
+  });
+}
+
+function applyI18n(root = document) {
+  root.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = (el.getAttribute("data-i18n") || "").trim();
+    if (!key) return;
+    // Always translate when key exists; never leave Spanish leftovers when EN is active
+    if (!I18N.dict[key]) return;
+    const attr = el.getAttribute("data-i18n-attr");
+    const val = t(key);
+    if (val == null || val === "") return;
+    if (attr) el.setAttribute(attr, val);
+    else el.textContent = val;
+  });
+  root.querySelectorAll("[data-i18n-html]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-html");
+    if (!key || !I18N.dict[key]) return;
+    const val = t(key);
+    if (val) el.innerHTML = val;
+  });
+  root.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (!key || !I18N.dict[key]) return;
+    const val = t(key);
+    if (val) el.placeholder = val;
+  });
+  const titleEl = document.querySelector("title[data-i18n-title]");
+  if (titleEl) {
+    const key = titleEl.getAttribute("data-i18n-title");
+    if (key && I18N.dict[key]) document.title = t(key);
+  }
+  applyNavI18n(root);
+  applyAgeGateI18n(root);
+  updateLangSwitcherUI();
+}
+
+function updateLangSwitcherUI() {
+  const cur = I18N.langs.find((l) => l.code === I18N_STATE.lang);
+  document.querySelectorAll("[data-lang-current]").forEach((el) => {
+    el.textContent = cur ? `${cur.flag} ${cur.short}` : I18N_STATE.lang.toUpperCase();
+  });
+  document.querySelectorAll("[data-lang-option]").forEach((btn) => {
+    const c = btn.getAttribute("data-lang-option");
+    btn.classList.toggle("active", c === I18N_STATE.lang);
+  });
+}
+
+function buildLangSwitcherHTML() {
+  const options = I18N.langs
+    .map(
+      (l) =>
+        `<button type="button" class="lang-opt" data-lang-option="${l.code}" role="option">
+          <span class="lang-flag">${l.flag}</span>
+          <span class="lang-name">${l.name}</span>
+          <span class="lang-code">${l.short}</span>
+        </button>`
+    )
+    .join("");
+  return `
+    <div class="lang-switcher">
+      <button type="button" class="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
+        <span data-lang-current>🇪🇸 ES</span>
+        <span class="lang-caret">▾</span>
+      </button>
+      <div class="lang-menu" role="listbox" hidden>
+        <div class="lang-menu-title" data-i18n="lang_picker">Idioma</div>
+        ${options}
+      </div>
+    </div>
+  `;
+}
+
+/** Inject language switcher: header + always-visible floating control on every page. */
+function ensureLangMounts() {
+  // 1) Floating switcher — always present, never hidden by header CSS
+  if (!document.getElementById("eb-lang-fab")) {
+    const fab = document.createElement("div");
+    fab.id = "eb-lang-fab";
+    fab.className = "lang-fab";
+    fab.setAttribute("data-lang-mount", "");
+    fab.setAttribute("data-lang-fab", "1");
+    fab.setAttribute("aria-label", "Language");
+    (document.body || document.documentElement).appendChild(fab);
+  }
+
+  const header = document.querySelector(".site-header");
+  if (header) {
+    const inner = header.querySelector(".header-inner") || header;
+    if (!header.querySelector("[data-lang-mount]:not([data-lang-fab])")) {
+      const mount = document.createElement("div");
+      mount.setAttribute("data-lang-mount", "");
+      mount.className = "header-cta lang-mount-header";
+      mount.style.cssText = "display:inline-flex;align-items:center;max-width:none;overflow:visible";
+
+      const actions = header.querySelector(".header-actions");
+      if (actions) {
+        const primary = actions.querySelector("a.btn-primary, a.btn-gold");
+        if (primary) actions.insertBefore(mount, primary);
+        else actions.appendChild(mount);
+      } else {
+        const cta = inner.querySelector("a.btn-primary, a.header-cta.btn, a.btn-sm");
+        const toggle = inner.querySelector(".menu-toggle");
+        if (cta) inner.insertBefore(mount, cta);
+        else if (toggle) inner.insertBefore(mount, toggle);
+        else inner.appendChild(mount);
+      }
+    }
+
+    const mobile = header.querySelector(".nav-mobile");
+    if (mobile && !mobile.querySelector("[data-lang-mount]")) {
+      const m = document.createElement("div");
+      m.setAttribute("data-lang-mount", "");
+      m.style.cssText = "padding:0.5rem 1rem;display:flex";
+      mobile.appendChild(m);
+    }
+  }
+}
+
+function bindLangSwitcherBox(box) {
+  if (!box || box.dataset.bound) return;
+  box.dataset.bound = "1";
+  const btn = box.querySelector(".lang-btn");
+  const menu = box.querySelector(".lang-menu");
+  if (!btn || !menu) return;
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    document.querySelectorAll(".lang-menu").forEach((m) => {
+      if (m !== menu) m.hidden = true;
+    });
+    menu.hidden = !menu.hidden;
+    btn.setAttribute("aria-expanded", menu.hidden ? "false" : "true");
+  });
+  menu.querySelectorAll("[data-lang-option]").forEach((opt) => {
+    opt.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setLang(opt.getAttribute("data-lang-option"));
+      menu.hidden = true;
+      btn.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+function initLangSwitcher() {
+  ensureLangMounts();
+
+  document.querySelectorAll("[data-lang-mount]").forEach((mount) => {
+    if (!mount.dataset.ready) {
+      mount.innerHTML = buildLangSwitcherHTML();
+      mount.dataset.ready = "1";
+    }
+    const box = mount.querySelector(".lang-switcher");
+    bindLangSwitcherBox(box);
+  });
+
+  if (!window.__ebLangDocClick) {
+    window.__ebLangDocClick = true;
+    document.addEventListener("click", () => {
+      document.querySelectorAll(".lang-menu").forEach((m) => {
+        m.hidden = true;
+      });
+      document.querySelectorAll(".lang-btn").forEach((b) => b.setAttribute("aria-expanded", "false"));
+    });
+  }
+
+  document.querySelectorAll("[data-lang-chips]").forEach((bar) => {
+    if (bar.dataset.ready) return;
+    bar.dataset.ready = "1";
+    bar.innerHTML = I18N.langs
+      .map(
+        (l) =>
+          `<button type="button" class="lang-chip ${l.code === I18N_STATE.lang ? "active" : ""}" data-lang-option="${l.code}" title="${l.name}">${l.flag}<span>${l.short}</span></button>`
+      )
+      .join("");
+    bar.querySelectorAll("[data-lang-option]").forEach((b) => {
+      b.addEventListener("click", () => setLang(b.getAttribute("data-lang-option")));
+    });
+  });
+
+  document.documentElement.lang = I18N_STATE.lang;
+  document.documentElement.setAttribute("data-lang", I18N_STATE.lang);
+  updateLangSwitcherUI();
+}
+
+/** Boot UI without waiting for app.js — every page that loads i18n.js gets a switcher. */
+function bootI18nUI() {
+  if (window.__ebI18nBooted) {
+    // re-apply if DOM grew (e.g. late header)
+    try {
+      ensureLangMounts();
+      document.querySelectorAll("[data-lang-mount]").forEach((mount) => {
+        if (!mount.dataset.ready) {
+          mount.innerHTML = buildLangSwitcherHTML();
+          mount.dataset.ready = "1";
+          bindLangSwitcherBox(mount.querySelector(".lang-switcher"));
+        }
+      });
+      applyI18n();
+    } catch (_) {}
+    return;
+  }
+  window.__ebI18nBooted = true;
+  try {
+    initLangSwitcher();
+    applyI18n();
+  } catch (err) {
+    console.error("[i18n] boot failed", err);
+  }
+}
+
+function profileSpeaksUILang(ad) {
+  // UI is only ES or EN — match ads that list that spoken language
+  const ui = I18N_STATE.lang === "es" ? "ES" : "EN";
+  const aliases = {
+    ES: ["ES"],
+    EN: ["EN", "UK"],
+  };
+  const want = aliases[ui] || [ui];
+  const has = (ad.languages || []).map((x) => String(x).toUpperCase());
+  return want.some((w) => has.includes(w));
+}
+
+function zoneLabel(slug, fallback) {
+  const z = typeof ZONES !== "undefined" ? ZONES.find((x) => x.slug === slug) : null;
+  if (!z) return fallback || slug;
+  // prefer English names for non-ES, else Spanish name
+  if (I18N_STATE.lang === "es") return z.name;
+  return z.nameEn || z.name;
+}
+
+// boot language early — always from localStorage / ?lang= / browser (English-first)
+I18N_STATE.lang = i18nDetect();
+try {
+  if (typeof document !== "undefined") {
+    document.documentElement.lang = I18N_STATE.lang;
+    document.documentElement.setAttribute("data-lang", I18N_STATE.lang);
+  }
+} catch (_) {}
+
+// Self-boot language UI on every page that includes this file (no app.js required)
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootI18nUI);
+  } else {
+    bootI18nUI();
+  }
+  // Retry once after paint in case body/header rendered late
+  setTimeout(bootI18nUI, 50);
+  setTimeout(bootI18nUI, 400);
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Contacto | EscortBenidorm</title>
+  <meta name="description" content="Contacto de EscortBenidorm: soporte para anunciantes, PIN de gestión y retirada de contenido en Benidorm." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.escortbenidorm.es/contacto.html" />
+  <link rel="stylesheet" href="css/styles.css?v=9" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><div class="logo-mark">EB</div>Escort<span>Benidorm</span></a>
+      <nav class="nav-desktop">
+        <a href="index.html">Inicio</a>
+        <a href="anuncios.html">Anuncios</a>
+        <a href="publicar.html">Publicar</a>
+        <a href="precios.html">Precios</a>
+        <a href="mi-anuncio.html">Mi anuncio</a>
+        <a href="contacto.html" class="active">Contacto</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="nav-mobile">
+      <a href="index.html">Inicio</a>
+      <a href="anuncios.html">Anuncios</a>
+      <a href="publicar.html">Publicar</a>
+      <a href="precios.html">Precios</a>
+      <a href="mi-anuncio.html">Mi anuncio</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+  <main>
+    <div class="container page-header">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> · <span>Contacto</span></div>
+      <h1>Contacto</h1>
+      <p>Soporte para anunciantes en Benidorm, reportes y retirada de contenido. Los mensajes se guardan en el servidor.</p>
+    </div>
+    <div class="container" style="padding-bottom:3rem">
+      <div class="form-card" style="margin-bottom:1rem">
+        <p class="form-hint" style="margin:0 0 0.5rem">
+          ¿Problema con tu anuncio? Prueba primero
+          <a href="mi-anuncio.html" style="color:var(--accent)">gestionar con tu PIN</a>
+          (editar, renovar el día o pausar sin esperar respuesta).
+        </p>
+        <p class="form-hint" style="margin:0">
+          Planes diarios: <a href="precios.html" style="color:var(--accent)">5€ / 7€ / 10€</a> ·
+          <a href="registro.html" style="color:var(--accent)">Crear cuenta</a> ·
+          Pago Bizum con código <strong>EB-XXXX</strong> en el concepto.
+        </p>
+      </div>
+      <div id="contact-success" class="form-card publish-success" hidden>
+        <div class="pin-badge">✓ Enviado</div>
+        <h2 style="margin:0.5rem 0;font-size:1.15rem">Mensaje recibido</h2>
+        <p class="form-hint">Te responderemos al email indicado cuando sea posible.</p>
+        <a class="btn btn-primary btn-sm" href="anuncios.html">Ver anuncios</a>
+      </div>
+      <form class="form-card" id="contact-form">
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input id="email" name="email" type="email" required placeholder="tu@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="asunto">Asunto *</label>
+          <select id="asunto" name="asunto" required>
+            <option value="">Elige</option>
+            <option>Quiero anunciar en Benidorm</option>
+            <option>Problema con mi anuncio / PIN</option>
+            <option>He pagado Bizum y no se ha activado</option>
+            <option>Reportar contenido</option>
+            <option>Retirada de datos / RGPD</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="msg">Mensaje *</label>
+          <textarea id="msg" name="msg" required minlength="10" placeholder="Cuéntanos tu consulta…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+      </form>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border:none;padding-top:0">
+        <span>© <span data-year></span> EscortBenidorm</span>
+        <a href="aviso-legal.html">Legal</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/api.js?v=9"></script>
+  <script src="js/icons.js?v=9"></script>
+  <script src="js/i18n.js?v=9"></script>
+  <script src="js/app.js?v=9"></script>
+</body>
+</html>

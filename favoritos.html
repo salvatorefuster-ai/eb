@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Favoritos | EscortBenidorm</title>
+  <meta name="description" content="Tus escorts favoritas en Benidorm. Lista guardada en este dispositivo." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#08080b" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css?v=9" />
+</head>
+<body>
+  <div id="age-gate" class="age-gate" role="dialog" aria-modal="true">
+    <div class="age-card">
+      <div class="logo-mark">EB</div>
+      <h2 data-i18n="age_title">+18</h2>
+      <p data-i18n="age_text">Adult</p>
+      <div class="age-actions">
+        <button type="button" class="btn btn-primary" id="age-yes" data-i18n="age_yes">18+</button>
+        <button type="button" class="btn btn-ghost" id="age-no" data-i18n="age_no">Leave</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><div class="logo-mark">EB</div>Escort<span>Benidorm</span></a>
+      <nav class="nav-desktop">
+        <a href="index.html" data-i18n="nav_home">Inicio</a>
+        <a href="anuncios.html" data-i18n="nav_ads">Anuncios</a>
+        <a href="favoritos.html" class="active">Favoritos</a>
+        <a href="publicar.html" data-i18n="nav_publish">Publicar</a>
+        <a href="precios.html">Precios</a>
+        <a href="mi-anuncio.html">Mi anuncio</a>
+      </nav>
+      <div class="header-actions">
+        <div data-lang-mount class="header-cta"></div>
+        <a class="btn btn-primary btn-sm header-cta" href="anuncios.html">Explorar</a>
+        <button class="menu-toggle" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <nav class="nav-mobile">
+      <a href="index.html" data-i18n="nav_home">Inicio</a>
+      <a href="anuncios.html" data-i18n="nav_ads">Anuncios</a>
+      <a href="favoritos.html">Favoritos</a>
+      <a href="publicar.html" data-i18n="nav_publish">Publicar</a>
+      <a href="precios.html">Precios</a>
+      <a href="mi-anuncio.html">Mi anuncio</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container page-header">
+      <div class="breadcrumb">
+        <a href="index.html">Inicio</a> · <span>Favoritos</span>
+      </div>
+      <h1>Tus favoritas</h1>
+      <p>Guardadas en este dispositivo. Solo tú las ves. Ideal para comparar sin perder perfiles de calidad en Benidorm.</p>
+    </div>
+
+    <div class="container" style="padding-bottom:2rem">
+      <div class="results-meta">
+        <div id="fav-count">—</div>
+        <div class="view-toggle">
+          <a class="btn btn-secondary btn-sm" href="comparar.html">Comparar</a>
+          <button type="button" class="btn btn-ghost btn-sm" id="fav-clear">Vaciar</button>
+        </div>
+      </div>
+      <div class="cards-grid" id="listings" data-favorites="1"></div>
+
+      <section class="recent-section" style="margin-top:2.5rem">
+        <div class="section-head">
+          <div>
+            <h2>Vistos recientemente</h2>
+            <p>Últimos perfiles que abriste en este dispositivo</p>
+          </div>
+        </div>
+        <div class="cards-grid" id="recent-listings"></div>
+      </section>
+    </div>
+  </main>
+
+  <div class="mobile-cta-bar">
+    <a class="btn btn-secondary btn-sm" href="anuncios.html"><span data-icon="grid"></span> Anuncios</a>
+    <a class="btn btn-ghost btn-sm" href="comparar.html">Comparar</a>
+    <a class="btn btn-primary btn-sm" href="favoritos.html"><span data-icon="heart"></span> Favs</a>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border:none;padding-top:0">
+        <span>© <span data-year></span> EscortBenidorm</span>
+        <span>+18</span>
+      </div>
+    </div>
+  </footer>
+  <script src="js/api.js?v=9"></script>
+  <script src="js/icons.js?v=9"></script>
+  <script src="js/i18n.js?v=9"></script>
+  <script src="js/app.js?v=9"></script>
+</body>
+</html>

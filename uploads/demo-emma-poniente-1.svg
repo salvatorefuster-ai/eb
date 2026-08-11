@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3d3a1a"/>
+      <stop offset="100%" stop-color="#202010"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="38%" r="45%">
+      <stop offset="0%" stop-color="#c9a96e" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#c9a96e" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <rect width="800" height="1000" fill="url(#glow)"/>
+  <circle cx="400" cy="380" r="140" fill="none" stroke="#c9a96e" stroke-opacity="0.25" stroke-width="2"/>
+  <circle cx="400" cy="340" r="70" fill="#c9a96e" fill-opacity="0.12"/>
+  <ellipse cx="400" cy="520" rx="110" ry="130" fill="#c9a96e" fill-opacity="0.1"/>
+  <text x="400" y="390" text-anchor="middle" font-family="Georgia, serif" font-size="120" fill="#c9a96e" fill-opacity="0.85" font-weight="600">E</text>
+  <text x="400" y="920" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" fill="#c9a96e" fill-opacity="0.45" letter-spacing="4">BENIDORM</text>
+  <rect x="40" y="40" width="720" height="920" fill="none" stroke="#c9a96e" stroke-opacity="0.15" stroke-width="1" rx="8"/>
+</svg>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Checkout · Pagar plan | EscortBenidorm</title>
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#07070c" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css?v=9" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><div class="logo-mark">EB</div>Escort<span>Benidorm</span></a>
+      <a class="btn btn-ghost btn-sm" href="mi-anuncio.html">Mi anuncio</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container page-header">
+      <div class="breadcrumb"><a href="precios.html">Precios</a> · <span>Checkout</span></div>
+      <h1 id="checkout-h1">Pagar pedido</h1>
+      <p id="checkout-lead">Concepto del pago = código del pedido (EB-XXXX). Tras activar, se recargan créditos o el plan.</p>
+    </div>
+
+    <div class="container" style="padding-bottom:3rem;max-width:560px">
+      <div id="checkout-loading" class="form-card" style="text-align:center">Cargando pedido…</div>
+
+      <div id="checkout-done" class="form-card publish-success" hidden>
+        <div class="pin-badge" id="done-badge">✓ Pago activado</div>
+        <h2 class="publish-success-title" id="done-title">Pago confirmado</h2>
+        <p class="form-hint" id="done-hint">Listo. Si compraste créditos, ya están en tu saldo.</p>
+        <div class="pin-actions">
+          <a class="btn btn-primary" id="done-view" href="mi-anuncio.html">Mi anuncio</a>
+          <a class="btn btn-secondary" id="done-manage" href="precios.html">Comprar más créditos</a>
+        </div>
+      </div>
+
+      <div id="checkout-box" hidden>
+        <div class="form-card checkout-summary">
+          <div class="checkout-row">
+            <span>Pedido</span>
+            <strong id="ck-id" class="mono">—</strong>
+          </div>
+          <div class="checkout-row">
+            <span>Plan</span>
+            <strong id="ck-plan">—</strong>
+          </div>
+          <div class="checkout-row">
+            <span>Anuncio</span>
+            <strong id="ck-ad">—</strong>
+          </div>
+          <div class="checkout-row checkout-total">
+            <span>Total</span>
+            <strong id="ck-amount">—</strong>
+          </div>
+          <div class="checkout-row">
+            <span>Estado</span>
+            <strong id="ck-status">—</strong>
+          </div>
+        </div>
+
+        <div class="form-card" style="margin-top:1rem" id="checkout-pay">
+          <h2 style="font-size:1.1rem;margin:0 0 0.75rem;font-family:var(--serif)">Método de pago</h2>
+          <div id="ck-methods" class="checkout-methods"></div>
+
+          <div id="ck-instructions" class="checkout-instructions"></div>
+
+          <div class="form-group" style="margin-top:1rem">
+            <label for="ck-note">Referencia / nota (opcional)</label>
+            <input id="ck-note" type="text" maxlength="200" placeholder="Ej. Bizum enviado a las 14:00" />
+          </div>
+
+          <button type="button" class="btn btn-primary btn-block" id="ck-confirm">He pagado / Confirmar</button>
+          <p class="form-hint" style="text-align:center;margin-top:0.75rem">
+            Guarda el código del pedido. Soporte: <a href="contacto.html" style="color:var(--accent)">contacto</a>
+          </p>
+        </div>
+      </div>
+
+      <div id="checkout-error" class="form-card publish-errors" hidden></div>
+    </div>
+  </main>
+
+  <script src="js/api.js?v=9"></script>
+  <script src="js/icons.js?v=9"></script>
+  <script src="js/i18n.js?v=9"></script>
+  <script src="js/app.js?v=9"></script>
+  <script>
+    (async function () {
+      const orderId = new URLSearchParams(location.search).get("order");
+      const loading = document.getElementById("checkout-loading");
+      const box = document.getElementById("checkout-box");
+      const done = document.getElementById("checkout-done");
+      const errEl = document.getElementById("checkout-error");
+      let selectedMethod = "bizum";
+      let payment = null;
+      let instructions = {};
+
+      if (!orderId) {
+        loading.hidden = true;
+        errEl.hidden = false;
+        errEl.innerHTML = "<strong>Falta el pedido</strong><p>Abre el enlace de checkout completo o crea uno desde publicar / mi anuncio.</p>";
+        return;
+      }
+
+      function showPaid(p) {
+        loading.hidden = true;
+        box.hidden = true;
+        done.hidden = false;
+        const isCredits = p.kind === "credits" || (p.credits && !p.adId);
+        if (isCredits) {
+          document.getElementById("done-badge").textContent = "✓ Créditos recargados";
+          document.getElementById("done-title").textContent = `+${p.credits || ""} créditos en tu saldo`;
+          document.getElementById("done-hint").textContent =
+            "Ya puedes gastarlos en Mi anuncio (Día / VIP / TOP).";
+          document.getElementById("done-view").href = "mi-anuncio.html";
+          document.getElementById("done-view").textContent = "Gastar en mi anuncio";
+          document.getElementById("done-manage").href = "precios.html#creditos";
+          document.getElementById("done-manage").textContent = "Comprar más";
+        } else {
+          const id = p.adId || "";
+          document.getElementById("done-view").href = id ? "a/" + encodeURIComponent(id) : "anuncios.html";
+          document.getElementById("done-manage").href = "mi-anuncio.html?id=" + encodeURIComponent(id);
+        }
+      }
+
+      function renderInstructions() {
+        const el = document.getElementById("ck-instructions");
+        if (selectedMethod === "bizum") {
+          el.innerHTML = `
+            <p>Envía <strong>${payment.amount}€</strong> por Bizum a:</p>
+            <p class="checkout-code">${instructions.bizumPhone || "—"}</p>
+            <p>Concepto / mensaje: <strong class="mono">${payment.id}</strong></p>
+            <p class="form-hint">${instructions.note || ""}</p>`;
+        } else if (selectedMethod === "transfer") {
+          el.innerHTML = `
+            <p>Transferencia de <strong>${payment.amount}€</strong> a:</p>
+            <p><strong>IBAN:</strong> <span class="mono">${instructions.bankIban || "—"}</span></p>
+            <p><strong>Titular:</strong> ${instructions.bankHolder || "—"}</p>
+            <p>Concepto: <strong class="mono">${payment.id}</strong></p>`;
+        } else if (selectedMethod === "mock") {
+          el.innerHTML = `<p class="form-hint">Modo prueba: al confirmar se activa el plan al instante sin cargo real.</p>`;
+        } else if (selectedMethod === "card") {
+          el.innerHTML = dataStripeEnabled
+            ? `<p class="form-hint">Pulsa confirmar para ir a <strong>Stripe Checkout</strong> (tarjeta segura). Al pagar, el plan se activa solo.</p>`
+            : `<p class="form-hint">Tarjeta no configurada en el servidor (falta STRIPE_SECRET_KEY). Usa Bizum, transferencia o simulación local.</p>`;
+        } else {
+          el.innerHTML = "";
+        }
+      }
+
+      let dataStripeEnabled = false;
+
+      try {
+        const data = await API.get("/api/checkout/" + encodeURIComponent(orderId));
+        payment = data.payment;
+        instructions = data.instructions || {};
+        dataStripeEnabled = (data.methods || []).some((m) => m.id === "card" && m.enabled);
+        loading.hidden = true;
+
+        if (payment.status === "paid") {
+          showPaid(payment);
+          return;
+        }
+        if (new URLSearchParams(location.search).get("stripe") === "ok") {
+          // webhook may lag; poll once
+          setTimeout(async () => {
+            try {
+              const again = await API.get("/api/checkout/" + encodeURIComponent(orderId));
+              if (again.payment?.status === "paid") showPaid(again.payment);
+            } catch (_) {}
+          }, 1500);
+        }
+
+        box.hidden = false;
+        const isCredits = payment.kind === "credits" || payment.credits;
+        document.getElementById("ck-id").textContent = payment.id;
+        document.getElementById("ck-plan").textContent =
+          (data.plan && data.plan.name) || payment.plan;
+        document.getElementById("ck-ad").textContent = isCredits
+          ? `Recarga · ${payment.credits} créditos`
+          : payment.adName || payment.adId || "—";
+        if (isCredits) {
+          document.getElementById("checkout-h1").textContent = "Comprar créditos";
+          document.getElementById("ck-amount").textContent = payment.amount + "€";
+          document.getElementById("checkout-lead").textContent =
+            `Recarga de ${payment.credits} créditos por ${payment.amount}€. Concepto = ${payment.id}.`;
+        } else {
+          const days = payment.days || 1;
+          document.getElementById("ck-amount").textContent =
+            payment.amount + "€ · " + days + " día" + (days > 1 ? "s" : "");
+          if (data.plan) {
+            document.getElementById("checkout-lead").textContent = `Plan ${data.plan.name}: ${payment.amount}€.`;
+          }
+        }
+        document.getElementById("ck-status").textContent =
+          payment.status === "awaiting" ? "En revisión" : "Pendiente de pago";
+
+        const methods = (data.methods || []).filter((m) => m.enabled !== false);
+        const methodsEl = document.getElementById("ck-methods");
+        methodsEl.innerHTML = methods
+          .map(
+            (m, i) => `
+          <label class="checkout-method ${i === 0 ? "is-on" : ""}">
+            <input type="radio" name="method" value="${m.id}" ${i === 0 ? "checked" : ""} />
+            <span><strong>${m.name}</strong><small>${m.desc || ""}</small></span>
+          </label>`
+          )
+          .join("");
+        if (methods[0]) selectedMethod = methods[0].id;
+        methodsEl.querySelectorAll("input").forEach((inp) => {
+          inp.addEventListener("change", () => {
+            selectedMethod = inp.value;
+            methodsEl.querySelectorAll(".checkout-method").forEach((l) => l.classList.remove("is-on"));
+            inp.closest(".checkout-method")?.classList.add("is-on");
+            renderInstructions();
+          });
+        });
+        renderInstructions();
+
+        document.getElementById("ck-confirm").addEventListener("click", async () => {
+          const btn = document.getElementById("ck-confirm");
+          btn.disabled = true;
+          btn.textContent = "Procesando…";
+          try {
+            const res = await API.post("/api/checkout/" + encodeURIComponent(orderId) + "/confirm", {
+              method: selectedMethod,
+              note: document.getElementById("ck-note").value || "",
+            });
+            if (res.stripeUrl) {
+              location.href = res.stripeUrl;
+              return;
+            }
+            if (res.activated || res.payment?.status === "paid") {
+              showToast("Plan activado");
+              showPaid(res.payment);
+            } else {
+              showToast(res.message || "Pago declarado");
+              document.getElementById("ck-status").textContent = "En revisión (admin)";
+              btn.textContent = "Declaración enviada";
+            }
+          } catch (e) {
+            showToast(e.message || "Error");
+            btn.disabled = false;
+            btn.textContent = "He pagado / Confirmar";
+          }
+        });
+      } catch (e) {
+        loading.hidden = true;
+        errEl.hidden = false;
+        errEl.innerHTML = `<strong>Error</strong><p>${e.message || "No se pudo cargar el pedido"}</p>`;
+      }
+    })();
+  </script>
+</body>
+</html>

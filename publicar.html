@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Advertise escort in Benidorm | 24h trial · EscortBenidorm</title>
+  <meta name="description" content="Publica tu anuncio de escort en Benidorm: 24h de prueba, luego desde 5€/día. Fotos, WhatsApp, zona y PIN de gestión." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#07070c" />
+  <link rel="canonical" href="https://www.escortbenidorm.es/publicar.html" />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css?v=9" />
+</head>
+<body class="page-publish">
+  <div id="age-gate" class="age-gate" role="dialog" aria-modal="true">
+    <div class="age-card">
+      <div class="logo-mark">EB</div>
+      <h2 data-i18n="age_title">18+ only</h2>
+      <p data-i18n="age_text">Adult content. Only 18+ may advertise in Benidorm.</p>
+      <div class="age-actions">
+        <button type="button" class="btn btn-primary" id="age-yes" data-i18n="age_yes">I am 18+</button>
+        <button type="button" class="btn btn-ghost" id="age-no" data-i18n="age_no">Leave</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html"><div class="logo-mark">EB</div>Escort<span>Benidorm</span></a>
+      <nav class="nav-desktop">
+        <a href="index.html" data-i18n="nav_home">Home</a>
+        <a href="anuncios.html" data-i18n="nav_ads">Listings</a>
+        <a href="zonas.html" data-i18n="nav_zones">Areas</a>
+        <a href="publicar.html" class="active" data-i18n="nav_publish">Advertise</a>
+        <a href="mi-anuncio.html" data-i18n="nav_myad">My ad</a>
+      </nav>
+      <div class="header-actions">
+        <div data-lang-mount class="header-cta lang-mount-header"></div>
+        <a class="btn btn-ghost btn-sm header-cta" href="mi-anuncio.html" data-i18n="have_pin">I already have a PIN</a>
+        <button class="menu-toggle" type="button" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <nav class="nav-mobile">
+      <a href="index.html" data-i18n="nav_home">Home</a>
+      <a href="anuncios.html" data-i18n="nav_ads">Listings</a>
+      <a href="zonas.html" data-i18n="nav_zones">Areas</a>
+      <a href="publicar.html" data-i18n="nav_publish">Advertise</a>
+      <a href="mi-anuncio.html" data-i18n="nav_myad">My ad</a>
+      <div data-lang-mount style="padding:0.5rem 1rem"></div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container page-header publish-hero">
+      <div class="breadcrumb"><a href="index.html" data-i18n="nav_home">Home</a> · <span data-i18n="nav_publish">Advertise</span></div>
+      <h1 data-i18n="pub_h1">Publish in Benidorm in 2 minutes</h1>
+      <p><span data-i18n="pub_lead">Account required · 24h trial · then spend credits (5 / 7 / 10 per day).</span> <a href="precios.html#creditos" style="color:var(--accent)" data-i18n="pub_buy_credits">Buy credits</a></p>
+      <div id="publish-auth-bar" class="publish-auth-bar"></div>
+      <div class="publish-trust">
+        <span class="publish-trust-pill" data-i18n="pub_trust_24h">✓ 24h trial</span>
+        <span class="publish-trust-pill" data-i18n="pub_trust_only">✓ Benidorm only</span>
+        <span class="publish-trust-pill" data-i18n="pub_trust_wa">✓ Direct WhatsApp</span>
+        <span class="publish-trust-pill" data-i18n="pub_trust_price">✓ From 5€/day</span>
+      </div>
+    </div>
+
+    <div class="container publish-layout" style="padding-bottom:5.5rem">
+      <!-- Success -->
+      <div id="publish-success" class="form-card publish-success" hidden>
+        <div class="pin-badge" data-i18n="pub_ok_badge">✓ Live online</div>
+        <h2 class="publish-success-title" data-i18n="pub_ok_title">Your ad is live in the listings</h2>
+        <p class="form-hint publish-success-lead" data-i18n="pub_ok_lead">
+          Save this management PIN. It won’t be shown again. Use it to edit, renew or delete the ad.
+        </p>
+        <div class="pin-box" id="publish-pin-box">—</div>
+        <div class="pin-actions">
+          <button type="button" class="btn btn-secondary" id="publish-copy-pin" data-i18n="pub_copy_pin">Copy PIN</button>
+          <a class="btn btn-primary" id="publish-manage-link" href="mi-anuncio.html" data-i18n="pub_manage_ad">Manage ad</a>
+          <a class="btn btn-ghost" id="publish-view-link" href="anuncios.html" data-i18n="pub_view_public">View public profile</a>
+        </div>
+        <div id="publish-pay-cta" class="publish-pay-cta" hidden>
+          <h3 data-i18n="pub_next_credits">Next: top up credits</h3>
+          <p class="form-hint" id="publish-pay-text" data-i18n="pub_next_credits_p">You have a 24h trial. Then spend credits (Day 5 · VIP 7 · TOP 10).</p>
+          <a class="btn btn-gold btn-block" id="publish-checkout-link" href="precios.html#creditos" data-i18n="pub_topup">Top up credits</a>
+        </div>
+        <div class="publish-success-tips">
+          <p data-i18n="pub_tip">Tip: renew the ad every few days from My ad to climb the list.</p>
+          <p class="form-hint" style="margin:0"><a href="mi-anuncio.html" style="color:var(--accent)" data-i18n="pub_manage_ad">Manage ad</a></p>
+        </div>
+      </div>
+
+      <div id="publish-workspace" class="publish-workspace">
+        <form class="form-card publish-form" id="publish-form" enctype="multipart/form-data" novalidate>
+          <div class="publish-progress" aria-hidden="true">
+            <div class="publish-progress-bar" id="publish-progress-bar"></div>
+          </div>
+          <p class="publish-progress-label"><span id="publish-progress-pct">0</span><span data-i18n="pub_progress">% complete · required fields</span></p>
+
+          <!-- 1. Photos -->
+          <section class="publish-section" data-section="photos">
+            <header class="publish-section-head">
+              <span class="publish-step-num">1</span>
+              <div>
+                <h2 data-i18n="pub_sec_photos">Photos</h2>
+                <p data-i18n="pub_sec_photos_p">First photo is the cover. Better quality = more clicks.</p>
+              </div>
+            </header>
+            <div class="dropzone" id="photo-dropzone" tabindex="0" role="button" aria-label="Upload photos">
+              <input id="photos" name="photos" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple hidden />
+              <div class="dropzone-inner">
+                <span class="dropzone-ico" data-icon="cam"></span>
+                <strong data-i18n="pub_drop_strong">Drop photos here</strong>
+                <span data-i18n="pub_drop_sub">or tap to choose · JPG/PNG/WEBP · max 6 · 5 MB each</span>
+              </div>
+            </div>
+            <div id="photo-preview" class="photo-preview-grid"></div>
+            <p class="form-hint" id="photo-count-hint" data-i18n="pub_photo_count">0 / 6 photos · optional but highly recommended</p>
+          </section>
+
+          <!-- 2. Profile -->
+          <section class="publish-section" data-section="profile">
+            <header class="publish-section-head">
+              <span class="publish-step-num">2</span>
+              <div>
+                <h2 data-i18n="pub_sec_profile">Profile</h2>
+                <p data-i18n="pub_sec_profile_p">How you’ll appear in the Benidorm listings.</p>
+              </div>
+            </header>
+
+            <div class="form-group">
+              <label for="title" data-i18n="pub_label_title">Ad title</label>
+              <input id="title" name="title" maxlength="90" placeholder="e.g. Sofia elegant Colombian — Levante Benidorm" autocomplete="off" />
+              <div class="field-meta">
+                <button type="button" class="linkish" id="title-suggest" data-i18n="pub_suggest">Suggest title</button>
+                <span id="title-count" class="char-count">0/90</span>
+              </div>
+            </div>
+
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label for="name" data-i18n="pub_label_name">Display name *</label>
+                <input id="name" name="name" required maxlength="40" placeholder="e.g. Sofia" autocomplete="nickname" />
+              </div>
+              <div class="form-group">
+                <label for="age" data-i18n="pub_label_age">Age * (18+)</label>
+                <input id="age" name="age" type="number" min="18" max="99" required placeholder="24" inputmode="numeric" />
+              </div>
+            </div>
+
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label for="zone" data-i18n="pub_label_zone">Benidorm area *</label>
+                <select id="zone" name="zone" required>
+                  <option value="" data-i18n="pub_select_zone">Select area</option>
+                  <option value="levante">Playa de Levante</option>
+                  <option value="poniente">Playa de Poniente</option>
+                  <option value="rincon-de-loix">Rincón de Loix</option>
+                  <option value="casco-antiguo">Casco Antiguo</option>
+                  <option value="nueva-poniente">Nueva Poniente</option>
+                  <option value="foietes">Foietes / Cala</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="price" data-i18n="pub_label_price">Rate €/hour *</label>
+                <div class="input-suffix">
+                  <input id="price" name="price" type="number" min="50" max="9999" required placeholder="150" inputmode="numeric" />
+                  <span>€</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label for="nationality" data-i18n="pub_label_nat">Nationality</label>
+                <input id="nationality" name="nationality" list="nat-list" placeholder="Spanish, Colombian…" />
+                <datalist id="nat-list">
+                  <option value="Spanish"></option>
+                  <option value="Colombian"></option>
+                  <option value="Venezuelan"></option>
+                  <option value="Brazilian"></option>
+                  <option value="Argentine"></option>
+                  <option value="Russian"></option>
+                  <option value="Ukrainian"></option>
+                  <option value="Romanian"></option>
+                  <option value="Italian"></option>
+                  <option value="French"></option>
+                  <option value="British"></option>
+                  <option value="Latina"></option>
+                </datalist>
+              </div>
+              <div class="form-group">
+                <label for="height" data-i18n="pub_label_height">Height</label>
+                <input id="height" name="height" placeholder="1.68 m" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="locationDetail" data-i18n="pub_label_loc">Detailed location</label>
+              <input id="locationDetail" name="locationDetail" placeholder="e.g. Levante · near casino" />
+              <p class="form-hint" data-i18n="pub_loc_hint">No need for exact flat number. Neighbourhood or nearby hotel is enough.</p>
+            </div>
+          </section>
+
+          <!-- 3. Contact -->
+          <section class="publish-section" data-section="contact">
+            <header class="publish-section-head">
+              <span class="publish-step-num">3</span>
+              <div>
+                <h2 data-i18n="pub_sec_contact">Contact</h2>
+                <p data-i18n="pub_sec_contact_p">Real WhatsApp — what clients use most in Benidorm.</p>
+              </div>
+            </header>
+            <div class="form-group">
+              <label for="phone" data-i18n="pub_label_phone">Ad WhatsApp *</label>
+              <input id="phone" name="phone" type="tel" required placeholder="+34 6XX XXX XXX" autocomplete="tel" />
+              <p class="form-hint" data-i18n="pub_phone_hint">Filled from your account; you can change it. It is published.</p>
+            </div>
+            <input type="hidden" id="manageEmail" name="manageEmail" value="" />
+            <div class="form-group">
+              <label data-i18n="pub_label_langs">Languages</label>
+              <div class="chip-select" id="lang-chips" data-target="languages">
+                <button type="button" class="chip-opt is-on" data-val="ES">ES</button>
+                <button type="button" class="chip-opt" data-val="EN">EN</button>
+                <button type="button" class="chip-opt" data-val="DE">DE</button>
+                <button type="button" class="chip-opt" data-val="FR">FR</button>
+                <button type="button" class="chip-opt" data-val="NL">NL</button>
+                <button type="button" class="chip-opt" data-val="IT">IT</button>
+                <button type="button" class="chip-opt" data-val="PT">PT</button>
+                <button type="button" class="chip-opt" data-val="RU">RU</button>
+                <button type="button" class="chip-opt" data-val="PL">PL</button>
+                <button type="button" class="chip-opt" data-val="NO">NO</button>
+                <button type="button" class="chip-opt" data-val="SV">SV</button>
+              </div>
+              <input type="hidden" id="languages" name="languages" value="ES" />
+            </div>
+          </section>
+
+          <!-- 4. Details -->
+          <section class="publish-section" data-section="details">
+            <header class="publish-section-head">
+              <span class="publish-step-num">4</span>
+              <div>
+                <h2 data-i18n="pub_sec_details">Details</h2>
+                <p data-i18n="pub_sec_details_p">Services, schedule and modality.</p>
+              </div>
+            </header>
+
+            <div class="form-group">
+              <label data-i18n="pub_label_services">Services</label>
+              <div class="chip-select" id="service-chips" data-target="services">
+                <button type="button" class="chip-opt" data-val="Hotel">Hotel</button>
+                <button type="button" class="chip-opt" data-val="Outcall">Outcall</button>
+                <button type="button" class="chip-opt" data-val="GFE">GFE</button>
+                <button type="button" class="chip-opt" data-val="Massage">Massage</button>
+                <button type="button" class="chip-opt" data-val="Companionship">Companionship</button>
+                <button type="button" class="chip-opt" data-val="Dinner">Dinner</button>
+                <button type="button" class="chip-opt" data-val="VIP">VIP</button>
+                <button type="button" class="chip-opt" data-val="Home">Home</button>
+                <button type="button" class="chip-opt" data-val="Events">Events</button>
+              </div>
+              <input type="hidden" id="services" name="services" value="" />
+              <p class="form-hint" data-i18n="pub_services_hint">Tap to select. You can add extras below.</p>
+            </div>
+            <div class="form-group">
+              <label for="services-extra" data-i18n="pub_label_other">Other services (optional)</label>
+              <input id="services-extra" type="text" placeholder="e.g. fantasies, duo…" />
+            </div>
+
+            <div class="form-row form-row-2">
+              <div class="form-group">
+                <label for="schedule" data-i18n="pub_label_schedule">Schedule</label>
+                <input id="schedule" name="schedule" placeholder="Flexible / 11–02 / 24h" />
+              </div>
+              <div class="form-group">
+                <label class="sr-only">Modality</label>
+                <div class="check-grid">
+                  <label class="checkbox-label"><input type="checkbox" name="independent" value="true" checked /> <span data-i18n="pub_indep">Independent</span></label>
+                  <label class="checkbox-label"><input type="checkbox" name="incall" value="true" checked /> <span data-i18n="pub_incall">Incall</span></label>
+                  <label class="checkbox-label"><input type="checkbox" name="outcall" value="true" checked /> <span data-i18n="pub_outcall">Outcall / hotel</span></label>
+                  <label class="checkbox-label"><input type="checkbox" name="available24h" value="true" id="chk-24h" /> <span data-i18n="pub_24h">Available 24h</span></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="desc"><span data-i18n="pub_label_desc">Description *</span> <span class="req-hint">(min. 20)</span></label>
+              <textarea id="desc" name="desc" required minlength="20" maxlength="600" rows="5" placeholder="Mention Benidorm and your area, schedule, languages and what makes you different."></textarea>
+              <div class="field-meta">
+                <span class="form-hint" id="desc-hint" data-i18n="pub_desc_hint">Be clear and honest</span>
+                <span id="desc-count" class="char-count">0/600</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- 5. Plan -->
+          <section class="publish-section" data-section="plan">
+            <header class="publish-section-head">
+              <span class="publish-step-num">5</span>
+              <div>
+                <h2 data-i18n="pub_sec_plan">Visibility plan</h2>
+                <p><span data-i18n="pub_sec_plan_p">24h trial when you publish. Then 5€ / 7€ / 10€ per day to stay visible.</span> <a href="precios.html" style="color:var(--accent)" data-i18n="see_prices">See daily prices</a></p>
+              </div>
+            </header>
+            <input type="hidden" name="plan" id="plan" value="basic" />
+            <div class="plan-cards" id="plan-cards">
+              <button type="button" class="plan-card is-selected" data-plan="basic">
+                <span class="plan-name" data-i18n="pub_plan_day">Day</span>
+                <span class="plan-price" data-plan-price="basic">5€ / day</span>
+                <span class="plan-desc" data-i18n="pub_plan_day_d">Visible 24h in the list</span>
+              </button>
+              <button type="button" class="plan-card" data-plan="vip">
+                <span class="plan-name" data-i18n="pub_plan_vip">VIP day</span>
+                <span class="plan-price" data-plan-price="vip">7€ / day</span>
+                <span class="plan-desc" data-i18n="pub_plan_vip_d">Featured · more views</span>
+              </button>
+              <button type="button" class="plan-card" data-plan="top">
+                <span class="plan-name" data-i18n="pub_plan_top">TOP day</span>
+                <span class="plan-price" data-plan-price="top">10€ / day</span>
+                <span class="plan-desc" data-i18n="pub_plan_top_d">Highest priority today</span>
+              </button>
+            </div>
+            <p class="form-hint" id="plan-pay-hint"><span data-i18n="pub_plan_hint">Publishing gives a free 24h trial. Then top up credits and spend 5 / 7 / 10 per day in My ad.</span> <a href="precios.html#creditos" style="color:var(--accent)" data-i18n="pub_buy_credits">Buy credits</a></p>
+          </section>
+
+          <div class="publish-legal">
+            <label class="checkbox-label">
+              <input type="checkbox" required name="legal" id="legal-check" />
+              <span data-i18n="pub_legal">I am 18+, work in Benidorm, the info is true and I accept the legal notice and privacy policy.</span>
+            </label>
+          </div>
+
+          <div id="publish-errors" class="publish-errors" hidden></div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-publish-submit" id="publish-submit" data-i18n="pub_submit">
+            Publish ad now
+          </button>
+          <p class="form-hint publish-foot">
+            <span data-i18n="pub_have_pin">You’ll get a PIN after publishing. Already have one?</span>
+            <a href="mi-anuncio.html" style="color:var(--accent)" data-i18n="pub_manage_ad">Manage ad</a>
+          </p>
+        </form>
+
+        <!-- Live preview -->
+        <aside class="publish-preview-wrap" aria-label="Preview">
+          <div class="publish-preview sticky-preview">
+            <div class="publish-preview-label" data-i18n="pub_preview">Preview</div>
+            <article class="escort-card publish-preview-card" id="live-preview">
+              <div class="card-media" id="preview-media" style="background:linear-gradient(160deg,#3d1a2a,#0e0e16)">
+                <div class="placeholder-avatar" id="preview-letter">?</div>
+                <div class="card-badges" id="preview-badges"></div>
+                <div class="online-dot" data-i18n="online_now">Online</div>
+              </div>
+              <div class="card-body">
+                <h3 id="preview-name" data-i18n="pub_preview_name">Your name, 24</h3>
+                <p class="card-title-line" id="preview-title"></p>
+                <div class="card-meta">
+                  <span id="preview-zone" data-i18n="pub_preview_zone">Benidorm area</span>
+                  <span id="preview-nat">—</span>
+                </div>
+                <div class="card-langs" id="preview-langs"></div>
+                <p class="card-desc" id="preview-desc" data-i18n="pub_preview_desc">Your description will appear here…</p>
+                <div class="card-footer card-footer-col">
+                  <div class="price"><span id="preview-price">—</span>€ <small>/ hr</small></div>
+                </div>
+              </div>
+            </article>
+            <ul class="publish-preview-tips">
+              <li data-i18n="pub_tip1">Clear real photos get more WhatsApp.</li>
+              <li data-i18n="pub_tip2">Area + languages matter a lot in Benidorm.</li>
+              <li data-i18n="pub_tip3">After publishing, renew with your PIN to climb the list.</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border:none;padding-top:0">
+        <span>© <span data-year></span> EscortBenidorm · <span data-i18n="pub_footer">Live publishing on server</span></span>
+        <a href="mi-anuncio.html" data-i18n="nav_myad">My ad</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/api.js?v=9"></script>
+  <script src="js/icons.js?v=9"></script>
+  <script src="js/i18n.js?v=9"></script>
+  <script src="js/app.js?v=9"></script>
+</body>
+</html>
