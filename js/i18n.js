@@ -412,48 +412,52 @@ const I18N_CODES = ["es", "en", "de", "fr", "nl", "it", "pt", "no", "sv", "ru", 
   L(["js_check_email", "Revisa tu email", "Check your email"]);
   L(["js_request_ok", "Solicitud registrada", "Request logged"]);
 
-  // Listings page filters / chips / SEO
-  L(["list_also", "También:", "Also:"]);
-  L(["list_advertise_from", "anunciarse desde 5€/día", "advertise from 5€/day"]);
-  L(["list_filters", "Filtros", "Filters"]);
-  L(["list_close", "Cerrar", "Close"]);
-  L(["list_chip_new", "Novedades", "New"]);
-  L(["list_chip_online", "En línea", "Online"]);
-  L(["list_chip_outcall", "Salidas", "Outcall"]);
-  L(["list_chip_indep", "Indep.", "Indep."]);
-  L(["list_nat", "Nacionalidad", "Nationality"]);
-  L(["list_age_from", "Edad desde", "Age from"]);
-  L(["list_age_to", "Edad hasta", "Age to"]);
-  L(["list_sort_age", "Edad ↑", "Age ↑"]);
-  L(["list_sort_mylang", "Mi idioma", "My language"]);
-  L(["list_indep", "Independiente", "Independent"]);
-  L(["list_outcall", "Salidas / hotel", "Outcall / hotel"]);
-  L(["list_incall", "Recibe", "Incall"]);
-  L(["list_24h", "24 horas", "24 hours"]);
-  L(["list_clear", "Limpiar", "Clear"]);
-  L(["list_apply", "Ver resultados", "See results"]);
-  L(["list_grid", "Cuadrícula", "Grid"]);
-  L(["list_list", "Lista", "List"]);
-  L(["list_plans", "Planes", "Plans"]);
-  L(["list_cta_adv", "¿Anunciante?", "Advertiser?"]);
-  L(["list_cta_pub", "Publica · 24h prueba", "Publish · 24h trial"]);
-  L(["list_cta_day", "desde 5€/día", "from 5€/day"]);
-  L(["list_cta_manage", "Gestionar con PIN", "Manage with PIN"]);
-  L(["list_seo_h2", "Escorts y anuncios de calidad en Benidorm", "Quality escort listings in Benidorm"]);
-  L(["list_seo_p1", "En EscortBenidorm encontrarás escorts en Benidorm con información clara: zona real (Levante, Poniente, Rincón de Loix, Casco Antiguo…), tarifa, nacionalidad, si reciben o hacen salidas a hotel, y contacto WhatsApp o teléfono. Priorizamos perfiles de calidad para que no pierdas tiempo con anuncios confusos.", "On EscortBenidorm you’ll find escorts in Benidorm with clear info: real area (Levante, Poniente, Rincón de Loix, Old Town…), rate, nationality, incall or hotel outcall, and WhatsApp or phone. We prioritise quality profiles so you don’t waste time on confusing ads."]);
-  L(["list_seo_h3", "Cómo filtrar… pero solo Benidorm", "How to filter… Benidorm only"]);
-  L(["list_seo_li1", "TOP / VIP — destacadas y premium", "TOP / VIP — featured and premium"]);
-  L(["list_seo_li2", "Novedades — recién publicadas", "New — just published"]);
-  L(["list_seo_li3", "Independientes — sin intermediarios", "Independent — no middlemen"]);
-  L(["list_seo_li4", "Salidas — hotel o domicilio en Benidorm", "Outcall — hotel or home in Benidorm"]);
-  L(["list_seo_li5", "24h — disponibilidad amplia", "24h — wide availability"]);
-  L(["list_seo_p2", "Comparado con portales nacionales, aquí no mezclamos otras ciudades: todo el listado es Benidorm. Ver número, escribir por WhatsApp y confirmar zona antes de la cita.", "Unlike national portals, we don’t mix other cities: the whole list is Benidorm. See the number, write on WhatsApp and confirm the area before meeting."]);
-  L(["card_view", "Ver", "View"]);
-  L(["card_incall", "Recibe", "Incall"]);
-  L(["card_outcall", "Salidas", "Outcall"]);
-  L(["card_new", "Nueva", "New"]);
-  L(["card_real", "Real", "Real"]);
-  L(["card_indep", "Indep.", "Indep."]);
+  // Listings — full DE (and EN fallback for other langs via L())
+  L(["list_also", "También:", "Also:", "Auch:"]);
+  L(["list_advertise_from", "anunciarse desde 5€/día", "advertise from 5€/day", "inserieren ab 5€/Tag"]);
+  L(["list_filters", "Filtros", "Filters", "Filter"]);
+  L(["list_close", "Cerrar", "Close", "Schließen"]);
+  L(["list_chip_new", "Novedades", "New", "Neu"]);
+  L(["list_chip_online", "En línea", "Online", "Online"]);
+  L(["list_chip_outcall", "Salidas", "Outcall", "Hausbesuche"]);
+  L(["list_chip_indep", "Indep.", "Indep.", "Unabh."]);
+  L(["list_nat", "Nacionalidad", "Nationality", "Nationalität"]);
+  L(["list_age_from", "Edad desde", "Age from", "Alter ab"]);
+  L(["list_age_to", "Edad hasta", "Age to", "Alter bis"]);
+  L(["list_sort_age", "Edad ↑", "Age ↑", "Alter ↑"]);
+  L(["list_sort_mylang", "Mi idioma", "My language", "Meine Sprache"]);
+  L(["list_indep", "Independiente", "Independent", "Unabhängig"]);
+  L(["list_outcall", "Salidas / hotel", "Outcall / hotel", "Hausbesuche / Hotel"]);
+  L(["list_incall", "Recibe", "Incall", "Empfängt"]);
+  L(["list_24h", "24 horas", "24 hours", "24 Stunden"]);
+  L(["list_clear", "Limpiar", "Clear", "Zurücksetzen"]);
+  L(["list_apply", "Ver resultados", "See results", "Ergebnisse"]);
+  L(["list_grid", "Cuadrícula", "Grid", "Raster"]);
+  L(["list_list", "Lista", "List", "Liste"]);
+  L(["list_plans", "Planes", "Plans", "Pläne"]);
+  L(["list_cta_adv", "¿Anunciante?", "Advertiser?", "Inserentin?"]);
+  L(["list_cta_pub", "Publica · 24h prueba", "Publish · 24h trial", "Inserieren · 24h Test"]);
+  L(["list_cta_day", "desde 5€/día", "from 5€/day", "ab 5€/Tag"]);
+  L(["list_cta_manage", "Gestionar con PIN", "Manage with PIN", "Mit PIN verwalten"]);
+  L(["list_seo_h2", "Escorts y anuncios de calidad en Benidorm", "Quality escort listings in Benidorm", "Escorts und Qualitätsanzeigen in Benidorm"]);
+  L(["list_seo_p1", "En EscortBenidorm encontrarás escorts en Benidorm con información clara: zona real, tarifa, nacionalidad, si reciben o hacen salidas, y WhatsApp o teléfono. Priorizamos calidad.", "On EscortBenidorm you’ll find escorts in Benidorm with clear info: real area, rate, nationality, incall or outcall, and WhatsApp or phone. We prioritise quality.", "Bei EscortBenidorm findest du Escorts in Benidorm mit klaren Angaben: echtes Gebiet, Tarif, Nationalität, Empfang oder Hausbesuche, WhatsApp oder Telefon. Qualität zuerst."]);
+  L(["list_seo_h3", "Cómo filtrar… pero solo Benidorm", "How to filter… Benidorm only", "So filterst du… nur Benidorm"]);
+  L(["list_seo_li1", "TOP / VIP — destacadas y premium", "TOP / VIP — featured and premium", "TOP / VIP — hervorgehoben und Premium"]);
+  L(["list_seo_li2", "Novedades — recién publicadas", "New — just published", "Neu — gerade veröffentlicht"]);
+  L(["list_seo_li3", "Independientes — sin intermediarios", "Independent — no middlemen", "Unabhängig — ohne Vermittler"]);
+  L(["list_seo_li4", "Salidas — hotel o domicilio en Benidorm", "Outcall — hotel or home in Benidorm", "Hausbesuche — Hotel oder Wohnung in Benidorm"]);
+  L(["list_seo_li5", "24h — disponibilidad amplia", "24h — wide availability", "24h — große Verfügbarkeit"]);
+  L(["list_seo_p2", "Comparado con portales nacionales, aquí no mezclamos otras ciudades: todo es Benidorm. Confirma zona por WhatsApp antes de quedar.", "Unlike national portals, we don’t mix other cities: everything is Benidorm. Confirm the area on WhatsApp before meeting.", "Anders als nationale Portale mischen wir keine Städte: alles ist Benidorm. Bestätige das Gebiet per WhatsApp vor dem Treffen."]);
+  L(["card_view", "Ver", "View", "Ansehen"]);
+  L(["card_incall", "Recibe", "Incall", "Empfängt"]);
+  L(["card_outcall", "Salidas", "Outcall", "Hausbesuche"]);
+  L(["card_new", "Nueva", "New", "Neu"]);
+  L(["card_real", "Real", "Real", "Echt"]);
+  L(["card_indep", "Indep.", "Indep.", "Unabh."]);
+  L(["js_ticker_1", "Solo Benidorm", "Benidorm only", "Nur Benidorm"]);
+  L(["js_ticker_2", "Calidad verificada", "Verified quality", "Geprüfte Qualität"]);
+  L(["js_ticker_3", "Sin intermediarios", "No middlemen", "Ohne Vermittler"]);
+  L(["js_ticker_4", "Contacto directo", "Direct contact", "Direkter Kontakt"]);
 
   // Prices / credits page
   L(["pr_buy_h2", "1. Comprar créditos", "1. Buy credits"]);
@@ -652,27 +656,40 @@ function applyNavI18n(root = document) {
     ".mobile-cta-bar a",
     ".footer-bottom a",
     ".breadcrumb a",
+    ".hero-actions a",
+    ".form-hint a",
   ];
   root.querySelectorAll(selectors.join(",")).forEach((a) => {
+    if (a.classList.contains("logo")) return;
+    const href = a.getAttribute("href") || "";
+    const hit = NAV_HREF_MAP.find((x) => x.re.test(href));
+
+    // Nested i18n span: update span + aria
+    const nested = a.querySelector(":scope > [data-i18n]");
+    if (nested) {
+      const key = (nested.getAttribute("data-i18n") || "").trim();
+      if (key && I18N.dict[key]) nested.textContent = t(key);
+      if (hit) {
+        a.setAttribute("aria-label", t(hit.key));
+        a.setAttribute("title", t(hit.key));
+      }
+      return;
+    }
+
     if (a.hasAttribute("data-i18n") || a.hasAttribute("data-i18n-html")) return;
-    // Never wipe structured children (icons, badges, nested data-i18n spans)
-    if (a.querySelector("[data-i18n], [data-icon], .fav-badge, [data-fav-count], svg, img")) {
-      const href = a.getAttribute("href") || "";
-      const hit = NAV_HREF_MAP.find((x) => x.re.test(href));
+
+    if (a.querySelector("[data-icon], .fav-badge, [data-fav-count], svg, img")) {
       if (hit) {
         const label = t(hit.key);
         a.setAttribute("aria-label", label);
         a.setAttribute("title", label);
-        // translate plain text nodes only (keep badges/icons)
         a.childNodes.forEach((n) => {
           if (n.nodeType === 3 && n.textContent.trim()) n.textContent = " " + label + " ";
         });
       }
       return;
     }
-    const href = a.getAttribute("href") || "";
-    if (a.classList.contains("logo")) return;
-    const hit = NAV_HREF_MAP.find((x) => x.re.test(href));
+
     if (!hit) return;
     if (a.classList.contains("btn-primary") || a.classList.contains("btn-gold")) {
       if (/publicar/i.test(href)) {
@@ -716,36 +733,53 @@ function applyAgeGateI18n(root = document) {
 }
 
 function applyI18n(root = document) {
-  root.querySelectorAll("[data-i18n]").forEach((el) => {
+  const scope = root && root.querySelectorAll ? root : document;
+  // Translate every marked node — including nested spans inside nav links
+  scope.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = (el.getAttribute("data-i18n") || "").trim();
-    if (!key) return;
-    // Always translate when key exists; never leave Spanish leftovers when EN is active
-    if (!I18N.dict[key]) return;
+    if (!key || !I18N.dict[key]) return;
     const attr = el.getAttribute("data-i18n-attr");
     const val = t(key);
-    if (val == null || val === "") return;
-    if (attr) el.setAttribute(attr, val);
-    else el.textContent = val;
+    if (!val) return;
+    if (attr) {
+      el.setAttribute(attr, val);
+      // If it's only an aria/title binding, still set visible text when empty of children
+      if (!el.children.length && el.childNodes.length <= 1) {
+        /* keep text if not purely attr target — attr-only buttons keep glyphs */
+      }
+    } else {
+      el.textContent = val;
+    }
   });
-  root.querySelectorAll("[data-i18n-html]").forEach((el) => {
-    const key = el.getAttribute("data-i18n-html");
+  scope.querySelectorAll("[data-i18n-html]").forEach((el) => {
+    const key = (el.getAttribute("data-i18n-html") || "").trim();
     if (!key || !I18N.dict[key]) return;
     const val = t(key);
     if (val) el.innerHTML = val;
   });
-  root.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
-    const key = el.getAttribute("data-i18n-placeholder");
+  scope.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const key = (el.getAttribute("data-i18n-placeholder") || "").trim();
     if (!key || !I18N.dict[key]) return;
     const val = t(key);
     if (val) el.placeholder = val;
+  });
+  // <option data-i18n> — force update (some browsers cache option labels)
+  scope.querySelectorAll("option[data-i18n]").forEach((opt) => {
+    const key = (opt.getAttribute("data-i18n") || "").trim();
+    if (!key || !I18N.dict[key]) return;
+    const val = t(key);
+    if (val) {
+      opt.textContent = val;
+      opt.label = val;
+    }
   });
   const titleEl = document.querySelector("title[data-i18n-title]");
   if (titleEl) {
     const key = titleEl.getAttribute("data-i18n-title");
     if (key && I18N.dict[key]) document.title = t(key);
   }
-  applyNavI18n(root);
-  applyAgeGateI18n(root);
+  applyNavI18n(document);
+  applyAgeGateI18n(document);
   updateLangSwitcherUI();
 }
 
