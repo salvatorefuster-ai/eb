@@ -1,5 +1,5 @@
 /* EscortBenidorm PWA — network-first JS/CSS so language updates are never stale */
-const CACHE = "eb-shell-v9";
+const CACHE = "eb-shell-v12";
 const SHELL = [
   "/",
   "/index.html",

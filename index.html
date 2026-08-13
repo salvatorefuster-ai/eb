@@ -27,7 +27,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/styles.css?v=11" />
+  <link rel="stylesheet" href="css/styles.css?v=12" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -419,17 +419,16 @@
   </footer>
 
   <script>
-    // Language preference + kill stale service workers that froze Spanish FAQ/nav
+    // Early lang lock + one-time cache bust for multi-lang fix
     (function () {
       try {
-        const p = new URLSearchParams(location.search).get("lang");
-        if (p) localStorage.setItem("eb_lang", p);
-        // One-shot: purge old PWA caches that mixed old HTML + incomplete i18n
-        // Force ES/EN only — drop old fr/de/… preference
-        var L = localStorage.getItem("eb_lang");
-        if (L && L !== "es" && L !== "en") localStorage.setItem("eb_lang", "en");
-        if (!localStorage.getItem("eb_purge_v9")) {
-          localStorage.setItem("eb_purge_v9", "1");
+        var p = new URLSearchParams(location.search).get("lang");
+        if (p) {
+          localStorage.setItem("eb_lang", p);
+          document.cookie = "eb_lang=" + p + ";path=/;max-age=34560000;SameSite=Lax";
+        }
+        if (!localStorage.getItem("eb_purge_v12")) {
+          localStorage.setItem("eb_purge_v12", "1");
           if ("serviceWorker" in navigator) {
             navigator.serviceWorker.getRegistrations().then(function (regs) {
               regs.forEach(function (r) { r.unregister(); });
@@ -444,9 +443,9 @@
       } catch (e) {}
     })();
   </script>
-  <script src="js/api.js?v=11"></script>
-  <script src="js/icons.js?v=11"></script>
-  <script src="js/i18n.js?v=11"></script>
-  <script src="js/app.js?v=11"></script>
+  <script src="js/api.js?v=12"></script>
+  <script src="js/icons.js?v=12"></script>
+  <script src="js/i18n.js?v=12"></script>
+  <script src="js/app.js?v=12"></script>
 </body>
 </html>

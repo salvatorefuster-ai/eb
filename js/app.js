@@ -2910,7 +2910,13 @@ function initContactForm() {
 function onLangChange() {
   // Full re-paint so no leftover strings from the previous language
   applyI18n();
+  // Reset filled flags so selects rebuild in the new language
+  document.querySelectorAll("[data-zones-fill], #filter-lang").forEach((el) => {
+    delete el.dataset.filled;
+  });
   fillZoneSelects();
+  const langSel = document.getElementById("filter-lang");
+  if (langSel) delete langSel.dataset.filled;
   fillLangFilterSelect();
   const firstOpt = document.querySelector("#filter-lang option[value='']");
   if (firstOpt) firstOpt.textContent = t("all_langs");
@@ -2919,11 +2925,13 @@ function onLangChange() {
   if (document.getElementById("listings")) renderListings({ force: false });
   if (document.getElementById("profile-root")) initProfile();
   updateTicker();
-  // Dynamic injectors (publish auth bar, etc.) — rebuild in the new language
   if (document.getElementById("publish-auth-bar") || document.getElementById("publish-form")) {
     requireUserForPublish();
   }
-  // Re-apply data-i18n after injectors wrote new DOM
+  // Cookie banner text if still open
+  const cookie = document.getElementById("cookie-banner");
+  if (cookie) applyI18n(cookie);
+  // Re-apply after injectors wrote new DOM
   applyI18n();
   injectStaticIcons();
   document.documentElement.lang = I18N_STATE.lang;
@@ -2942,6 +2950,32 @@ function updateTicker() {
     `<span>${t("rank_pill")}</span>`,
   ];
   track.innerHTML = bits.concat(bits).join("");
+}
+
+/** Keep chosen language when navigating internal links (no accidental reset) */
+function initLangLinkGuard() {
+  if (window.__ebLangLinkGuard) return;
+  window.__ebLangLinkGuard = true;
+  document.addEventListener(
+    "click",
+    (ev) => {
+      const a = ev.target.closest && ev.target.closest("a[href]");
+      if (!a) return;
+      const href = a.getAttribute("href") || "";
+      if (!href || href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:") || href.startsWith("javascript:"))
+        return;
+      // Re-persist current lang so next page boot always sees it
+      if (typeof persistLang === "function" && I18N_STATE?.lang) {
+        persistLang(I18N_STATE.lang);
+      } else {
+        try {
+          localStorage.setItem("eb_lang", I18N_STATE.lang || "en");
+          document.cookie = `eb_lang=${I18N_STATE.lang || "en"};path=/;max-age=34560000;SameSite=Lax`;
+        } catch (_) {}
+      }
+    },
+    true
+  );
 }
 
 function injectStaticIcons() {
@@ -3167,10 +3201,10 @@ function initCookieBanner() {
   el.className = "cookie-banner";
   el.innerHTML = `
     <div class="cookie-inner">
-      <p>Usamos cookies técnicas y, si las activas, de medición para mejorar EscortBenidorm. Al continuar aceptas la <a href="${basePath()}privacidad.html">política de privacidad</a>.</p>
+      <p><span data-i18n="cookie_text">${t("cookie_text")}</span> <a href="${basePath()}privacidad.html">Privacy</a>.</p>
       <div class="cookie-actions">
-        <button type="button" class="btn btn-ghost btn-sm" id="cookie-reject">Solo técnicas</button>
-        <button type="button" class="btn btn-primary btn-sm" id="cookie-accept">Aceptar</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="cookie-reject" data-i18n="cookie_reject">${t("cookie_reject")}</button>
+        <button type="button" class="btn btn-primary btn-sm" id="cookie-accept" data-i18n="cookie_accept">${t("cookie_accept")}</button>
       </div>
     </div>`;
   document.body.appendChild(el);
@@ -3267,11 +3301,17 @@ function initAuthNav() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // language first (also self-boots from i18n.js; call again for safety)
-  document.documentElement.lang = I18N_STATE.lang;
+  // language first — force re-detect so cookie/localStorage wins on every page
   try {
-    if (typeof bootI18nUI === "function") bootI18nUI();
-    else {
+    if (typeof i18nDetect === "function") I18N_STATE.lang = i18nDetect();
+  } catch (_) {}
+  document.documentElement.lang = I18N_STATE.lang;
+  document.documentElement.setAttribute("data-lang", I18N_STATE.lang);
+  try {
+    if (typeof bootI18nUI === "function") {
+      window.__ebI18nBooted = false; // allow full remount on page load
+      bootI18nUI();
+    } else {
       initLangSwitcher();
       applyI18n();
     }
@@ -3291,6 +3331,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   initCookieBanner();
   initScrollTop();
   initAuthNav();
+  initLangLinkGuard();
 
   window.addEventListener("eb:lang", onLangChange);
 

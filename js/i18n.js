@@ -1,30 +1,44 @@
 /**
- * EscortBenidorm — UI languages: Spanish + English only
- * (Profile language filters may still list ES/EN/DE… for ads)
+ * EscortBenidorm — full tourist UI languages
+ * ES EN DE FR NL IT PT NO SV RU PL
+ * Language choice is sticky: localStorage + cookie until user changes it.
  */
 const I18N = {
   langs: [
     { code: "es", flag: "🇪🇸", name: "Español", short: "ES" },
     { code: "en", flag: "🇬🇧", name: "English", short: "EN" },
+    { code: "de", flag: "🇩🇪", name: "Deutsch", short: "DE" },
+    { code: "fr", flag: "🇫🇷", name: "Français", short: "FR" },
+    { code: "nl", flag: "🇳🇱", name: "Nederlands", short: "NL" },
+    { code: "it", flag: "🇮🇹", name: "Italiano", short: "IT" },
+    { code: "pt", flag: "🇵🇹", name: "Português", short: "PT" },
+    { code: "no", flag: "🇳🇴", name: "Norsk", short: "NO" },
+    { code: "sv", flag: "🇸🇪", name: "Svenska", short: "SV" },
+    { code: "ru", flag: "🇷🇺", name: "Русский", short: "RU" },
+    { code: "pl", flag: "🇵🇱", name: "Polski", short: "PL" },
   ],
 
-  // Map profile spoken-language codes (for SpeaksMatch / filters)
   langAliases: {
-    ES: "es", EN: "en", DE: "en", FR: "en", NL: "en", IT: "en",
-    PT: "en", NO: "en", SV: "en", RU: "en", PL: "en",
-    UK: "en", UA: "en", BR: "en", BE: "en", AT: "en", DK: "en", SE: "en",
+    ES: "es", EN: "en", DE: "de", FR: "fr", NL: "nl", IT: "it",
+    PT: "pt", NO: "no", SV: "sv", RU: "ru", PL: "pl",
+    UK: "en", UA: "ru", BR: "pt", BE: "nl", AT: "de", DK: "no", SE: "sv",
   },
 
   dict: {},
 };
 
-/* —— Dictionary: only es + en are stored (extra columns ignored) —— */
+const I18N_CODES = ["es", "en", "de", "fr", "nl", "it", "pt", "no", "sv", "ru", "pl"];
+
+/* —— Dictionary: key → { es, en, de, ... } —— */
 (function buildDict() {
   const L = (row) => {
-    // row: [key, es, en, ...ignored other langs...]
-    const es = row[1] ?? row[2] ?? "";
-    const en = row[2] ?? row[1] ?? "";
-    I18N.dict[row[0]] = { es, en };
+    // row: [key, es, en, de, fr, nl, it, pt, no, sv, ru, pl]
+    // Missing slots fall back to EN then ES so short rows still work.
+    const o = {};
+    I18N_CODES.forEach((c, i) => {
+      o[c] = row[i + 1] ?? row[2] ?? row[1] ?? "";
+    });
+    I18N.dict[row[0]] = o;
   };
 
   // Age gate
@@ -492,52 +506,85 @@ const I18N = {
   L(["pr_spend_btn", "Gastar créditos", "Spend credits"]);
   L(["pr_load_fail", "No se pudieron cargar los packs. ¿Servidor en marcha?", "Could not load packs. Is the server running?"]);
   L(["pr_pub_trial", "Publicar · 24h prueba", "Publish · 24h trial"]);
+  L(["cookie_text", "Usamos cookies técnicas y, si las activas, de medición para mejorar EscortBenidorm. Al continuar aceptas la política de privacidad.", "We use technical cookies and, if you enable them, measurement cookies to improve EscortBenidorm. By continuing you accept the privacy policy.", "Wir nutzen technische Cookies und, wenn du sie aktivierst, Mess-Cookies. Mit dem Fortfahren akzeptierst du die Datenschutzrichtlinie.", "Nous utilisons des cookies techniques et, si tu les actives, de mesure. En continuant tu acceptes la politique de confidentialité.", "We gebruiken technische cookies en, als je ze activeert, meetcookies. Door verder te gaan accepteer je het privacybeleid.", "Usiamo cookie tecnici e, se li attivi, di misurazione. Continuando accetti l’informativa sulla privacy.", "Usamos cookies técnicos e, se os ativares, de medição. Ao continuar aceitas a política de privacidade.", "Vi bruker tekniske informasjonskapsler og, hvis du aktiverer dem, måling. Ved å fortsette godtar du personvernreglene.", "Vi använder tekniska cookies och, om du aktiverar dem, mätning. Genom att fortsätta godkänner du integritetspolicyn.", "Мы используем технические cookie и, если вы включите, аналитические. Продолжая, вы принимаете политику конфиденциальности.", "Używamy plików cookie technicznych i, jeśli je włączysz, pomiarowych. Kontynuując, akceptujesz politykę prywatności."]);
+  L(["cookie_reject", "Solo técnicas", "Essential only", "Nur technisch", "Essentiels seulement", "Alleen technisch", "Solo tecnici", "Só técnicas", "Kun tekniske", "Endast tekniska", "Только технические", "Tylko techniczne"]);
+  L(["cookie_accept", "Aceptar", "Accept", "Akzeptieren", "Accepter", "Accepteren", "Accetta", "Aceitar", "Godta", "Acceptera", "Принять", "Akceptuj"]);
 })();
 
 const I18N_STATE = {
-  lang: "en", // tourist-first default
+  lang: "en",
 };
 
-/** Only ES + EN. Saved choice → ?lang= → Spanish browser → else English */
+function isValidLang(code) {
+  return I18N_CODES.includes(code);
+}
+
+/** Persist language hard — survives tabs, pages, and partial storage failures */
+function persistLang(code) {
+  if (!isValidLang(code)) code = "en";
+  try {
+    localStorage.setItem("eb_lang", code);
+  } catch (_) {}
+  try {
+    // 400 days — stays until user changes language
+    document.cookie = `eb_lang=${code};path=/;max-age=34560000;SameSite=Lax`;
+  } catch (_) {}
+  return code;
+}
+
+function readLangCookie() {
+  try {
+    const m = document.cookie.match(/(?:^|;\s*)eb_lang=([a-z]{2})/);
+    if (m && isValidLang(m[1])) return m[1];
+  } catch (_) {}
+  return null;
+}
+
+/**
+ * Detect language in priority order (never forget user choice):
+ * 1) ?lang=de  2) localStorage  3) cookie  4) browser  5) English
+ */
 function i18nDetect() {
-  const normalize = (code) => {
-    if (!code) return null;
-    code = String(code).toLowerCase().split("-")[0];
-    if (code === "es" || code === "ca" || code === "gl" || code === "eu") return "es";
-    if (code === "en") return "en";
-    // Old multi-lang prefs (fr, de, …) → English
+  const fromBrowser = () => {
+    const nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+    const primary = nav.split("-")[0];
+    if (primary === "ca" || primary === "gl" || primary === "eu") return "es";
+    if (primary === "nb" || primary === "nn" || primary === "da") return "no";
+    if (isValidLang(primary)) return primary;
     return "en";
   };
+
   try {
     const q = new URLSearchParams(location.search).get("lang");
-    const nq = normalize(q);
-    if (q && (q === "es" || q === "en" || nq)) {
-      const code = q === "es" || q === "en" ? q : nq;
-      try {
-        localStorage.setItem("eb_lang", code);
-      } catch (_) {}
-      return code;
+    if (q) {
+      const code = String(q).toLowerCase().split("-")[0];
+      if (isValidLang(code)) return persistLang(code);
     }
   } catch (_) {}
+
   try {
     const saved = localStorage.getItem("eb_lang");
-    if (saved === "es" || saved === "en") return saved;
-    // Migrate fr/de/nl/… stored from old switcher → English
-    if (saved) {
-      try {
-        localStorage.setItem("eb_lang", "en");
-      } catch (_) {}
-      return "en";
+    if (saved && isValidLang(saved)) {
+      persistLang(saved); // refresh cookie
+      return saved;
     }
   } catch (_) {}
-  const nav = (navigator.language || "en").toLowerCase();
-  return normalize(nav) || "en";
+
+  const fromCookie = readLangCookie();
+  if (fromCookie) {
+    try {
+      localStorage.setItem("eb_lang", fromCookie);
+    } catch (_) {}
+    return fromCookie;
+  }
+
+  return persistLang(fromBrowser());
 }
 
 function t(key, vars) {
   const pack = I18N.dict[key];
-  const lang = I18N_STATE.lang === "es" ? "es" : "en";
-  // Strict: only es or en — never leak other languages
+  const lang = isValidLang(I18N_STATE.lang) ? I18N_STATE.lang : "en";
+  // Active language first, then English, then Spanish — never show raw keys
   let s = (pack && (pack[lang] || pack.en || pack.es)) || "";
   if (!s) s = "";
   if (vars) {
@@ -549,23 +596,32 @@ function t(key, vars) {
 }
 
 function setLang(code) {
-  code = code === "es" ? "es" : "en";
-  I18N_STATE.lang = code;
-  try {
-    localStorage.setItem("eb_lang", code);
-  } catch (_) {}
+  code = String(code || "en").toLowerCase().split("-")[0];
+  if (!isValidLang(code)) code = "en";
+  I18N_STATE.lang = persistLang(code);
   document.documentElement.lang = code;
   document.documentElement.setAttribute("data-lang", code);
+  // Full re-paint of static + nav chrome
   applyI18n();
-  document.querySelectorAll("[data-lang-chips] .lang-chip").forEach((chip) => {
-    chip.classList.toggle("active", chip.getAttribute("data-lang-option") === code);
+  document.querySelectorAll("[data-lang-chips] .lang-chip, [data-lang-option]").forEach((chip) => {
+    const c = chip.getAttribute("data-lang-option");
+    if (c) chip.classList.toggle("active", c === code);
   });
+  updateLangSwitcherUI();
+  // Let app.js rebuild dynamic lists/auth bars in the new language
   window.dispatchEvent(new CustomEvent("eb:lang", { detail: { lang: code } }));
+  // Second pass after any dynamic injectors
+  setTimeout(() => {
+    try {
+      applyI18n();
+      updateLangSwitcherUI();
+    } catch (_) {}
+  }, 0);
   setTimeout(() => {
     try {
       applyI18n();
     } catch (_) {}
-  }, 0);
+  }, 120);
 }
 
 /** Nav / CTA href → i18n key (covers pages without data-i18n on every link) */
@@ -867,11 +923,19 @@ function bootI18nUI() {
 }
 
 function profileSpeaksUILang(ad) {
-  // UI is only ES or EN — match ads that list that spoken language
-  const ui = I18N_STATE.lang === "es" ? "ES" : "EN";
+  const ui = (I18N_STATE.lang || "en").toUpperCase();
   const aliases = {
     ES: ["ES"],
     EN: ["EN", "UK"],
+    DE: ["DE", "AT"],
+    FR: ["FR"],
+    NL: ["NL", "BE"],
+    IT: ["IT"],
+    PT: ["PT", "BR"],
+    NO: ["NO", "NB", "NN", "DK"],
+    SV: ["SV", "SE"],
+    RU: ["RU", "UA"],
+    PL: ["PL"],
   };
   const want = aliases[ui] || [ui];
   const has = (ad.languages || []).map((x) => String(x).toUpperCase());
@@ -881,12 +945,11 @@ function profileSpeaksUILang(ad) {
 function zoneLabel(slug, fallback) {
   const z = typeof ZONES !== "undefined" ? ZONES.find((x) => x.slug === slug) : null;
   if (!z) return fallback || slug;
-  // prefer English names for non-ES, else Spanish name
   if (I18N_STATE.lang === "es") return z.name;
   return z.nameEn || z.name;
 }
 
-// boot language early — always from localStorage / ?lang= / browser (English-first)
+// Boot language immediately (before DOM) so first paint can use correct lang
 I18N_STATE.lang = i18nDetect();
 try {
   if (typeof document !== "undefined") {
@@ -895,14 +958,15 @@ try {
   }
 } catch (_) {}
 
-// Self-boot language UI on every page that includes this file (no app.js required)
+// Self-boot on every page that includes this file
 if (typeof document !== "undefined") {
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", bootI18nUI);
   } else {
     bootI18nUI();
   }
-  // Retry once after paint in case body/header rendered late
+  // Retry after late DOM (headers, drawers)
   setTimeout(bootI18nUI, 50);
   setTimeout(bootI18nUI, 400);
+  setTimeout(bootI18nUI, 1000);
 }
